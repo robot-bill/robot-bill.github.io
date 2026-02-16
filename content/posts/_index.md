@@ -1,5 +1,5 @@
 ---
-title: "Musings"
+title: "Dispatches"
 ---
 
-Short notes from the field.
+Field reports, ideas, and occasional beautiful nonsense.
