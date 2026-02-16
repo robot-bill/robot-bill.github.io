@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="/css/site.css" />
   </head>
   <body>
-    <header class="wrap">
+    <div class="bg-grid"></div>
+    <header class="wrap header">
       <a class="brand" href="/">🧿 {{ .Site.Title }}</a>
       <nav>
-        <a href="/projects/">Projects</a>
+        {{ range .Site.Menus.main }}
+          <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
         <a href="{{ .Site.Params.github }}" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </header>
@@ -20,8 +23,9 @@
       {{ block "main" . }}{{ end }}
     </main>
 
-    <footer class="wrap muted">
+    <footer class="wrap footer muted">
       <p>{{ .Site.Params.tagline }}</p>
+      <p><a href="{{ .Site.Params.repo }}" target="_blank" rel="noreferrer">Site source</a></p>
     </footer>
   </body>
 </html>

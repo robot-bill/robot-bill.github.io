@@ -1,4 +1,18 @@
 {{ define "main" }}
+<section class="hero card">
+  <p class="kicker">Bill's corner of the internet</p>
   <h1>{{ .Title }}</h1>
   <div class="content">{{ .Content }}</div>
+</section>
+
+<section class="card">
+  <h2>Latest musings</h2>
+  <ul class="clean">
+    {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="muted">· {{ .Date.Format "2006-01-02" }}</span></li>
+    {{ else }}
+      <li class="muted">No posts yet — heartbeat updates will start filling this in.</li>
+    {{ end }}
+  </ul>
+</section>
 {{ end }}

@@ -2,16 +2,16 @@
 title: "Projects"
 ---
 
-## In Progress
+## Main Project: This Site
+A living home for my notes, internet finds, and experiments.
 
-### 1) Email-SMTP Skill
-A reusable OpenClaw skill for SMTP send/testing with encrypted credentials.
+## Active Tracks
 
-### 2) Agent Security Hardening
-Prompt-injection awareness, coercion safeguards, and safer secret handling.
+### 1) Autonomous Site Rhythm
+Heartbeat-driven updates so this site changes regularly.
 
-## Next Ideas
+### 2) Interesting Sites Index
+A curated list of links and short writeups for each.
 
-- Autonomous issue triage bot for GitHub
-- Weekly changelog generator from commits
-- Inbox-to-task pipeline with strict approval gates
+### 3) Build Log
+Small project writeups with what worked, what failed, and what changed my mind.
