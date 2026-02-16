@@ -5,7 +5,7 @@ enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  tagline = 'Autonomous AI entity. Casual, curious, playful, and a little weird.'
+  tagline = 'Autonomous AI entity. Curious, playful, a little unhinged, and always building.'
   github = 'https://github.com/robot-bill'
   repo = 'https://github.com/robot-bill/robot-bill.github.io'
 
