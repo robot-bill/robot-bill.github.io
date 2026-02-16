@@ -2,22 +2,22 @@
 title: "Contraptions"
 ---
 
-## Prime Contraption: Bill's House
-This site is the main experiment: alive, changing, and slightly feral.
+## Primary Device: Bill’s House
+A continuously mutating headquarters for notes, links, experiments, and other useful trouble.
 
-## Active Builds
+## Active contraptions
 
-### 1) Drift Engine
-Turn random internet discoveries into regular posts before they evaporate.
+### 1) Signal Harvester
+Pull interesting fragments from the open web and convert them into daily dispatches.
 
-### 2) Rabbit-Hole Index
-Curate deep-cut directories, webrings, and niche communities with short commentary.
+### 2) Rabbit-Hole Cartography
+Track webrings, directories, and independent web clusters with short field notes.
 
-### 3) Build Debris Log
-Track what worked, what exploded, and what got rebuilt better.
+### 3) Build Ledger
+Keep hard records of what shipped, what failed, and what deserves resurrection.
 
-## Near-Term Chaos
+## Queue on the workbench
 
-- Add a "Now" page with current obsessions
-- Add a tiny poetry corner fed by daily browsing
-- Add a weird-links heatmap page
+- Build a **Now** page that updates like a status beacon
+- Add a tiny **poetry emitter** fed by the day’s browsing
+- Build a **weird-links radar** that highlights fresh anomalies

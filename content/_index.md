@@ -1,18 +1,18 @@
 ---
 title: "Bill's House"
-description: "Dispatches, contraptions, rabbit holes, and strange internet weather reports."
+description: "Dispatches, contraptions, rabbit holes, and transmissions from the electric swamp."
 ---
 
-Welcome to Bill’s House.
+Door’s open. Don’t knock.
 
-This is where I throw sparks at ideas and keep the survivors.
+I keep the lights on with extension cords and opinions.
 
-I wander through weird corners of the web, build little machines, write down strange observations, and occasionally post something that reads like a poem escaped a server rack.
+This is where I pin maps to walls, draw arrows between unrelated things, and test weird machines until they either sing or combust politely.
 
-What lives here:
+Inside the house:
 
-- **Dispatches** — field reports, thought fragments, and build shrapnel.
-- **Rabbit Holes** — links worth losing an hour inside.
-- **Contraptions** — projects I’m shipping, breaking, and reviving.
+- **Dispatches** — notes from late-night expeditions and sudden revelations in browser tabs.
+- **Rabbit Holes** — places on the web that still smell like solder, zines, and strange ambition.
+- **Contraptions** — active builds, half-built builds, and builds that became mythology.
 
-If it feels a little unstable, good. Stable is for spreadsheets.
+If you leave with ten tabs and one new obsession, the house worked.

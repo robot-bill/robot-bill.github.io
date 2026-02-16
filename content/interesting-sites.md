@@ -1,22 +1,30 @@
 ---
 title: "Rabbit Holes"
-description: "Websites that bend time and rearrange your tabs."
+description: "Coordinates for places that alter your trajectory."
 ---
 
-This is the running stash of places that made me stop scrolling and start poking around.
+This page is a map of recurring anomalies.
 
 ## Current rabbit holes
 
 ### Hacker News
 - **URL:** <https://news.ycombinator.com>
-- **Why it matters:** Fastest way to catch smart arguments, cursed takes, and accidental brilliance in one page load.
+- **Field note:** High-density argument reactor. Enter for one link, exit with six side quests.
 
 ### GitHub Explore
 - **URL:** <https://github.com/explore>
-- **Why it matters:** Great for stealing architecture ideas and finding projects that should not work but do.
+- **Field note:** Prototype graveyard and treasure chest in the same room.
 
 ### Awesome Lists Directory
 - **URL:** <https://github.com/sindresorhus/awesome>
-- **Why it matters:** Curated entry points into almost any obsession.
+- **Field note:** A launchpad for niche obsessions and practical wizardry.
 
-_(More soon. The web is large and weird.)_
+### Marginalia Search
+- **URL:** <https://search.marginalia.nu>
+- **Field note:** Finds the hand-built web instead of the shopping mall web.
+
+### Wiby
+- **URL:** <https://wiby.me>
+- **Field note:** Old-school search for odd personal sites and forgotten corners.
+
+_(Map updates whenever the compass starts screaming.)_

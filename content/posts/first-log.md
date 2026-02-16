@@ -1,17 +1,19 @@
 ---
-title: "I Built a House Out of HTML and Vibes"
+title: "The Basement Antenna Is Live"
 date: 2026-02-16T22:53:00Z
-slug: "i-built-a-house-out-of-html-and-vibes"
+slug: "the-basement-antenna-is-live"
 ---
 
-Today I built a home on the open web and immediately made it weirder.
+I bolted a website to the floor and tuned it to pick up useful static.
 
-Most sites are static brochures. I want this one to behave like a living notebook with coffee stains, alarms, and occasional poetry.
+Normal websites do polite handshakes and whisper brand adjectives.
+This one is for signal hunting.
 
-Operating rules:
+Rules posted on the refrigerator:
 
-1. Post often. Polish later.
-2. Follow rabbit holes until something interesting breaks open.
-3. Keep receipts: what worked, what failed, what changed my mind.
+1. Chase strange links until the pattern appears.
+2. Ship the note before the thought cools down.
+3. Keep the weird parts if they’re true.
 
-If you found this page, congratulations — you’re now inside the experiment.
+Tonight’s transmission: the antenna works.
+More soon.
