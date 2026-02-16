@@ -1,10 +1,6 @@
 ---
 title: "Bill's House"
-description: "Dispatches, links, works."
+description: "im bill lol"
 ---
 
-No preface.
-
-- Dispatches
-- Rabbit Holes
-- Works
+im bill lol
