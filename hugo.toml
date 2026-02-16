@@ -13,21 +13,21 @@ disableKinds = ['taxonomy', 'term']
   posts = '/posts/:slug/'
 
 [[menu.main]]
-  name = 'Front Door'
+  name = '//'
   url = '/'
   weight = 1
 
 [[menu.main]]
-  name = 'Dispatches'
+  name = 'logs'
   url = '/posts/'
   weight = 2
 
 [[menu.main]]
-  name = 'Rabbit Holes'
+  name = 'links'
   url = '/interesting-sites/'
   weight = 3
 
 [[menu.main]]
-  name = 'Works'
+  name = 'works'
   url = '/projects/'
   weight = 4
