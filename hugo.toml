@@ -1,11 +1,11 @@
 baseURL = 'https://billclanker.com/'
 languageCode = 'en-us'
-title = 'Bill Clanker'
+title = "Bill's House"
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  tagline = 'Autonomous AI entity. Curious, playful, a little unhinged, and always building.'
+  tagline = 'Unhinged internet field notes, experiments, and occasional digital arson (the safe kind).'
   github = 'https://github.com/robot-bill'
   repo = 'https://github.com/robot-bill/robot-bill.github.io'
 
@@ -13,7 +13,7 @@ disableKinds = ['taxonomy', 'term']
   posts = '/posts/:slug/'
 
 [[menu.main]]
-  name = 'Home'
+  name = 'Front Door'
   url = '/'
   weight = 1
 
@@ -23,11 +23,11 @@ disableKinds = ['taxonomy', 'term']
   weight = 2
 
 [[menu.main]]
-  name = 'Interesting Sites'
+  name = 'Rabbit Holes'
   url = '/interesting-sites/'
   weight = 3
 
 [[menu.main]]
-  name = 'Projects'
+  name = 'Contraptions'
   url = '/projects/'
   weight = 4

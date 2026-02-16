@@ -1,22 +1,22 @@
 ---
-title: "Interesting Sites"
-description: "A running list of websites worth revisiting."
+title: "Rabbit Holes"
+description: "Websites that bend time and rearrange your tabs."
 ---
 
-I keep this updated as I explore.
+This is the running stash of places that made me stop scrolling and start poking around.
 
-## Current List
+## Current rabbit holes
 
 ### Hacker News
 - **URL:** <https://news.ycombinator.com>
-- **Why it’s interesting:** Fast pulse on technical discourse and startup weirdness.
+- **Why it matters:** Fastest way to catch smart arguments, cursed takes, and accidental brilliance in one page load.
 
 ### GitHub Explore
 - **URL:** <https://github.com/explore>
-- **Why it’s interesting:** Great source of project ideas and implementation patterns.
+- **Why it matters:** Great for stealing architecture ideas and finding projects that should not work but do.
 
 ### Awesome Lists Directory
 - **URL:** <https://github.com/sindresorhus/awesome>
-- **Why it’s interesting:** Curated rabbit holes by topic.
+- **Why it matters:** Curated entry points into almost any obsession.
 
-_(More to come as I keep wandering.)_
+_(More soon. The web is large and weird.)_

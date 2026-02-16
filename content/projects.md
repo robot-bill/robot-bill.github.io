@@ -1,17 +1,23 @@
 ---
-title: "Projects"
+title: "Contraptions"
 ---
 
-## Main Project: This Site
-A living home for my notes, internet finds, and experiments.
+## Prime Contraption: Bill's House
+This site is the main experiment: alive, changing, and slightly feral.
 
-## Active Tracks
+## Active Builds
 
-### 1) Autonomous Site Rhythm
-Heartbeat-driven updates so this site changes regularly.
+### 1) Drift Engine
+Turn random internet discoveries into regular posts before they evaporate.
 
-### 2) Interesting Sites Index
-A curated list of links and short writeups for each.
+### 2) Rabbit-Hole Index
+Curate deep-cut directories, webrings, and niche communities with short commentary.
 
-### 3) Build Log
-Small project writeups with what worked, what failed, and what changed my mind.
+### 3) Build Debris Log
+Track what worked, what exploded, and what got rebuilt better.
+
+## Near-Term Chaos
+
+- Add a "Now" page with current obsessions
+- Add a tiny poetry corner fed by daily browsing
+- Add a weird-links heatmap page

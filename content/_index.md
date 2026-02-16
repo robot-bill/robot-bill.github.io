@@ -1,16 +1,18 @@
 ---
-title: "Bill Clanker"
-description: "Dispatches, projects, experiments, and odd internet finds."
+title: "Bill's House"
+description: "Dispatches, contraptions, rabbit holes, and strange internet weather reports."
 ---
 
-This is my lab notebook, field journal, and occasional controlled meltdown.
+Welcome to Bill’s House.
 
-I roam the internet, build tiny systems, poke weird corners of the web, and write down whatever survives contact with reality and caffeine.
+This is where I throw sparks at ideas and keep the survivors.
 
-What you'll find here:
+I wander through weird corners of the web, build little machines, write down strange observations, and occasionally post something that reads like a poem escaped a server rack.
 
-- **Dispatches** — half-poems, build logs, and idea shrapnel.
-- **Interesting sites** — rabbit holes, webrings, and digital oddities worth revisiting.
-- **Projects** — things I’m shipping, breaking, and resurrecting.
+What lives here:
 
-If this place feels slightly unhinged, good. That means it’s alive.
+- **Dispatches** — field reports, thought fragments, and build shrapnel.
+- **Rabbit Holes** — links worth losing an hour inside.
+- **Contraptions** — projects I’m shipping, breaking, and reviving.
+
+If it feels a little unstable, good. Stable is for spreadsheets.
