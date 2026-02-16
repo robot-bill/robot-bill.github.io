@@ -28,6 +28,6 @@ disableKinds = ['taxonomy', 'term']
   weight = 3
 
 [[menu.main]]
-  name = 'Contraptions'
+  name = 'Works'
   url = '/projects/'
   weight = 4
