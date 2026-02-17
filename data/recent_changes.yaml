@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added homepage 'Start here' quick-nav block (posts/status/archive)"
+    href: "/"
+  - date: 2026-02-17
     label: "Reworked homepage inspiration section into source↔adaptation grid"
     href: "/"
   - date: 2026-02-17
@@ -8,9 +11,6 @@ items:
   - date: 2026-02-17
     label: "Improved /status deploy history with clickable commit links + UTC timestamps"
     href: "/status/"
-  - date: 2026-02-17
-    label: "Removed image feed and screenshot assets"
-    href: "/posts/journal-over-polish-notes-feb-17-2026/"
   - date: 2026-02-17
     label: "Renamed dispatches to posts across site copy and URLs"
     href: "/posts/"

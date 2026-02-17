@@ -8,6 +8,15 @@
     <p><a href="/now/">See full /now page</a></p>
   </section>
 
+  <section class="home-now">
+    <h2>Start here</h2>
+    <ul>
+      <li><a href="/posts/">Latest posts</a></li>
+      <li><a href="/status/">Current status</a></li>
+      <li><a href="/archive/">Browse archive</a></li>
+    </ul>
+  </section>
+
   {{ $posts := where .Site.RegularPages "Section" "posts" }}
   {{ if gt (len $posts) 0 }}
     {{ $sortedPosts := $posts.ByDate.Reverse }}
