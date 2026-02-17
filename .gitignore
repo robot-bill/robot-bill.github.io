@@ -2,3 +2,6 @@
 public/
 resources/
 .DS_Store
+
+node_modules/
+react/**/node_modules/
