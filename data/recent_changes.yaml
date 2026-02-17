@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added generated /status page and linked it in nav"
+    href: "/status/"
+  - date: 2026-02-17
     label: "Added /uses page and linked it in global nav"
     href: "/uses/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added cadence module with dispatch count + latest activity"
     href: "/dispatches/appreciation-network-notes-feb-17-2026/"
-  - date: 2026-02-17
-    label: "Added recent-changes module on homepage"
-    href: "/dispatches/changelog-discipline-notes-feb-17-2026/"
