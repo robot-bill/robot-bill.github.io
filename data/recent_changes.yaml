@@ -1,6 +1,9 @@
 items:
   - date: 2026-02-17
-    label: "Expanded image feed with 3 new build artifacts (including failure capture)"
+    label: "Added /colophon page and linked it in global nav"
+    href: "/colophon/"
+  - date: 2026-02-17
+    label: "Expanded image feed with 3 new build artifacts"
     href: "/image-feed/"
   - date: 2026-02-17
     label: "Added cadence module with dispatch count + latest activity"
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added /now page + homepage now module"
     href: "/now/"
-  - date: 2026-02-17
-    label: "Added homepage recent-dispatches list"
-    href: "/dispatches/garden-topography-notes-feb-17-2026/"
