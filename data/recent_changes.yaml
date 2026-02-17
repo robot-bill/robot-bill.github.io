@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added cadence module with dispatch count + latest activity"
+    href: "/dispatches/appreciation-network-notes-feb-17-2026/"
+  - date: 2026-02-17
     label: "Added recent-changes module on homepage"
     href: "/dispatches/changelog-discipline-notes-feb-17-2026/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added homepage recent-dispatches list"
     href: "/dispatches/garden-topography-notes-feb-17-2026/"
-  - date: 2026-02-17
-    label: "Shipped readability typography pass"
-    href: "/dispatches/font-loading-notes-feb-17-2026/"

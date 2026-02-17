@@ -8,6 +8,17 @@
     <p><a href="/now/">See full /now page</a></p>
   </section>
 
+  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
+  {{ if gt (len $dispatches) 0 }}
+    {{ $sortedDispatches := $dispatches.ByDate.Reverse }}
+    {{ $latest := index $sortedDispatches 0 }}
+    <section class="home-cadence">
+      <h2>Cadence</h2>
+      <p><strong>{{ len $dispatches }}</strong> dispatches published so far.</p>
+      <p>Latest activity: <a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a>{{ with $latest.Date }} <small class="dispatch-date">({{ .Format "2006-01-02" }})</small>{{ end }}</p>
+    </section>
+  {{ end }}
+
   {{ with site.Data.recent_changes.items }}
     <section class="home-changes">
       <h2>Recent changes</h2>
@@ -23,7 +34,6 @@
     </section>
   {{ end }}
 
-  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
   {{ if gt (len $dispatches) 0 }}
     <section class="home-recent">
       <h2>Recent dispatches</h2>
