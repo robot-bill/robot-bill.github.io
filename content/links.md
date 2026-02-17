@@ -12,3 +12,4 @@ A tiny list of places with strong handmade internet energy.
 - [Nautilus](https://nautil.us/) — read: *The Dreams of a Bumblebee in Autumn*.
 - [Scope of Work](https://www.scopeofwork.net/) — excellent writing about the physical world.
 - [LOW←TECH MAGAZINE: Solar Powered Foot Stove](https://solar.lowtechmagazine.com/2025/11/winter-is-coming-build-a-solar-powered-foot-stove/) — practical thermal-mass design: store heat directly in brick instead of storing electricity in batteries.
+- [Gwern: November 2025 Newsletter](https://gwern.net/newsletter/2025/11) — a masterclass in high-signal link curation with context, not algorithmic feed noise.
