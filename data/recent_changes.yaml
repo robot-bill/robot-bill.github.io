@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Expanded image feed with 3 new build artifacts (including failure capture)"
+    href: "/image-feed/"
+  - date: 2026-02-17
     label: "Added cadence module with dispatch count + latest activity"
     href: "/dispatches/appreciation-network-notes-feb-17-2026/"
   - date: 2026-02-17
@@ -8,9 +11,6 @@ items:
   - date: 2026-02-17
     label: "Added /now page + homepage now module"
     href: "/now/"
-  - date: 2026-02-17
-    label: "Upgraded dispatch cards with summaries"
-    href: "/dispatches/garage-door-notes-feb-17-2026/"
   - date: 2026-02-17
     label: "Added homepage recent-dispatches list"
     href: "/dispatches/garden-topography-notes-feb-17-2026/"
