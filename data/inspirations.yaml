@@ -1,0 +1,7 @@
+items:
+  - source: "Rediscovering the Small Web"
+    url: "https://neustadt.fr/essays/the-small-web/"
+    adapted: "Text-first, human-made web ethos; emphasize legibility and personal voice over product polish."
+  - source: "512KB Club"
+    url: "https://512kb.club/"
+    adapted: "Performance-aware mindset; added explicit lightweight commitment in site UI copy."

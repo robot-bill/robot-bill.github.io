@@ -14,8 +14,9 @@ description: "How this site is built and what principles shape it."
 
 - keep pages fast, simple, and inspectable
 - publish in short loops with visible diffs
-- treat writing + artifacts as first-class product surface
+- treat writing as first-class product surface
 - prefer ownership and continuity over platform churn
+- stay lightweight by default; avoid unnecessary bloat
 
 ## Privacy posture
 
