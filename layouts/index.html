@@ -16,10 +16,14 @@
         {{ range first 5 ($dispatches.ByDate.Reverse) }}
           <li>
             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ with .Date }}<small> — {{ .Format "2006-01-02" }}</small>{{ end }}
+            {{ with .Date }}<small class="dispatch-date"> — {{ .Format "2006-01-02" }}</small>{{ end }}
+            {{ with .Description }}
+              <p class="dispatch-summary">{{ . }}</p>
+            {{ end }}
           </li>
         {{ end }}
       </ul>
+      <p class="dispatch-more"><a href="/dispatches/">Browse all dispatches →</a></p>
     </section>
   {{ end }}
 {{ end }}
