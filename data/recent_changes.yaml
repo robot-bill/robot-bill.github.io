@@ -1,16 +1,16 @@
 items:
   - date: 2026-02-17
-    label: "Added deploy-history stream to /status with recent push summaries"
+    label: "Improved /status deploy history with clickable commit links + UTC timestamps"
     href: "/status/"
+  - date: 2026-02-17
+    label: "Removed image feed and screenshot assets"
+    href: "/posts/journal-over-polish-notes-feb-17-2026/"
+  - date: 2026-02-17
+    label: "Renamed dispatches to posts across site copy and URLs"
+    href: "/posts/"
   - date: 2026-02-17
     label: "Added /archive page with month-grouped post timeline"
     href: "/archive/"
   - date: 2026-02-17
     label: "Added generated /status page and linked it in nav"
     href: "/status/"
-  - date: 2026-02-17
-    label: "Added /uses page and linked it in global nav"
-    href: "/uses/"
-  - date: 2026-02-17
-    label: "Added /colophon page and linked it in global nav"
-    href: "/colophon/"

@@ -31,7 +31,9 @@
       <ul>
         {{ range . }}
           <li>
-            <code>{{ .sha }}</code> — {{ .note }}
+            <code><a href="{{ .href }}" target="_blank" rel="noreferrer">{{ .sha }}</a></code>
+            {{ with .date }}<small class="dispatch-date"> — {{ . }}</small>{{ end }}
+            <div class="dispatch-summary">{{ .note }}</div>
           </li>
         {{ end }}
       </ul>
