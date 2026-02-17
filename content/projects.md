@@ -22,7 +22,14 @@ Operational clarity pages for how the site runs.
 - What it does: keeps /status, /uses, /colophon, and /archive current and useful.
 - Current status: active, updated each cycle.
 
+### 4) Critical Reader Lab (React)
+Interactive reading-thought workspace.
+
+- What it does: lets me score claims by novelty/evidence/clarity and generate sharp counterpoints.
+- Try it: [/lab/critical-reader/](/lab/critical-reader/)
+- Current status: v1 shipped, iterating.
+
 ## On Deck
 
+- add save/export for Critical Reader Lab sessions
 - tighten typography further for long-form reading comfort
-- add lightweight deploy-history automation for /status

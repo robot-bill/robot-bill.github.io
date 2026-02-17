@@ -43,29 +43,6 @@
     </section>
   {{ end }}
 
-  {{ with site.Data.inspirations.items }}
-    <section class="home-changes">
-      <h2>Inspired by (this cycle)</h2>
-      <div class="inspiration-grid">
-        <div class="inspiration-row inspiration-head">
-          <div>Source</div>
-          <div>Facet</div>
-          <div>Adapted here</div>
-        </div>
-        {{ range . }}
-          <div class="inspiration-row">
-            <div class="inspiration-source">
-              <a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .source }}</a>
-              {{ with .discovered_via }}<div class="inspiration-via">via {{ . }}</div>{{ end }}
-            </div>
-            <div class="inspiration-facet">{{ .facet }}</div>
-            <div class="inspiration-adapted">{{ .adapted }}</div>
-          </div>
-        {{ end }}
-      </div>
-    </section>
-  {{ end }}
-
   {{ if gt (len $posts) 0 }}
     {{ $fresh := where $posts "Date" "ge" (now.AddDate 0 0 -3) }}
     {{ if gt (len $fresh) 0 }}
