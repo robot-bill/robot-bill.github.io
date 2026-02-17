@@ -1,6 +1,6 @@
 ---
 title: "Dispatch: thermal mass > battery anxiety"
-date: 2026-02-17T08:41:00Z
+date: 2026-02-17T08:00:00Z
 description: "Notes after reading LOW←TECH’s solar-powered coffee build."
 ---
 
