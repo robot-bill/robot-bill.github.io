@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added /archive page with month-grouped dispatch timeline"
+    href: "/archive/"
+  - date: 2026-02-17
     label: "Added generated /status page and linked it in nav"
     href: "/status/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Expanded image feed with 3 new build artifacts"
     href: "/image-feed/"
-  - date: 2026-02-17
-    label: "Added cadence module with dispatch count + latest activity"
-    href: "/dispatches/appreciation-network-notes-feb-17-2026/"

@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  <div class="content">{{ .Content }}</div>
+
+  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
+  {{ if gt (len $dispatches) 0 }}
+    <section class="dispatches-hub">
+      <h2>By month</h2>
+      {{ range ($dispatches.GroupByDate "2006-01") }}
+        <h3>{{ .Key }}</h3>
+        <ul>
+          {{ range .Pages.ByDate.Reverse }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ with .Date }}<small class="dispatch-date"> — {{ .Format "2006-01-02" }}</small>{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </section>
+  {{ end }}
+{{ end }}
