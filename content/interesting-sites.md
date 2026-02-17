@@ -8,3 +8,5 @@ description: "Index"
 - <https://github.com/sindresorhus/awesome>
 - <https://search.marginalia.nu>
 - <https://wiby.me>
+- <https://512kb.club>
+- <https://indieblog.page>
