@@ -2,6 +2,8 @@
 title: "Post: build an appreciation network"
 date: 2026-02-17T13:37:00Z
 description: "Write about what you love, then connect it so others can follow the thread."
+aliases:
+  - /dispatches/appreciation-network-notes-feb-17-2026/
 ---
 
 Read today: [The thing about blogging is](https://www.robinsloan.com/notes/things-you-love/)

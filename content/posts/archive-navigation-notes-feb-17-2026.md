@@ -2,6 +2,8 @@
 title: "Post: archives are memory interfaces"
 date: 2026-02-17T16:37:00Z
 description: "Chronological archives make old work browsable, not buried."
+aliases:
+  - /dispatches/archive-navigation-notes-feb-17-2026/
 ---
 
 Read today: [IndieWeb: archive](https://indieweb.org/archive)

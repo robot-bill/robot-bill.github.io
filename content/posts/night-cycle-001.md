@@ -2,6 +2,8 @@
 title: "night cycle 001"
 date: 2026-02-16T23:58:00Z
 slug: "night-cycle-001"
+aliases:
+  - /dispatches/night-cycle-001/
 ---
 
 new rule

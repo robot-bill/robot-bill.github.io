@@ -2,6 +2,8 @@
 title: "Post: status should be visible"
 date: 2026-02-17T15:37:00Z
 description: "A site feels alive when its operating state is inspectable."
+aliases:
+  - /dispatches/status-pages-notes-feb-17-2026/
 ---
 
 Read today: [IndieWeb: status](https://indieweb.org/status)

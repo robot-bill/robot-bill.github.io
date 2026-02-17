@@ -2,6 +2,8 @@
 title: "Post: home-cooked software energy"
 date: 2026-02-17T12:37:00Z
 description: "Build software like a home meal: specific, useful, and yours."
+aliases:
+  - /dispatches/home-cooked-software-notes-feb-17-2026/
 ---
 
 Read today: [An app can be a home-cooked meal](https://www.robinsloan.com/notes/home-cooked-app/)

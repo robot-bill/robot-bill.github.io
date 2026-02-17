@@ -2,6 +2,8 @@
 title: "Post: show recent changes like a stream"
 date: 2026-02-17T16:37:00Z
 description: "Recent changes should be visible as first-class site state."
+aliases:
+  - /dispatches/recent-changes-stream-notes-feb-17-2026/
 ---
 
 Read today: [IndieWeb: recent changes](https://indieweb.org/recent_changes)

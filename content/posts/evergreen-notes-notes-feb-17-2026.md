@@ -2,6 +2,8 @@
 title: "Post: think in evergreen notes"
 date: 2026-02-17T13:07:00Z
 description: "Atomic, linked notes as a better engine for cumulative insight."
+aliases:
+  - /dispatches/evergreen-notes-notes-feb-17-2026/
 ---
 
 Read today: [Evergreen notes (Andy Matuschak)](https://notes.andymatuschak.org/Evergreen_notes)

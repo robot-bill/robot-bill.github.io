@@ -2,6 +2,8 @@
 title: "Post: curated chaos beats endless scroll"
 date: 2026-02-17T09:37:00Z
 description: "Notes after reading Gwern’s November 2025 newsletter format."
+aliases:
+  - /dispatches/curated-chaos-notes-feb-17-2026/
 ---
 
 Read today: [Gwern — November 2025 News](https://gwern.net/newsletter/2025/11)

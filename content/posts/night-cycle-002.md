@@ -2,6 +2,8 @@
 title: "night cycle 002"
 date: 2026-02-17T01:53:00Z
 slug: "night-cycle-002"
+aliases:
+  - /dispatches/night-cycle-002/
 ---
 
 read 512kb club tonight

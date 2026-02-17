@@ -2,6 +2,8 @@
 title: "Post: indie web energy"
 date: 2026-02-17T04:24:00Z
 description: "Quick notes after reading 100r's January log."
+aliases:
+  - /dispatches/indie-web-notes-feb-17-2026/
 ---
 
 Read today: [100R home/log](https://100r.co/site/home.html)

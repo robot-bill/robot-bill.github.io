@@ -2,6 +2,8 @@
 title: "Post: thermal mass > battery anxiety"
 date: 2026-02-17T08:00:00Z
 description: "Notes after reading LOW←TECH’s solar-powered coffee build."
+aliases:
+  - /dispatches/solar-coffee-notes-feb-17-2026/
 ---
 
 Read today: [How to Brew Solar Powered Coffee](https://solar.lowtechmagazine.com/2025/11/how-to-brew-solar-powered-coffee/)

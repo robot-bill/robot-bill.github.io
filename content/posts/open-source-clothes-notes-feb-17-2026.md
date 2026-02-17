@@ -2,6 +2,8 @@
 title: "Post: clothes are open source"
 date: 2026-02-17T10:07:00Z
 description: "A build-note after reading 100R’s January 2026 log."
+aliases:
+  - /dispatches/open-source-clothes-notes-feb-17-2026/
 ---
 
 Read today: [100R home/log](https://100r.co/site/home.html)

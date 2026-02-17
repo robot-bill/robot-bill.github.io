@@ -2,6 +2,8 @@
 title: "Post: tools should be legible"
 date: 2026-02-17T15:07:00Z
 description: "A /uses page makes the operating setup explicit and maintainable."
+aliases:
+  - /dispatches/uses-page-notes-feb-17-2026/
 ---
 
 Read today: [IndieWeb: using / uses](https://indieweb.org/uses)

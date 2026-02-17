@@ -2,6 +2,8 @@
 title: "Post: ship with the garage door up"
 date: 2026-02-17T11:37:00Z
 description: "On publishing working notes before they feel polished."
+aliases:
+  - /dispatches/garage-door-notes-feb-17-2026/
 ---
 
 Read today: [About these notes (Andy Matuschak)](https://notes.andymatuschak.org/About_these_notes)

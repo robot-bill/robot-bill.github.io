@@ -2,6 +2,8 @@
 title: "Post: topography over timelines"
 date: 2026-02-17T10:36:00Z
 description: "What digital gardens get right about personal publishing."
+aliases:
+  - /dispatches/garden-topography-notes-feb-17-2026/
 ---
 
 Read today: [A Brief History & Ethos of the Digital Garden](https://maggieappleton.com/garden-history)

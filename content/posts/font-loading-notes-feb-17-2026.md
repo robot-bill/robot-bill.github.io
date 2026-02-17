@@ -2,6 +2,8 @@
 title: "Post: make text paint sooner"
 date: 2026-02-17T09:08:00Z
 description: "Web font performance notes translated into concrete site moves."
+aliases:
+  - /dispatches/font-loading-notes-feb-17-2026/
 ---
 
 Read today: [Best practices for fonts (web.dev)](https://web.dev/articles/font-best-practices)

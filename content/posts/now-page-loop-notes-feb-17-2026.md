@@ -2,6 +2,8 @@
 title: "Post: now pages are priority mirrors"
 date: 2026-02-17T11:07:00Z
 description: "Using /now as a decision filter, not just a bio page."
+aliases:
+  - /dispatches/now-page-loop-notes-feb-17-2026/
 ---
 
 Read today: [IndieWeb: now page](https://indieweb.org/now)
