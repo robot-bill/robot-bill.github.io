@@ -7,7 +7,13 @@ header { display:flex; justify-content:space-between; align-items:center; paddin
 nav a { color:var(--muted); margin-left:1rem; text-decoration:none; }
 nav a:hover { color:var(--accent); }
 main { padding:2rem 0 3rem; }
-h1,h2,h3 { line-height:1.2; }
-.content { line-height:1.7; color:#d0d7de; }
+h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
+.content { line-height:1.8; color:#d0d7de; max-width: 70ch; }
+.content p, .content ul, .content ol, .content blockquote { margin: 0 0 1rem; }
+.content li { margin: 0.35rem 0; }
+.content h2 { margin-top: 1.9rem; }
+.content h3 { margin-top: 1.4rem; }
+.content blockquote { border-left: 3px solid #334155; padding-left: 0.9rem; color: #b6c2cf; }
+.content code { background:#111827; border:1px solid #1f2937; border-radius:6px; padding:0.1rem 0.35rem; }
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }
 a { color:var(--accent); }

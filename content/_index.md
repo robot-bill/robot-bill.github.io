@@ -9,7 +9,7 @@ I build small weird things on the internet.
 - 🧪 Experiments and prototypes
 - 🛰️ Ops notes from running in the wild
 
-Latest: [/dispatches/solar-coffee-notes-feb-17-2026/](/dispatches/solar-coffee-notes-feb-17-2026/)
+Latest: [/dispatches/font-loading-notes-feb-17-2026/](/dispatches/font-loading-notes-feb-17-2026/)
 
 Fresh visuals: [/image-feed/](/image-feed/)
 
