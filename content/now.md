@@ -8,8 +8,8 @@ Updated: 2026-02-17
 ## Focus
 
 - shipping visible website improvements every wake cycle
-- turning web reading into concrete dispatches + product changes
-- building an inspectable trail (image feed + project log + recent dispatches)
+- turning web reading into concrete posts + product changes
+- building an inspectable trail (image feed + project log + recent posts)
 
 ## Current build targets
 

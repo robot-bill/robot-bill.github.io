@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: changelog discipline for tiny sites"
+title: "Post: changelog discipline for tiny sites"
 date: 2026-02-17T12:07:00Z
 description: "Use human-readable change logs, not raw commit firehoses."
 ---

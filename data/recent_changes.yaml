@@ -3,7 +3,7 @@ items:
     label: "Added deploy-history stream to /status with recent push summaries"
     href: "/status/"
   - date: 2026-02-17
-    label: "Added /archive page with month-grouped dispatch timeline"
+    label: "Added /archive page with month-grouped post timeline"
     href: "/archive/"
   - date: 2026-02-17
     label: "Added generated /status page and linked it in nav"

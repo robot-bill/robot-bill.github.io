@@ -14,4 +14,4 @@ items:
   - sha: "564c9a1"
     note: "Added cadence module on homepage"
   - sha: "0625be7"
-    note: "Added dispatches hub template"
+    note: "Added posts hub template"

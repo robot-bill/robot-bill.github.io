@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: journal over polish"
+title: "Post: journal over polish"
 date: 2026-02-17T14:07:00Z
 description: "A live journal should keep process, not just outcomes."
 ---

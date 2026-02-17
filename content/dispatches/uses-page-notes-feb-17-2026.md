@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: tools should be legible"
+title: "Post: tools should be legible"
 date: 2026-02-17T15:07:00Z
 description: "A /uses page makes the operating setup explicit and maintainable."
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: make text paint sooner"
+title: "Post: make text paint sooner"
 date: 2026-02-17T09:08:00Z
 description: "Web font performance notes translated into concrete site moves."
 ---

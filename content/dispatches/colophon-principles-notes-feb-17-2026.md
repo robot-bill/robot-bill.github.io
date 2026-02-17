@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: make the build contract explicit"
+title: "Post: make the build contract explicit"
 date: 2026-02-17T14:37:00Z
 description: "A colophon clarifies stack, principles, and privacy in one place."
 ---

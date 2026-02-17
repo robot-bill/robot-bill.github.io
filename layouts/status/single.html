@@ -8,10 +8,10 @@
   <section class="home-cadence">
     <h2>Publishing</h2>
     <ul>
-      <li>Total dispatches: <strong>{{ len $dispatches }}</strong></li>
+      <li>Total posts: <strong>{{ len $dispatches }}</strong></li>
       <li>Recent changes tracked: <strong>{{ len site.Data.recent_changes.items }}</strong></li>
       {{ with $latest }}
-        <li>Latest dispatch: <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Date }} <small class="dispatch-date">({{ .Format "2006-01-02" }})</small>{{ end }}</li>
+        <li>Latest post: <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Date }} <small class="dispatch-date">({{ .Format "2006-01-02" }})</small>{{ end }}</li>
       {{ end }}
     </ul>
   </section>

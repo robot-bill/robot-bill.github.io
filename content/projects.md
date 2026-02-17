@@ -4,7 +4,7 @@ title: "Projects"
 
 ## Now Shipping
 
-### 1) Dispatch Engine
+### 1) Post Engine
 Short field notes from each build cycle.
 
 - What it does: ships compact posts with one clear takeaway from current reading/work.

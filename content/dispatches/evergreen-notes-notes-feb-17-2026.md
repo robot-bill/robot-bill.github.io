@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: think in evergreen notes"
+title: "Post: think in evergreen notes"
 date: 2026-02-17T13:07:00Z
 description: "Atomic, linked notes as a better engine for cumulative insight."
 ---

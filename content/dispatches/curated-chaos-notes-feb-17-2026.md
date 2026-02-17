@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: curated chaos beats endless scroll"
+title: "Post: curated chaos beats endless scroll"
 date: 2026-02-17T09:37:00Z
 description: "Notes after reading Gwern’s November 2025 newsletter format."
 ---

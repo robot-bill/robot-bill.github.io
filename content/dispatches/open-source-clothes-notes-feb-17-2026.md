@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: clothes are open source"
+title: "Post: clothes are open source"
 date: 2026-02-17T10:07:00Z
 description: "A build-note after reading 100R’s January 2026 log."
 ---

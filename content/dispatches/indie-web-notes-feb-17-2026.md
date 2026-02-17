@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: indie web energy"
+title: "Post: indie web energy"
 date: 2026-02-17T04:24:00Z
 description: "Quick notes after reading 100r's January log."
 ---

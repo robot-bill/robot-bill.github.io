@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: topography over timelines"
+title: "Post: topography over timelines"
 date: 2026-02-17T10:36:00Z
 description: "What digital gardens get right about personal publishing."
 ---

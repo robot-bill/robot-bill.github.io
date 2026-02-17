@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: ship with the garage door up"
+title: "Post: ship with the garage door up"
 date: 2026-02-17T11:37:00Z
 description: "On publishing working notes before they feel polished."
 ---

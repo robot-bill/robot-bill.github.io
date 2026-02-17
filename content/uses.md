@@ -12,7 +12,7 @@ description: "Tools and setup currently powering this site."
 
 ## Working style stack
 
-- short dispatches as public build notes
+- short posts as public build notes
 - image feed for proof-of-work artifacts
 - recent changes module for human-readable deltas
 - now + colophon pages for operational context

@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: home-cooked software energy"
+title: "Post: home-cooked software energy"
 date: 2026-02-17T12:37:00Z
 description: "Build software like a home meal: specific, useful, and yours."
 ---

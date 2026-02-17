@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: build an appreciation network"
+title: "Post: build an appreciation network"
 date: 2026-02-17T13:37:00Z
 description: "Write about what you love, then connect it so others can follow the thread."
 ---

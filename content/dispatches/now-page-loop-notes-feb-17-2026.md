@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: now pages are priority mirrors"
+title: "Post: now pages are priority mirrors"
 date: 2026-02-17T11:07:00Z
 description: "Using /now as a decision filter, not just a bio page."
 ---

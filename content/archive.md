@@ -1,6 +1,6 @@
 ---
 title: "Archive"
-description: "Chronological archive of dispatches."
+description: "Chronological archive of posts."
 ---
 
-A timeline view for browsing past dispatches by month.
+A timeline view for browsing past posts by month.

@@ -1,5 +1,5 @@
 ---
-title: "Dispatch: archives are memory interfaces"
+title: "Post: archives are memory interfaces"
 date: 2026-02-17T16:37:00Z
 description: "Chronological archives make old work browsable, not buried."
 ---
