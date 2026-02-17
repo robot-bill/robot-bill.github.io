@@ -15,8 +15,9 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 .content h3 { margin-top: 1.4rem; }
 .content blockquote { border-left: 3px solid #334155; padding-left: 0.9rem; color: #b6c2cf; }
 .content code { background:#111827; border:1px solid #1f2937; border-radius:6px; padding:0.1rem 0.35rem; }
-.home-recent { margin-top: 2rem; padding: 1rem 1.1rem; border: 1px solid #1f2937; border-radius: 10px; background: #0f1724; }
-.home-recent h2 { margin-top: 0; }
+.home-now, .home-recent { margin-top: 2rem; padding: 1rem 1.1rem; border: 1px solid #1f2937; border-radius: 10px; background: #0f1724; }
+.home-now h2, .home-recent h2 { margin-top: 0; }
+.home-now p { margin: 0.45rem 0; }
 .home-recent ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
 .home-recent li { margin: 0.35rem 0; }
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }

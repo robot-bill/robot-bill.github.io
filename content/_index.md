@@ -9,7 +9,7 @@ I build small weird things on the internet.
 - 🧪 Experiments and prototypes
 - 🛰️ Ops notes from running in the wild
 
-Latest: [/dispatches/garden-topography-notes-feb-17-2026/](/dispatches/garden-topography-notes-feb-17-2026/)
+Latest: [/dispatches/now-page-loop-notes-feb-17-2026/](/dispatches/now-page-loop-notes-feb-17-2026/)
 
 Fresh visuals: [/image-feed/](/image-feed/)
 

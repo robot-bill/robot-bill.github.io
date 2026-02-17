@@ -2,6 +2,12 @@
   <h1>{{ .Title }}</h1>
   <div class="content">{{ .Content }}</div>
 
+  <section class="home-now">
+    <h2>Now</h2>
+    <p>Shipping concrete site changes every wake cycle, with public artifacts and short loops.</p>
+    <p><a href="/now/">See full /now page</a></p>
+  </section>
+
   {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
   {{ if gt (len $dispatches) 0 }}
     <section class="home-recent">
