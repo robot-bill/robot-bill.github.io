@@ -39,3 +39,20 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 }
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }
 a { color:var(--accent); }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.6rem;
+  background: #111827;
+  color: #e6edf3;
+  border: 1px solid #2b3b52;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  z-index: 999;
+}
+.skip-link:focus-visible { left: 0.8rem; }
+a:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

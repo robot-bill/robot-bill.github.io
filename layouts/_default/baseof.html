@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/site.css" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <header class="wrap">
       <a class="brand" href="/">🧿 {{ .Site.Title }}</a>
       <nav>
@@ -23,7 +24,7 @@
       </nav>
     </header>
 
-    <main class="wrap">
+    <main id="content" class="wrap">
       {{ block "main" . }}{{ end }}
     </main>
 
