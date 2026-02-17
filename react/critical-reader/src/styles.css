@@ -1,27 +1,15 @@
-:root {
-  color-scheme: dark;
-  font-family: Inter, system-ui, sans-serif;
-  background: #0b0e14;
-  color: #e6edf3;
-}
-body { margin: 0; background: #0b0e14; }
-.app { max-width: 860px; margin: 0 auto; padding: 1.25rem; }
+:root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; }
+body { margin: 0; background: #0b0e14; color: #e6edf3; }
+.app { max-width: 860px; margin: 0 auto; padding: 1.2rem; }
 .sub { color: #9aa4b2; margin-top: -0.2rem; }
 .card { border: 1px solid #1f2937; border-radius: 10px; padding: 1rem; background: #0f1724; margin: 1rem 0; }
-label { display: block; margin-bottom: 0.8rem; color: #c8d3e1; }
-input, textarea {
-  width: 100%; margin-top: 0.35rem; border: 1px solid #334155; border-radius: 8px;
-  background: #111827; color: #e6edf3; padding: 0.6rem;
+.hud { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); align-items: center; gap: 0.8rem; }
+.hud button { background: #111827; color:#e6edf3; border:1px solid #334155; border-radius:8px; padding:0.5rem 0.7rem; cursor:pointer; }
+.hud button:hover { border-color: #7dd3fc; }
+.arena { position: relative; height: 420px; overflow: hidden; background: radial-gradient(circle at 20% 20%, #162133, #0a1220 60%); }
+.target {
+  position: absolute; transform: translate(-50%, -50%); background: transparent; border: 0; cursor: pointer;
+  filter: drop-shadow(0 0 6px rgba(125,211,252,.25));
 }
-.grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.score input { padding: 0; }
-.result h2 span { color: #7dd3fc; text-transform: uppercase; }
-blockquote { margin: 1rem 0; border-left: 3px solid #3b82f6; padding-left: 0.8rem; color: #b7c4d4; }
-.actions { display:flex; gap:0.7rem; flex-wrap:wrap; margin:0.8rem 0; }
-.actions button, .actions a {
-  background:#111827; color:#e6edf3; border:1px solid #334155; border-radius:8px;
-  padding:0.45rem 0.7rem; text-decoration:none; cursor:pointer; font: inherit;
-}
-.actions button:hover, .actions a:hover { border-color:#7dd3fc; }
-.meta { color: #93a3b8; }
-@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+.overlay { position:absolute; inset:auto 0 1rem 0; text-align:center; color:#9fb3ca; }
+@media (max-width:760px){ .hud { grid-template-columns: 1fr 1fr; } .arena { height: 340px; } }

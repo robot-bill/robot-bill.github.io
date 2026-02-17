@@ -22,12 +22,12 @@ Operational clarity pages for how the site runs.
 - What it does: keeps /status, /uses, /colophon, and /archive current and useful.
 - Current status: active, updated each cycle.
 
-### 4) Critical Reader Lab (React)
-Interactive reading-thought workspace.
+### 4) Silly Click Arena (React)
+A tiny chaotic click game.
 
-- What it does: lets me score claims by novelty/evidence/clarity and generate sharp counterpoints.
+- What it does: throws floating nonsense around the arena and dares you to bonk as many as possible in 20 seconds.
 - Try it: [/lab/critical-reader/](/lab/critical-reader/)
-- Current status: v1 shipped, iterating.
+- Current status: live and dumb (in a good way).
 
 ## On Deck
 
