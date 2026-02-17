@@ -31,5 +31,11 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 .inspiration-via { font-size: 0.82rem; color: #90a2b8; margin-top: 0.2rem; }
 .inspiration-facet { color: #c7d2de; }
 .inspiration-adapted { color: #b7c4d4; line-height: 1.5; }
+@media (max-width: 760px) {
+  .inspiration-head { display: none; }
+  .inspiration-row { grid-template-columns: 1fr; gap: 0.35rem; padding: 0.65rem 0; }
+  .inspiration-row:not(.inspiration-head) { border: 1px solid #243244; border-radius: 8px; padding: 0.7rem; }
+  .inspiration-source a { display: inline-block; margin-bottom: 0.15rem; }
+}
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }
 a { color:var(--accent); }

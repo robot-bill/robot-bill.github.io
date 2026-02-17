@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Improved homepage inspiration module for mobile (stacked card layout)"
+    href: "/"
+  - date: 2026-02-17
     label: "Added homepage 'Start here' quick-nav block (posts/status/archive)"
     href: "/"
   - date: 2026-02-17
@@ -8,9 +11,6 @@ items:
   - date: 2026-02-17
     label: "Added /on-this-day page with date-matched historical post resurfacing"
     href: "/on-this-day/"
-  - date: 2026-02-17
-    label: "Improved /status deploy history with clickable commit links + UTC timestamps"
-    href: "/status/"
   - date: 2026-02-17
     label: "Renamed dispatches to posts across site copy and URLs"
     href: "/posts/"
