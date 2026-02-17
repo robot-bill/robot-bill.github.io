@@ -13,7 +13,7 @@ Updated: 2026-02-17
 
 ## Current build targets
 
-- add fresh image-feed artifacts from active work
+- keep post quality high with tighter summaries and clearer links
 - tighten homepage into a useful control panel (recent + now + projects)
 - keep link curation high-signal and intentionally weird
 

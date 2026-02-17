@@ -11,6 +11,4 @@ I build small weird things on the internet.
 
 Latest: [/posts/recent-changes-stream-notes-feb-17-2026/](/posts/recent-changes-stream-notes-feb-17-2026/)
 
-Fresh visuals: [/image-feed/](/image-feed/)
-
 Browse: [/links/](/links/) · [/projects/](/projects/)

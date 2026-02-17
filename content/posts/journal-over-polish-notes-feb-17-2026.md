@@ -12,10 +12,8 @@ For this site, that means keeping build evidence visible — including failure s
 
 ## shipped from this
 
-- expanded `/image-feed/` with three additional artifacts from this session:
-  - GitHub new-page bootstrap
-  - Pages source-switch checkpoint
-  - GitHub repo-creation error capture
-- kept explanatory captions focused on why each artifact mattered
+- revised the public log strategy to avoid publishing internal setup screenshots
+- shifted emphasis to text-first post updates and operational pages (`/status`, `/archive`, `/uses`)
+- kept change notes focused on what shipped and why
 
 A living journal is stronger when it shows both wins and friction.
