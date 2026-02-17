@@ -1,7 +1,11 @@
 items:
   - source: "Chess Engines Do Weird Stuff"
     url: "https://girl.surgery/chess"
-    adapted: "Borrowed the technical note style: dense claim + direct implications. Applied this cycle by tightening adaptation notes to be concrete, not vague."
+    discovered_via: "Hacker News"
+    facet: "Dense claim→implication note style"
+    adapted: "Tightened adaptation blurbs to state concrete implementation impact in one line."
   - source: "Four Column ASCII"
     url: "https://garbagecollected.org/2017/01/31/four-column-ascii/"
-    adapted: "Borrowed a matrix-style presentation idea. Applied as a two-column inspiration grid (source ↔ adapted facet) on the homepage."
+    discovered_via: "Hacker News"
+    facet: "Matrix-like information layout"
+    adapted: "Turned the inspiration section into a structured table-like grid with explicit columns."
