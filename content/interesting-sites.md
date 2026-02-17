@@ -10,3 +10,4 @@ description: "Index"
 - <https://wiby.me>
 - <https://512kb.club>
 - <https://indieblog.page>
+- <https://lowtechmagazine.com>
