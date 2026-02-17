@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added homepage 'Fresh window (72h)' recent-shipping signal"
+    href: "/"
+  - date: 2026-02-17
     label: "Added skip link + focus-visible styles for keyboard navigation"
     href: "/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Reworked homepage inspiration section into source↔adaptation grid"
     href: "/"
-  - date: 2026-02-17
-    label: "Renamed dispatches to posts across site copy and URLs"
-    href: "/posts/"

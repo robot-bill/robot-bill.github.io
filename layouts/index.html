@@ -67,6 +67,14 @@
   {{ end }}
 
   {{ if gt (len $posts) 0 }}
+    {{ $fresh := where $posts "Date" "ge" (now.AddDate 0 0 -3) }}
+    {{ if gt (len $fresh) 0 }}
+      <section class="home-cadence">
+        <h2>Fresh window (72h)</h2>
+        <p><strong>{{ len $fresh }}</strong> posts shipped in the last 72 hours.</p>
+        <p><a href="/posts/">Open Posts</a> to scan latest changes quickly.</p>
+      </section>
+    {{ end }}
     <section class="home-recent">
       <h2>Recent posts</h2>
       <ul>
