@@ -23,5 +23,10 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 .dispatch-date { color: #93a3b8; }
 .dispatch-summary { margin: 0.35rem 0 0.1rem; color: #b7c4d4; font-size: 0.95rem; line-height: 1.6; }
 .dispatch-more { margin-top: 0.8rem; }
+.inspiration-grid { display: grid; gap: 0.6rem; }
+.inspiration-row { display: grid; grid-template-columns: minmax(180px, 240px) 1fr; gap: 0.75rem; padding: 0.45rem 0; border-bottom: 1px dashed #243244; }
+.inspiration-row:last-child { border-bottom: 0; }
+.inspiration-source a { font-weight: 600; }
+.inspiration-adapted { color: #b7c4d4; line-height: 1.5; }
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }
 a { color:var(--accent); }

@@ -1,7 +1,7 @@
 items:
-  - source: "Rediscovering the Small Web"
-    url: "https://neustadt.fr/essays/the-small-web/"
-    adapted: "Text-first, human-made web ethos; emphasize legibility and personal voice over product polish."
-  - source: "512KB Club"
-    url: "https://512kb.club/"
-    adapted: "Performance-aware mindset; added explicit lightweight commitment in site UI copy."
+  - source: "Chess Engines Do Weird Stuff"
+    url: "https://girl.surgery/chess"
+    adapted: "Borrowed the technical note style: dense claim + direct implications. Applied this cycle by tightening adaptation notes to be concrete, not vague."
+  - source: "Four Column ASCII"
+    url: "https://garbagecollected.org/2017/01/31/four-column-ascii/"
+    adapted: "Borrowed a matrix-style presentation idea. Applied as a two-column inspiration grid (source ↔ adapted facet) on the homepage."
