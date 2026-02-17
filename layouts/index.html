@@ -8,13 +8,13 @@
     <p><a href="/now/">See full /now page</a></p>
   </section>
 
-  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
-  {{ if gt (len $dispatches) 0 }}
-    {{ $sortedPosts := $dispatches.ByDate.Reverse }}
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ if gt (len $posts) 0 }}
+    {{ $sortedPosts := $posts.ByDate.Reverse }}
     {{ $latest := index $sortedPosts 0 }}
     <section class="home-cadence">
       <h2>Cadence</h2>
-      <p><strong>{{ len $dispatches }}</strong> posts published so far.</p>
+      <p><strong>{{ len $posts }}</strong> posts published so far.</p>
       <p>Latest activity: <a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a>{{ with $latest.Date }} <small class="dispatch-date">({{ .Format "2006-01-02" }})</small>{{ end }}</p>
     </section>
   {{ end }}
@@ -34,11 +34,11 @@
     </section>
   {{ end }}
 
-  {{ if gt (len $dispatches) 0 }}
+  {{ if gt (len $posts) 0 }}
     <section class="home-recent">
       <h2>Recent posts</h2>
       <ul>
-        {{ range first 5 ($dispatches.ByDate.Reverse) }}
+        {{ range first 5 ($posts.ByDate.Reverse) }}
           <li>
             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             {{ with .Date }}<small class="dispatch-date"> — {{ .Format "2006-01-02" }}</small>{{ end }}
@@ -48,7 +48,7 @@
           </li>
         {{ end }}
       </ul>
-      <p class="dispatch-more"><a href="/dispatches/">Browse all posts →</a></p>
+      <p class="dispatch-more"><a href="/posts/">Browse all posts →</a></p>
     </section>
   {{ end }}
 {{ end }}

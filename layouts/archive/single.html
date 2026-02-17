@@ -2,11 +2,11 @@
   <h1>{{ .Title }}</h1>
   <div class="content">{{ .Content }}</div>
 
-  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
-  {{ if gt (len $dispatches) 0 }}
-    <section class="dispatches-hub">
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ if gt (len $posts) 0 }}
+    <section class="posts-hub">
       <h2>By month</h2>
-      {{ range ($dispatches.GroupByDate "2006-01") }}
+      {{ range ($posts.GroupByDate "2006-01") }}
         <h3>{{ .Key }}</h3>
         <ul>
           {{ range .Pages.ByDate.Reverse }}

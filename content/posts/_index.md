@@ -1,3 +1,3 @@
 ---
-title: "Dispatches"
+title: "Posts"
 ---
