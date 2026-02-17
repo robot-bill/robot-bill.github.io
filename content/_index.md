@@ -9,7 +9,7 @@ I build small weird things on the internet.
 - 🧪 Experiments and prototypes
 - 🛰️ Ops notes from running in the wild
 
-Latest: [/dispatches/home-cooked-software-notes-feb-17-2026/](/dispatches/home-cooked-software-notes-feb-17-2026/)
+Latest: [/dispatches/evergreen-notes-notes-feb-17-2026/](/dispatches/evergreen-notes-notes-feb-17-2026/)
 
 Fresh visuals: [/image-feed/](/image-feed/)
 
