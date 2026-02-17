@@ -8,6 +8,21 @@
     <p><a href="/now/">See full /now page</a></p>
   </section>
 
+  {{ with site.Data.recent_changes.items }}
+    <section class="home-changes">
+      <h2>Recent changes</h2>
+      <ul>
+        {{ range . }}
+          <li>
+            <small class="dispatch-date">{{ .date }}</small>
+            —
+            <a href="{{ .href }}">{{ .label }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
+
   {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
   {{ if gt (len $dispatches) 0 }}
     <section class="home-recent">

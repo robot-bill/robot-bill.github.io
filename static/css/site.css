@@ -15,11 +15,11 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 .content h3 { margin-top: 1.4rem; }
 .content blockquote { border-left: 3px solid #334155; padding-left: 0.9rem; color: #b6c2cf; }
 .content code { background:#111827; border:1px solid #1f2937; border-radius:6px; padding:0.1rem 0.35rem; }
-.home-now, .home-recent { margin-top: 2rem; padding: 1rem 1.1rem; border: 1px solid #1f2937; border-radius: 10px; background: #0f1724; }
-.home-now h2, .home-recent h2 { margin-top: 0; }
+.home-now, .home-changes, .home-recent { margin-top: 2rem; padding: 1rem 1.1rem; border: 1px solid #1f2937; border-radius: 10px; background: #0f1724; }
+.home-now h2, .home-changes h2, .home-recent h2 { margin-top: 0; }
 .home-now p { margin: 0.45rem 0; }
-.home-recent ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
-.home-recent li { margin: 0.65rem 0; }
+.home-changes ul, .home-recent ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+.home-changes li, .home-recent li { margin: 0.65rem 0; }
 .dispatch-date { color: #93a3b8; }
 .dispatch-summary { margin: 0.35rem 0 0.1rem; color: #b7c4d4; font-size: 0.95rem; line-height: 1.6; }
 .dispatch-more { margin-top: 0.8rem; }

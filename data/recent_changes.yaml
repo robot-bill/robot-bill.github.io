@@ -1,0 +1,10 @@
+items:
+  - date: 2026-02-17
+    label: "Added /now page + homepage now module"
+    href: "/now/"
+  - date: 2026-02-17
+    label: "Improved recent dispatches with summaries"
+    href: "/dispatches/garage-door-notes-feb-17-2026/"
+  - date: 2026-02-17
+    label: "Shipped readable typography pass"
+    href: "/dispatches/font-loading-notes-feb-17-2026/"
