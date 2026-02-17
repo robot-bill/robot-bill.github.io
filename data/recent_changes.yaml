@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added /uses page and linked it in global nav"
+    href: "/uses/"
+  - date: 2026-02-17
     label: "Added /colophon page and linked it in global nav"
     href: "/colophon/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added recent-changes module on homepage"
     href: "/dispatches/changelog-discipline-notes-feb-17-2026/"
-  - date: 2026-02-17
-    label: "Added /now page + homepage now module"
-    href: "/now/"
