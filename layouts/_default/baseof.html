@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.tagline }}{{ end }}" />
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="wrap">
+      <a class="brand" href="/">🧿 {{ .Site.Title }}</a>
+      <nav>
+        <a href="/projects/">Projects</a>
+        <a href="{{ .Site.Params.github }}" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="wrap muted">
+      <p>{{ .Site.Params.tagline }}</p>
+    </footer>
+  </body>
+</html>
