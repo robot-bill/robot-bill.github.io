@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Improved top navigation wrapping + spacing across desktop/mobile"
+    href: "/"
+  - date: 2026-02-17
     label: "Added homepage 'Fresh window (72h)' recent-shipping signal"
     href: "/"
   - date: 2026-02-17
@@ -10,7 +13,4 @@ items:
     href: "/"
   - date: 2026-02-17
     label: "Added homepage 'Start here' quick-nav block (posts/status/archive)"
-    href: "/"
-  - date: 2026-02-17
-    label: "Reworked homepage inspiration section into source↔adaptation grid"
     href: "/"
