@@ -11,3 +11,4 @@ description: "Index"
 - <https://512kb.club>
 - <https://indieblog.page>
 - <https://lowtechmagazine.com>
+- <https://neocities.org/browse>
