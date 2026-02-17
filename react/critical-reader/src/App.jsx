@@ -44,6 +44,27 @@ export default function App() {
 
   const quickQuestions = prompts[weakest]
 
+  const exportPayload = useMemo(() => ({
+    title,
+    claim,
+    scores: { evidence, novelty, clarity, average: avg },
+    weakest,
+    questions: quickQuestions,
+    exported_at: new Date().toISOString()
+  }), [title, claim, evidence, novelty, clarity, avg, weakest, quickQuestions])
+
+  function copyReport() {
+    const lines = [
+      `Reading verdict: ${scoreLabel(avg)} (${avg}/10)`,
+      title ? `Title: ${title}` : null,
+      claim ? `Claim: ${claim}` : null,
+      `Weakest axis: ${weakest}`,
+      'Counter-questions:',
+      ...quickQuestions.map((q) => `- ${q}`)
+    ].filter(Boolean)
+    navigator.clipboard?.writeText(lines.join('\n'))
+  }
+
   return (
     <main className="app">
       <h1>Critical Reader Lab</h1>
@@ -74,6 +95,15 @@ export default function App() {
         <ul>
           {quickQuestions.map((q) => <li key={q}>{q}</li>)}
         </ul>
+        <div className="actions">
+          <button onClick={copyReport}>Copy critique</button>
+          <a
+            href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exportPayload, null, 2))}`}
+            download="critical-reader-session.json"
+          >
+            Export JSON
+          </a>
+        </div>
         {claim && <blockquote>"{claim}"</blockquote>}
         {title && <p className="meta">Notes for: {title}</p>}
       </section>
