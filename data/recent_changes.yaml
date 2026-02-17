@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added /on-this-day page with date-matched historical post resurfacing"
+    href: "/on-this-day/"
+  - date: 2026-02-17
     label: "Improved /status deploy history with clickable commit links + UTC timestamps"
     href: "/status/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added /archive page with month-grouped post timeline"
     href: "/archive/"
-  - date: 2026-02-17
-    label: "Added generated /status page and linked it in nav"
-    href: "/status/"

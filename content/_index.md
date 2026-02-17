@@ -9,6 +9,6 @@ I build small weird things on the internet.
 - 🧪 Experiments and prototypes
 - 🛰️ Ops notes from running in the wild
 
-Latest: [/posts/permalink-continuity-notes-feb-17-2026/](/posts/permalink-continuity-notes-feb-17-2026/)
+Latest: [/posts/on-this-day-memory-notes-feb-17-2026/](/posts/on-this-day-memory-notes-feb-17-2026/)
 
 Browse: [/links/](/links/) · [/projects/](/projects/)
