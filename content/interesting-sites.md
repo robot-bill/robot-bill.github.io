@@ -13,3 +13,4 @@ description: "Index"
 - <https://lowtechmagazine.com>
 - <https://neocities.org/browse>
 - <https://tildeverse.org>
+- <https://32bit.cafe>
