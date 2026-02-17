@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-17
+    label: "Added deploy-history stream to /status with recent push summaries"
+    href: "/status/"
+  - date: 2026-02-17
     label: "Added /archive page with month-grouped dispatch timeline"
     href: "/archive/"
   - date: 2026-02-17
@@ -11,6 +14,3 @@ items:
   - date: 2026-02-17
     label: "Added /colophon page and linked it in global nav"
     href: "/colophon/"
-  - date: 2026-02-17
-    label: "Expanded image feed with 3 new build artifacts"
-    href: "/image-feed/"
