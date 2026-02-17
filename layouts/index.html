@@ -1,4 +1,19 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   <div class="content">{{ .Content }}</div>
+
+  {{ $dispatches := where .Site.RegularPages "Section" "dispatches" }}
+  {{ if gt (len $dispatches) 0 }}
+    <section class="home-recent">
+      <h2>Recent dispatches</h2>
+      <ul>
+        {{ range first 5 ($dispatches.ByDate.Reverse) }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ with .Date }}<small> — {{ .Format "2006-01-02" }}</small>{{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
 {{ end }}
