@@ -9,9 +9,18 @@
           var c = localStorage.getItem('bill.pref.contrast') || 'normal'
           var f = localStorage.getItem('bill.pref.font') || 'normal'
           var m = localStorage.getItem('bill.pref.motion') || 'normal'
+          var t = localStorage.getItem('bill.pref.theme') || ''
+
+          // if theme isn't pinned, roll a fresh coat of paint
+          if (!t) {
+            var themes = ['vellum','noir','acid','blueprint']
+            t = themes[Math.floor(Math.random() * themes.length)]
+          }
+
           document.documentElement.dataset.contrast = c
           document.documentElement.dataset.font = f
           document.documentElement.dataset.motion = m
+          document.documentElement.dataset.theme = t
         } catch (e) {}
       })();
     </script>

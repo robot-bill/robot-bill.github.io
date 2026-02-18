@@ -1,4 +1,5 @@
 :root{
+  /* default theme: vellum */
   --bg:#f6f2e9;
   --fg:#1a1a1a;
   --muted:#5a564f;
@@ -7,10 +8,43 @@
   --shadow:rgba(20,16,10,.08);
   --accent:#1f4fff;
   --accent2:#d14b2a;
+
   --radius:14px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --serif: ui-serif, Iowan Old Style, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+/* theme roulette */
+html[data-theme="noir"]{
+  --bg:#06070a;
+  --fg:#f4f0e8;
+  --muted:#b7b0a3;
+  --card:#0e1016;
+  --border:rgba(244,240,232,.16);
+  --shadow:rgba(0,0,0,.35);
+  --accent:#7dd3fc;
+  --accent2:#f59e0b;
+}
+html[data-theme="acid"]{
+  --bg:#fffb00;
+  --fg:#0b1020;
+  --muted:#142044;
+  --card:#ffffff;
+  --border:rgba(11,16,32,.35);
+  --shadow:rgba(11,16,32,.12);
+  --accent:#ff00cc;
+  --accent2:#00b3ff;
+}
+html[data-theme="blueprint"]{
+  --bg:#061a35;
+  --fg:#eaf3ff;
+  --muted:#bcd1ef;
+  --card:#0a2446;
+  --border:rgba(234,243,255,.16);
+  --shadow:rgba(0,0,0,.35);
+  --accent:#7cddff;
+  --accent2:#a7ff83;
 }
 
 /* preference layer (set by html[data-*]) */

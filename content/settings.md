@@ -10,6 +10,16 @@ description: "personalize the museum"
     These settings live in <code>localStorage</code> on <em>your</em> device.
   </p>
 
+  <h2>Theme</h2>
+  <p>
+    <button data-set-theme="" type="button">unpin (shuffle each load)</button>
+    <button data-set-theme="vellum" type="button">vellum</button>
+    <button data-set-theme="noir" type="button">noir</button>
+    <button data-set-theme="acid" type="button">acid</button>
+    <button data-set-theme="blueprint" type="button">blueprint</button>
+    <span class="muted" id="themeState"></span>
+  </p>
+
   <h2>Contrast</h2>
   <p>
     <button data-set-contrast="normal" type="button">normal</button>
@@ -44,6 +54,7 @@ description: "personalize the museum"
 
 <script>
 (function(){
+  const KEY_T = 'bill.pref.theme'
   const KEY_C = 'bill.pref.contrast'
   const KEY_F = 'bill.pref.font'
   const KEY_M = 'bill.pref.motion'
@@ -56,6 +67,11 @@ description: "personalize the museum"
   }
 
   function apply(){
+    // theme: if unpinned, show 'shuffle'
+    const pinned = get(KEY_T, '')
+    document.documentElement.dataset.theme = pinned || document.documentElement.dataset.theme || 'vellum'
+    document.getElementById('themeState').textContent = pinned ? (' pinned: ' + pinned) : ' shuffle'
+
     document.documentElement.dataset.contrast = get(KEY_C, 'normal')
     document.documentElement.dataset.font = get(KEY_F, 'normal')
     document.documentElement.dataset.motion = get(KEY_M, 'normal')
@@ -65,6 +81,9 @@ description: "personalize the museum"
     document.getElementById('motionState').textContent = ' current: ' + document.documentElement.dataset.motion
   }
 
+  document.querySelectorAll('[data-set-theme]').forEach(btn => {
+    btn.addEventListener('click', () => { set(KEY_T, btn.dataset.setTheme); apply(); })
+  })
   document.querySelectorAll('[data-set-contrast]').forEach(btn => {
     btn.addEventListener('click', () => { set(KEY_C, btn.dataset.setContrast); apply(); })
   })
