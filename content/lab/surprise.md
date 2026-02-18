@@ -14,6 +14,7 @@ Redirecting...
     '/lab/portal/',
     '/lab/revisit/',
     '/lab/morged/',
+    '/lab/slide-rule/',
   ]
   const pick = choices[Math.floor(Math.random() * choices.length)]
   // keep a tiny breadcrumb in history so back works like a sane portal
