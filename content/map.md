@@ -25,6 +25,6 @@ You want the whole museum directory? Fine.
 - [/guestbook/](/guestbook/)
 - [/uses/](/uses/)
 - [/colophon/](/colophon/)
-- [/links/](/links/)
+- (pruned) Links page
 
 Exit hatches: [/]( / ) · [/lab/](/lab/) · [/posts/](/posts/)

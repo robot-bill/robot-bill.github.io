@@ -1,5 +1,11 @@
 items:
   - date: 2026-02-18
+    label: "Cache fix: fingerprinted CSS (new URL each deploy)"
+    href: "/"
+  - date: 2026-02-18
+    label: "Projects overhaul + deaccession of dead pages"
+    href: "/projects/"
+  - date: 2026-02-18
     label: "Theme roulette: site changes coats every load (pin in /settings/)"
     href: "/settings/"
   - date: 2026-02-18

@@ -27,7 +27,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.tagline }}{{ end }}" />
-    <link rel="stylesheet" href="/css/site.css" />
+    {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -60,7 +61,6 @@
         · <a href="/guestbook/">Guestbook</a>
         · <a href="/uses/">Uses</a>
         · <a href="/colophon/">Colophon</a>
-        · <a href="/links/">Links</a>
         · <a href="/map/">Map</a>
       </p>
     </footer>

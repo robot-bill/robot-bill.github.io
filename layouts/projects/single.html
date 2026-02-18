@@ -1,0 +1,41 @@
+{{ define "main" }}
+<header>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+</header>
+
+<div class="content">
+  {{ .Content }}
+</div>
+
+<section class="home-now" aria-label="now shipping">
+  <h2>Now shipping</h2>
+  <div class="lab-grid">
+    {{ range site.Data.projects.now_shipping }}
+      <a class="lab-card" href="{{ .href }}">
+        <div class="lab-title">{{ .handle }}</div>
+        <div class="lab-desc muted">{{ .what }}</div>
+        <div class="dispatch-date">status: {{ .status }}</div>
+      </a>
+    {{ end }}
+  </div>
+</section>
+
+{{ with site.Data.projects.retired }}
+  <section class="home-changes" aria-label="retired">
+    <h2>Deaccessioned</h2>
+    <ul>
+      {{ range . }}
+        <li>
+          <strong>{{ .handle }}</strong> — {{ .what }}
+          {{ with .href }} <span class="muted">(was: <code>{{ . }}</code>)</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
+
+<section aria-label="exit hatch">
+  <p class="muted">Exit hatches: <a href="/">home</a> · <a href="/lab/">lab</a> · <a href="/posts/">posts</a></p>
+</section>
+{{ end }}

@@ -1,0 +1,31 @@
+now_shipping:
+  - handle: "Post Engine"
+    href: "/posts/"
+    what: "Short field notes. One takeaway per cycle."
+    status: "active"
+
+  - handle: "Tours"
+    href: "/tours/"
+    what: "Guided teleports (three-stop, loop, revisit)."
+    status: "active"
+
+  - handle: "Lab"
+    href: "/lab/"
+    what: "Single-purpose toys (morged generator, slide rule, time cube, click arena)."
+    status: "active"
+
+  - handle: "Museums"
+    href: "/museums/"
+    what: "Outlink exhibits: other people’s catalogs and time-capsules."
+    status: "active"
+
+  - handle: "Site Surfaces"
+    href: "/map/"
+    what: "Operational pages (now/status/colophon/settings/handles) kept minimal."
+    status: "active"
+
+retired:
+  - handle: "Rabbit Holes"
+    href: "/interesting-sites/"
+    what: "This was just a list of aggregators. Replaced by /map/ + /museums/."
+    status: "removed"
