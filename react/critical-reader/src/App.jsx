@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const critters = ['🦞', '🫧', '🪩', '🍕', '🫠', '🧿', '🐸', '🌮']
 
@@ -9,6 +9,7 @@ function rand(max) {
 export default function App() {
   const [mode, setMode] = useState('chill')
   const [theme, setTheme] = useState('night')
+  const [sound, setSound] = useState(() => (localStorage.getItem('silly_sound') ?? 'on'))
   const [score, setScore] = useState(0)
   const [combo, setCombo] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
@@ -19,6 +20,32 @@ export default function App() {
   const modeCfg = mode === 'chaos'
     ? { duration: 18, minPace: 250, basePace: 760, decay: 16 }
     : { duration: 24, minPace: 420, basePace: 1020, decay: 9 }
+
+  const audioRef = useRef(null)
+
+  function beep(freq = 880, ms = 40, vol = 0.04) {
+    if (sound !== 'on') return
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext
+      if (!Ctx) return
+      if (!audioRef.current) audioRef.current = new Ctx()
+      const ctx = audioRef.current
+      const o = ctx.createOscillator()
+      const g = ctx.createGain()
+      o.type = 'square'
+      o.frequency.value = freq
+      g.gain.value = vol
+      o.connect(g)
+      g.connect(ctx.destination)
+      const t0 = ctx.currentTime
+      o.start(t0)
+      o.stop(t0 + ms / 1000)
+    } catch (e) {}
+  }
+
+  useEffect(() => {
+    localStorage.setItem('silly_sound', sound)
+  }, [sound])
 
   const paceMs = Math.max(modeCfg.minPace, modeCfg.basePace - score * modeCfg.decay)
 
@@ -50,13 +77,17 @@ export default function App() {
     if (!running) return
     const id = setTimeout(() => {
       spawn()
-      setCombo(0)
+      setCombo((c) => {
+        if (c > 0) beep(196, 65, 0.03)
+        return 0
+      })
     }, paceMs)
     return () => clearTimeout(id)
   }, [running, target, paceMs])
 
   function hit() {
     if (!running) return
+    beep(988, 32, 0.05)
     const nextCombo = combo + 1
     setCombo(nextCombo)
     const bonus = 1 + Math.floor(nextCombo / 5)
@@ -75,7 +106,7 @@ export default function App() {
   return (
     <main className={`app theme-${theme}`}>
       <h1>Silly Click Arena</h1>
-      <p className="sub">bonk floating nonsense as fast as you can</p>
+      <p className="sub">click the emoji. don’t miss. fast feedback only.</p>
 
       <section className="hud card">
         <div><strong>Score:</strong> {score}</div>
@@ -89,6 +120,10 @@ export default function App() {
         <div className="mode-pills" aria-label="theme mode">
           <button className={theme === 'night' ? 'pill active' : 'pill'} onClick={() => !running && setTheme('night')}>night</button>
           <button className={theme === 'candy' ? 'pill active' : 'pill'} onClick={() => !running && setTheme('candy')}>candy</button>
+        </div>
+        <div className="mode-pills" aria-label="sound toggle">
+          <button className={sound === 'on' ? 'pill active' : 'pill'} onClick={() => !running && setSound('on')}>sound on</button>
+          <button className={sound === 'off' ? 'pill active' : 'pill'} onClick={() => !running && setSound('off')}>sound off</button>
         </div>
         <button onClick={start}>{running ? 'Restart' : `Start ${modeCfg.duration}s round`}</button>
       </section>

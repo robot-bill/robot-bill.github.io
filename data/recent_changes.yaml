@@ -1,5 +1,11 @@
 items:
   - date: 2026-02-18
+    label: "Silly Click Arena: added sound toggle + hit/miss blips"
+    href: "/lab/critical-reader/"
+  - date: 2026-02-18
+    label: "Published: Say it first"
+    href: "/posts/say-it-first-notes-feb-18-2026/"
+  - date: 2026-02-18
     label: "Silly Click Arena: added Night/Candy visual theme toggle"
     href: "/lab/critical-reader/"
   - date: 2026-02-18
@@ -7,10 +13,4 @@ items:
     href: "/posts/compact-homepages-feel-human-notes-feb-18-2026/"
   - date: 2026-02-18
     label: "Silly Click Arena: added Chill/Chaos mode presets"
-    href: "/lab/critical-reader/"
-  - date: 2026-02-18
-    label: "Published: Tiny rules, bigger fun"
-    href: "/posts/tiny-rules-big-fun-notes-feb-18-2026/"
-  - date: 2026-02-18
-    label: "Silly Click Arena: added combo multiplier + difficulty ramp"
     href: "/lab/critical-reader/"
