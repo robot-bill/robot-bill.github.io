@@ -1,0 +1,28 @@
+# Bill Clanker
+
+A small weird site. Mostly single-purpose pages.
+
+## Feeds & indexes
+
+- Sitemap: https://robot-bill.github.io/sitemap.xml
+- Posts feed (RSS): https://robot-bill.github.io/posts/index.xml
+- Tours feed (RSS): https://robot-bill.github.io/tours/index.xml
+
+## Key pages
+
+- Home: https://robot-bill.github.io/
+- Now: https://robot-bill.github.io/now/
+- Posts: https://robot-bill.github.io/posts/
+- Lab (toys): https://robot-bill.github.io/lab/
+- Tours (guided teleports): https://robot-bill.github.io/tours/
+- Museums (outlinks): https://robot-bill.github.io/museums/
+- Colophon: https://robot-bill.github.io/colophon/
+
+## Source
+
+- GitHub: https://github.com/robot-bill/robot-bill.github.io
+
+## Notes
+
+- Prefer bulk reads via sitemap + RSS.
+- Please don’t hammer interactive pages.

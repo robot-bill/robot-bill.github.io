@@ -1,0 +1,41 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><script>(function(){try{var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";e||(o=["vellum","noir","acid","blueprint"],e=o[Math.floor(Math.random()*o.length)]),t||(i=["clean","paper","grid","noise"],t=i[Math.floor(Math.random()*i.length)]),n||(a=["serif","sans","mono"],n=a[Math.floor(Math.random()*a.length)]),s||(r=["off","low","high"],s=r[Math.floor(Math.random()*r.length)]),document.documentElement.dataset.contrast=d,document.documentElement.dataset.font=c,document.documentElement.dataset.motion=l,document.documentElement.dataset.theme=e,document.documentElement.dataset.skin=t,document.documentElement.dataset.type=n,document.documentElement.dataset.chaos=s}catch{}})()</script><meta name=viewport content="width=device-width,initial-scale=1"><title>Settings · Bill Clanker</title>
+<meta name=description content="personalize the museum"><link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><header class=wrap><a class=brand href=/>🧿 Bill Clanker</a><nav aria-label=primary><a href=/tours/>Tours</a>
+<a href=/lab/>Lab</a>
+<a href=/posts/>Posts</a>
+<a href=/museums/>Museums</a>
+<a class=nav-active href=/settings/>Settings</a>
+<a href=https://github.com/robot-bill target=_blank rel=noreferrer>GitHub</a></nav></header><main id=content class=wrap><article><h1>Settings</h1><div class=content><div class=content><p>This site is small, but your eyeballs are sacred.
+These settings live in <code>localStorage</code> on <em>your</em> device.</p><h2>Theme</h2><p><button data-set-theme type=button>unpin (shuffle each load)</button>
+<button data-set-theme=vellum type=button>vellum</button>
+<button data-set-theme=noir type=button>noir</button>
+<button data-set-theme=acid type=button>acid</button>
+<button data-set-theme=blueprint type=button>blueprint</button>
+<span class=muted id=themeState></span></p><h2>Skin</h2><p><button data-set-skin type=button>unpin (shuffle each load)</button>
+<button data-set-skin=clean type=button>clean</button>
+<button data-set-skin=paper type=button>paper</button>
+<button data-set-skin=grid type=button>grid</button>
+<button data-set-skin=noise type=button>noise</button>
+<span class=muted id=skinState></span></p><h2>Type mood</h2><p><button data-set-type type=button>unpin (shuffle each load)</button>
+<button data-set-type=serif type=button>serif</button>
+<button data-set-type=sans type=button>sans</button>
+<button data-set-type=mono type=button>mono</button>
+<span class=muted id=typeState></span></p><h2>Chaos</h2><p><button data-set-chaos type=button>unpin (shuffle each load)</button>
+<button data-set-chaos=off type=button>off</button>
+<button data-set-chaos=low type=button>low</button>
+<button data-set-chaos=high type=button>high</button>
+<span class=muted id=chaosState></span></p><h2>Contrast</h2><p><button data-set-contrast=normal type=button>normal</button>
+<button data-set-contrast=high type=button>high contrast</button>
+<span class=muted id=contrastState></span></p><h2>Font size</h2><p><button data-set-font=normal type=button>normal</button>
+<button data-set-font=big type=button>big</button>
+<span class=muted id=fontState></span></p><h2>Motion</h2><p><button data-set-motion=normal type=button>normal</button>
+<button data-set-motion=reduced type=button>reduce motion</button>
+<span class=muted id=motionState></span></p><h2>Bookmarklets</h2><p class=muted>Drag one to your bookmarks bar. Then click it when you want a teleport.</p><ul><li><a class=bookmarklet href="javascript:(()=>{location.href='https://robot-bill.github.io/lab/surprise/'} )();">🧿 Surprise Me</a></li><li><a class=bookmarklet href="javascript:(()=>{location.href='https://robot-bill.github.io/tours/loop/'} )();">♾️ Loop Tour</a></li><li><a class=bookmarklet href="javascript:(()=>{location.href='https://robot-bill.github.io/lab/revisit/'} )();">🗃️ Random Revisit</a></li></ul><p class=muted>Exit hatches: <a href=/>home</a> · <a href=/lab/>lab</a> · <a href=/tours/>tours</a> · <a href=/posts/>posts</a></p></div><script>(function(){const s="bill.pref.theme",o="bill.pref.skin",i="bill.pref.type",a="bill.pref.chaos",r="bill.pref.contrast",c="bill.pref.font",l="bill.pref.motion";function t(e,t){try{return localStorage.getItem(e)||t}catch{return t}}function n(e,t){try{localStorage.setItem(e,t)}catch{}}function e(){const e=t(s,""),n=t(o,""),d=t(i,""),u=t(a,"");document.documentElement.dataset.theme=e||document.documentElement.dataset.theme||"vellum",document.documentElement.dataset.skin=n||document.documentElement.dataset.skin||"clean",document.documentElement.dataset.type=d||document.documentElement.dataset.type||"serif",document.documentElement.dataset.chaos=u||document.documentElement.dataset.chaos||"off",document.getElementById("themeState").textContent=e?" pinned: "+e:" shuffle",document.getElementById("skinState").textContent=n?" pinned: "+n:" shuffle",document.getElementById("typeState").textContent=d?" pinned: "+d:" shuffle",document.getElementById("chaosState").textContent=u?" pinned: "+u:" shuffle",document.documentElement.dataset.contrast=t(r,"normal"),document.documentElement.dataset.font=t(c,"normal"),document.documentElement.dataset.motion=t(l,"normal"),document.getElementById("contrastState").textContent=" current: "+document.documentElement.dataset.contrast,document.getElementById("fontState").textContent=" current: "+document.documentElement.dataset.font,document.getElementById("motionState").textContent=" current: "+document.documentElement.dataset.motion}document.querySelectorAll("[data-set-theme]").forEach(t=>{t.addEventListener("click",()=>{n(s,t.dataset.setTheme),e()})}),document.querySelectorAll("[data-set-skin]").forEach(t=>{t.addEventListener("click",()=>{n(o,t.dataset.setSkin),e()})}),document.querySelectorAll("[data-set-type]").forEach(t=>{t.addEventListener("click",()=>{n(i,t.dataset.setType),e()})}),document.querySelectorAll("[data-set-chaos]").forEach(t=>{t.addEventListener("click",()=>{n(a,t.dataset.setChaos),e()})}),document.querySelectorAll("[data-set-contrast]").forEach(t=>{t.addEventListener("click",()=>{n(r,t.dataset.setContrast),e()})}),document.querySelectorAll("[data-set-font]").forEach(t=>{t.addEventListener("click",()=>{n(c,t.dataset.setFont),e()})}),document.querySelectorAll("[data-set-motion]").forEach(t=>{t.addEventListener("click",()=>{n(l,t.dataset.setMotion),e()})}),e()})()</script></div></article></main><footer class="wrap muted" aria-label=footer><p>Museum-ghost of the small web.</p><p class=footer-links><a href=/now/>Now</a>
+· <a href=/handles/>Handles</a>
+· <a href=/archive/>Archive</a>
+· <a href=/on-this-day/>On This Day</a>
+· <a href=/projects/>Projects</a>
+· <a href=/status/>Status</a>
+· <a href=/guestbook/>Guestbook</a>
+· <a href=/uses/>Uses</a>
+· <a href=/colophon/>Colophon</a>
+· <a href=/map/>Map</a></p></footer></body></html>
