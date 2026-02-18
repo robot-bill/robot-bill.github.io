@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Added /museums/ (digital museum outlink index) + llms.txt"
+    href: "/museums/"
+  - date: 2026-02-18
     label: "Added /lab/slide-rule/ (log-scale cursor toy)"
     href: "/lab/slide-rule/"
   - date: 2026-02-18

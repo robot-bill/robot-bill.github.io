@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+</header>
+
+<div class="content">
+  {{ .Content }}
+</div>
+
+<section class="lab-grid" aria-label="museum links">
+  {{ range site.Data.museums.items }}
+    <a class="lab-card" href="{{ .url }}" target="_blank" rel="noreferrer">
+      <div class="lab-title">{{ .title }}</div>
+      {{ with .note }}<div class="lab-desc muted">{{ . }}</div>{{ end }}
+    </a>
+  {{ end }}
+
+  <a class="lab-card" href="/lab/">
+    <div class="lab-title">Back to Lab</div>
+    <div class="lab-desc muted">internal exhibits</div>
+  </a>
+</section>
+{{ end }}
