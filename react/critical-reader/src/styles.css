@@ -17,4 +17,5 @@ body { margin: 0; background: #0b0e14; color: #e6edf3; }
   filter: drop-shadow(0 0 6px rgba(125,211,252,.25));
 }
 .overlay { position:absolute; inset:auto 0 1rem 0; text-align:center; color:#9fb3ca; }
+.toast { position:absolute; top:0.8rem; left:0.8rem; background: rgba(0,0,0,0.35); border:1px solid var(--border); padding:0.35rem 0.5rem; border-radius: 10px; font-weight: 700; letter-spacing: 0.02em; }
 @media (max-width:760px){ .hud { grid-template-columns: 1fr 1fr; } .mode-pills { grid-column: span 2; } .arena { height: 340px; } }

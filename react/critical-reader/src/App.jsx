@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const critters = ['🦞', '🫧', '🪩', '🍕', '🫠', '🧿', '🐸', '🌮']
+const specials = ['💎', '🍀', '✨']
 
 function rand(max) {
   return Math.floor(Math.random() * max)
@@ -14,7 +15,8 @@ export default function App() {
   const [combo, setCombo] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
   const [running, setRunning] = useState(false)
-  const [target, setTarget] = useState({ x: 50, y: 50, icon: '🦞', size: 68 })
+  const [target, setTarget] = useState({ x: 50, y: 50, icon: '🦞', size: 68, special: false })
+  const [toast, setToast] = useState('')
   const [best, setBest] = useState(() => Number(localStorage.getItem('silly_best') || 0))
 
   const modeCfg = mode === 'chaos'
@@ -49,12 +51,19 @@ export default function App() {
 
   const paceMs = Math.max(modeCfg.minPace, modeCfg.basePace - score * modeCfg.decay)
 
-  function spawn() {
+  function spawn(forceNormal = false) {
+    const allowSpecial = !forceNormal && score > 6 && Math.random() < (mode === 'chaos' ? 0.16 : 0.10)
+    const special = allowSpecial
+    const icon = special ? specials[rand(specials.length)] : critters[rand(critters.length)]
+    const sizeBase = special ? 78 : 72
+    const sizeMin = special ? 44 : 36
+
     setTarget({
       x: 8 + rand(80),
       y: 12 + rand(72),
-      icon: critters[rand(critters.length)],
-      size: Math.max(36, 72 - Math.floor(score / 3) * 2 + rand(10))
+      icon,
+      special,
+      size: Math.max(sizeMin, sizeBase - Math.floor(score / 3) * 2 + rand(10))
     })
   }
 
@@ -87,12 +96,25 @@ export default function App() {
 
   function hit() {
     if (!running) return
-    beep(988, 32, 0.05)
+
+    const wasSpecial = target.special
+    beep(wasSpecial ? 1320 : 988, wasSpecial ? 45 : 32, wasSpecial ? 0.06 : 0.05)
+
     const nextCombo = combo + 1
     setCombo(nextCombo)
-    const bonus = 1 + Math.floor(nextCombo / 5)
-    setScore((s) => s + bonus)
-    spawn()
+
+    const comboBonus = 1 + Math.floor(nextCombo / 5)
+    const specialBonus = wasSpecial ? (mode === 'chaos' ? 10 : 7) : 0
+
+    setScore((s) => s + comboBonus + specialBonus)
+
+    if (wasSpecial) {
+      setTimeLeft((t) => Math.min(t + 2, modeCfg.duration + 6))
+      setToast(`+${specialBonus}  +2s`)
+      setTimeout(() => setToast(''), 650)
+    }
+
+    spawn(wasSpecial)
   }
 
   function start() {
@@ -129,6 +151,7 @@ export default function App() {
       </section>
 
       <section className="arena card" aria-label="game arena">
+        {toast && <div className="toast" role="status" aria-live="polite">{toast}</div>}
         <button
           className="target"
           onClick={hit}
