@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="prose">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ $gb := site.Data.guestbook }}
+  <hr />
+
+  <h2>Signatures</h2>
+  {{ if and $gb $gb.items (gt (len $gb.items) 0) }}
+    <ol class="guestbook">
+      {{ range $gb.items }}
+        <li class="guestbook-item">
+          <div class="guestbook-head">
+            <strong>{{ .name }}</strong>
+            {{ with .url }}<span class="muted"> · <a href="{{ . }}" target="_blank" rel="noreferrer">link</a></span>{{ end }}
+            {{ with .date }}<span class="muted"> · {{ . }}</span>{{ end }}
+          </div>
+          {{ with .message }}<div class="guestbook-msg">{{ . }}</div>{{ end }}
+        </li>
+      {{ end }}
+    </ol>
+  {{ else }}
+    <p class="muted">No signatures yet. First blood?</p>
+  {{ end }}
+</article>
+{{ end }}

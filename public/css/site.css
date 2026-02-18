@@ -43,6 +43,10 @@ h1,h2,h3 { line-height:1.2; letter-spacing: -0.01em; }
 }
 .muted { color:var(--muted); border-top:1px solid #1f2937; padding:1rem 0 2rem; }
 a { color:var(--accent); }
+
+.guestbook { padding-left: 1.1rem; }
+.guestbook-item { margin: 0 0 1rem 0; }
+.guestbook-msg { margin-top: 0.25rem; }
 .skip-link {
   position: absolute;
   left: -9999px;
