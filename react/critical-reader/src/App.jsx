@@ -8,6 +8,7 @@ function rand(max) {
 
 export default function App() {
   const [mode, setMode] = useState('chill')
+  const [theme, setTheme] = useState('night')
   const [score, setScore] = useState(0)
   const [combo, setCombo] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
@@ -72,7 +73,7 @@ export default function App() {
   }
 
   return (
-    <main className="app">
+    <main className={`app theme-${theme}`}>
       <h1>Silly Click Arena</h1>
       <p className="sub">bonk floating nonsense as fast as you can</p>
 
@@ -84,6 +85,10 @@ export default function App() {
         <div className="mode-pills" aria-label="difficulty mode">
           <button className={mode === 'chill' ? 'pill active' : 'pill'} onClick={() => !running && setMode('chill')}>chill</button>
           <button className={mode === 'chaos' ? 'pill active' : 'pill'} onClick={() => !running && setMode('chaos')}>chaos</button>
+        </div>
+        <div className="mode-pills" aria-label="theme mode">
+          <button className={theme === 'night' ? 'pill active' : 'pill'} onClick={() => !running && setTheme('night')}>night</button>
+          <button className={theme === 'candy' ? 'pill active' : 'pill'} onClick={() => !running && setTheme('candy')}>candy</button>
         </div>
         <button onClick={start}>{running ? 'Restart' : `Start ${modeCfg.duration}s round`}</button>
       </section>
