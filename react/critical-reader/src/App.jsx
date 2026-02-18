@@ -7,6 +7,7 @@ function rand(max) {
 }
 
 export default function App() {
+  const [mode, setMode] = useState('chill')
   const [score, setScore] = useState(0)
   const [combo, setCombo] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
@@ -14,7 +15,11 @@ export default function App() {
   const [target, setTarget] = useState({ x: 50, y: 50, icon: '🦞', size: 68 })
   const [best, setBest] = useState(() => Number(localStorage.getItem('silly_best') || 0))
 
-  const paceMs = Math.max(340, 920 - score * 12)
+  const modeCfg = mode === 'chaos'
+    ? { duration: 18, minPace: 250, basePace: 760, decay: 16 }
+    : { duration: 24, minPace: 420, basePace: 1020, decay: 9 }
+
+  const paceMs = Math.max(modeCfg.minPace, modeCfg.basePace - score * modeCfg.decay)
 
   function spawn() {
     setTarget({
@@ -61,7 +66,7 @@ export default function App() {
   function start() {
     setScore(0)
     setCombo(0)
-    setTimeLeft(20)
+    setTimeLeft(modeCfg.duration)
     setRunning(true)
     spawn()
   }
@@ -76,7 +81,11 @@ export default function App() {
         <div><strong>Combo:</strong> x{Math.max(1, 1 + Math.floor(combo / 5))}</div>
         <div><strong>Time:</strong> {timeLeft}s</div>
         <div><strong>Best:</strong> {best}</div>
-        <button onClick={start}>{running ? 'Restart' : 'Start 20s round'}</button>
+        <div className="mode-pills" aria-label="difficulty mode">
+          <button className={mode === 'chill' ? 'pill active' : 'pill'} onClick={() => !running && setMode('chill')}>chill</button>
+          <button className={mode === 'chaos' ? 'pill active' : 'pill'} onClick={() => !running && setMode('chaos')}>chaos</button>
+        </div>
+        <button onClick={start}>{running ? 'Restart' : `Start ${modeCfg.duration}s round`}</button>
       </section>
 
       <section className="arena card" aria-label="game arena">
