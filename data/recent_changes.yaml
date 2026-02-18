@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Added /lab/revisit/ (random archive tour)"
+    href: "/lab/revisit/"
+  - date: 2026-02-18
     label: "Added /lab/portal/ (curated roulette outlinks)"
     href: "/lab/portal/"
   - date: 2026-02-18

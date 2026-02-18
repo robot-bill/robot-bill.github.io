@@ -11,6 +11,8 @@ Redirecting...
   const choices = [
     '/lab/critical-reader/',
     '/time-cube/',
+    '/lab/portal/',
+    '/lab/revisit/',
   ]
   const pick = choices[Math.floor(Math.random() * choices.length)]
   // keep a tiny breadcrumb in history so back works like a sane portal
