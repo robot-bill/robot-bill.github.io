@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Added /settings/ (local preferences + bookmarklets)"
+    href: "/settings/"
+  - date: 2026-02-18
     label: "Added /handles/ (label-maker index so features have names)"
     href: "/handles/"
   - date: 2026-02-18
