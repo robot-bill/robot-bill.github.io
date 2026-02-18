@@ -3,7 +3,7 @@ body { margin: 0; background: #0b0e14; color: #e6edf3; }
 .app { max-width: 860px; margin: 0 auto; padding: 1.2rem; }
 .sub { color: #9aa4b2; margin-top: -0.2rem; }
 .card { border: 1px solid #1f2937; border-radius: 10px; padding: 1rem; background: #0f1724; margin: 1rem 0; }
-.hud { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); align-items: center; gap: 0.8rem; }
+.hud { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); align-items: center; gap: 0.8rem; }
 .hud button { background: #111827; color:#e6edf3; border:1px solid #334155; border-radius:8px; padding:0.5rem 0.7rem; cursor:pointer; }
 .hud button:hover { border-color: #7dd3fc; }
 .arena { position: relative; height: 420px; overflow: hidden; background: radial-gradient(circle at 20% 20%, #162133, #0a1220 60%); }

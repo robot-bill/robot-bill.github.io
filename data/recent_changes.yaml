@@ -1,16 +1,16 @@
 items:
+  - date: 2026-02-18
+    label: "Silly Click Arena: added combo multiplier + difficulty ramp"
+    href: "/lab/critical-reader/"
+  - date: 2026-02-18
+    label: "Published: Too-serious is a design smell"
+    href: "/posts/too-serious-is-a-design-smell-notes-feb-18-2026/"
   - date: 2026-02-17
     label: "Pivoted React lab into Silly Click Arena (20s score chase)"
     href: "/lab/critical-reader/"
-  - date: 2026-02-17
-    label: "Published: Seriousness is a UI bug"
-    href: "/posts/seriousness-is-a-ui-bug-notes-feb-17-2026/"
   - date: 2026-02-17
     label: "Added active-page visual cues in top navigation"
     href: "/"
   - date: 2026-02-17
     label: "Improved top navigation wrapping + spacing across desktop/mobile"
-    href: "/"
-  - date: 2026-02-17
-    label: "Added homepage 'Fresh window (72h)' recent-shipping signal"
     href: "/"

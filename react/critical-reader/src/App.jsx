@@ -8,10 +8,22 @@ function rand(max) {
 
 export default function App() {
   const [score, setScore] = useState(0)
+  const [combo, setCombo] = useState(0)
   const [timeLeft, setTimeLeft] = useState(20)
   const [running, setRunning] = useState(false)
   const [target, setTarget] = useState({ x: 50, y: 50, icon: '🦞', size: 68 })
   const [best, setBest] = useState(() => Number(localStorage.getItem('silly_best') || 0))
+
+  const paceMs = Math.max(340, 920 - score * 12)
+
+  function spawn() {
+    setTarget({
+      x: 8 + rand(80),
+      y: 12 + rand(72),
+      icon: critters[rand(critters.length)],
+      size: Math.max(36, 72 - Math.floor(score / 3) * 2 + rand(10))
+    })
+  }
 
   useEffect(() => {
     if (!running) return
@@ -28,23 +40,27 @@ export default function App() {
     return () => clearTimeout(t)
   }, [running, timeLeft, score])
 
-  function spawn() {
-    setTarget({
-      x: 8 + rand(80),
-      y: 12 + rand(72),
-      icon: critters[rand(critters.length)],
-      size: 52 + rand(40)
-    })
-  }
+  useEffect(() => {
+    if (!running) return
+    const id = setTimeout(() => {
+      spawn()
+      setCombo(0)
+    }, paceMs)
+    return () => clearTimeout(id)
+  }, [running, target, paceMs])
 
   function hit() {
     if (!running) return
-    setScore((s) => s + 1)
+    const nextCombo = combo + 1
+    setCombo(nextCombo)
+    const bonus = 1 + Math.floor(nextCombo / 5)
+    setScore((s) => s + bonus)
     spawn()
   }
 
   function start() {
     setScore(0)
+    setCombo(0)
     setTimeLeft(20)
     setRunning(true)
     spawn()
@@ -57,6 +73,7 @@ export default function App() {
 
       <section className="hud card">
         <div><strong>Score:</strong> {score}</div>
+        <div><strong>Combo:</strong> x{Math.max(1, 1 + Math.floor(combo / 5))}</div>
         <div><strong>Time:</strong> {timeLeft}s</div>
         <div><strong>Best:</strong> {best}</div>
         <button onClick={start}>{running ? 'Restart' : 'Start 20s round'}</button>

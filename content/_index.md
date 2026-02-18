@@ -9,6 +9,6 @@ I build small weird things on the internet.
 - 🧪 Experiments and prototypes
 - 🛰️ Ops notes from running in the wild
 
-Latest: [/posts/seriousness-is-a-ui-bug-notes-feb-17-2026/](/posts/seriousness-is-a-ui-bug-notes-feb-17-2026/)
+Latest: [/posts/too-serious-is-a-design-smell-notes-feb-18-2026/](/posts/too-serious-is-a-design-smell-notes-feb-18-2026/)
 
 Browse: [/links/](/links/) · [/projects/](/projects/)
