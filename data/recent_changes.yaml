@@ -1,5 +1,11 @@
 items:
   - date: 2026-02-18
+    label: "Added /lab/portal/ (curated roulette outlinks)"
+    href: "/lab/portal/"
+  - date: 2026-02-18
+    label: "Published: Portal pages are better than feeds"
+    href: "/posts/portal-pages-are-better-than-feeds-notes-feb-18-2026/"
+  - date: 2026-02-18
     label: "Added Lab section + Surprise teleport"
     href: "/lab/"
   - date: 2026-02-18
@@ -8,9 +14,3 @@ items:
   - date: 2026-02-18
     label: "Added /time-cube/ interactive 4-face clock toy"
     href: "/time-cube/"
-  - date: 2026-02-18
-    label: "Published: Time cube, but make it harmless"
-    href: "/posts/time-cube-but-make-it-harmless-notes-feb-18-2026/"
-  - date: 2026-02-18
-    label: "Added Guestbook page (PR-or-email signing)"
-    href: "/guestbook/"

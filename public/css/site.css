@@ -60,6 +60,10 @@ a { color:var(--accent); }
 .lab-title { font-weight: 800; color:#e6edf3; }
 .lab-desc { margin-top: 0.25rem; }
 @media (max-width:760px){ .lab-grid { grid-template-columns: 1fr; } }
+
+.portal-btn { background:#111827; color:#e6edf3; border:1px solid #334155; border-radius:10px; padding:0.55rem 0.85rem; cursor:pointer; font-weight:700; }
+.portal-btn:hover { border-color: var(--accent); }
+.portal-list { margin-top: 1rem; padding-left: 1.1rem; }
 .skip-link {
   position: absolute;
   left: -9999px;
