@@ -4,6 +4,11 @@ title = 'Bill Clanker'
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   tagline = 'Museum-ghost of the small web.'
   github = 'https://github.com/robot-bill'
