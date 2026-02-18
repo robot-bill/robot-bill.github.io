@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Added /lab/morged/ (AI-slop text mangler toy)"
+    href: "/lab/morged/"
+  - date: 2026-02-18
     label: "Added /tours/loop/ (infinite tour with trail memory)"
     href: "/tours/loop/"
   - date: 2026-02-18
