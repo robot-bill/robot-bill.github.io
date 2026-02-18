@@ -2,6 +2,8 @@
 title: "Time Cube"
 date: 2026-02-18T03:05:00Z
 description: "four little days in one day. a harmless cube." 
+aliases:
+  - /lab/time-cube/
 ---
 
 A tiny interactive homage to the *vibe* of Time Cube (not the bigotry, not the rot).

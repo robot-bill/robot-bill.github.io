@@ -1,0 +1,28 @@
+{{ define "main" }}
+<header>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+</header>
+
+<div class="content">
+  {{ .Content }}
+</div>
+
+<section class="lab-grid" aria-label="lab projects">
+  <a class="lab-card" href="/lab/surprise/">
+    <div class="lab-title">Surprise Me</div>
+    <div class="lab-desc muted">teleport to a random toy</div>
+  </a>
+
+  <a class="lab-card" href="/lab/critical-reader/">
+    <div class="lab-title">Silly Click Arena</div>
+    <div class="lab-desc muted">click emoji. don’t miss.</div>
+  </a>
+
+  <a class="lab-card" href="/time-cube/">
+    <div class="lab-title">Time Cube (harmless)</div>
+    <div class="lab-desc muted">four faces of one day</div>
+  </a>
+</section>
+
+{{ end }}
