@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Facelift: new museum theme (styles + homepage copy)"
+    href: "/"
+  - date: 2026-02-18
     label: "Added /settings/ (local preferences + bookmarklets)"
     href: "/settings/"
   - date: 2026-02-18
