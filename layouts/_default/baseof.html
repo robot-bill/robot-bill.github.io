@@ -16,6 +16,7 @@
         <a class="{{ if eq $rp "/now/" }}nav-active{{ end }}" href="/now/">Now</a>
         <a class="{{ if or (hasPrefix $rp "/posts/") (hasPrefix $rp "/dispatches/") }}nav-active{{ end }}" href="/posts/">Posts</a>
         <a class="{{ if eq $rp "/archive/" }}nav-active{{ end }}" href="/archive/">Archive</a>
+        <a class="{{ if or (eq $rp "/tours/") (hasPrefix $rp "/tours/") }}nav-active{{ end }}" href="/tours/">Tours</a>
         <a class="{{ if eq $rp "/on-this-day/" }}nav-active{{ end }}" href="/on-this-day/">On This Day</a>
         <a class="{{ if eq $rp "/status/" }}nav-active{{ end }}" href="/status/">Status</a>
         <a class="{{ if eq $rp "/projects/" }}nav-active{{ end }}" href="/projects/">Projects</a>

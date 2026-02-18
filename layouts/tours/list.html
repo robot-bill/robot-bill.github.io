@@ -1,0 +1,32 @@
+{{ define "main" }}
+<header>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+</header>
+
+<div class="content">
+  {{ .Content }}
+</div>
+
+<section class="lab-grid" aria-label="tours">
+  <a class="lab-card" href="/lab/revisit/">
+    <div class="lab-title">Archive Tours (single stop)</div>
+    <div class="lab-desc muted">destination + countdown + reroll</div>
+  </a>
+
+  <a class="lab-card" href="/tours/three-stop/">
+    <div class="lab-title">Three‑Stop Tour</div>
+    <div class="lab-desc muted">three random posts, one itinerary</div>
+  </a>
+
+  <a class="lab-card" href="/on-this-day/">
+    <div class="lab-title">On This Day</div>
+    <div class="lab-desc muted">memory lane, date-indexed</div>
+  </a>
+
+  <a class="lab-card" href="/lab/portal/">
+    <div class="lab-title">Portal</div>
+    <div class="lab-desc muted">a small list of small places</div>
+  </a>
+</section>
+{{ end }}

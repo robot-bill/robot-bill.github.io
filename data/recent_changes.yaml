@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Added /tours/ (guided teleports) + three-stop tour"
+    href: "/tours/"
+  - date: 2026-02-18
     label: "Added /lab/revisit/ (random archive tour)"
     href: "/lab/revisit/"
   - date: 2026-02-18
