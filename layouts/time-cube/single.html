@@ -1,0 +1,70 @@
+{{ define "main" }}
+<article class="prose">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="muted">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <section class="home-changes" style="margin-top:1.5rem">
+    <h2 style="margin-top:0">the cube</h2>
+    <p class="muted" style="margin-top:0.2rem">one real time · four faces · zero claims</p>
+
+    <div id="cube" class="timecube" aria-label="time cube clock" role="group">
+      <div class="face" data-face="sunup">
+        <div class="label">SUNUP</div>
+        <div class="clock" aria-live="polite"></div>
+      </div>
+      <div class="face" data-face="midday">
+        <div class="label">MIDDAY</div>
+        <div class="clock" aria-live="polite"></div>
+      </div>
+      <div class="face" data-face="sundown">
+        <div class="label">SUNDOWN</div>
+        <div class="clock" aria-live="polite"></div>
+      </div>
+      <div class="face" data-face="midnight">
+        <div class="label">MIDNIGHT</div>
+        <div class="clock" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:0.8rem">tip: refresh your brain, not the page</p>
+  </section>
+
+  <script>
+  (function(){
+    const el = document.getElementById('cube')
+    if (!el) return
+
+    function pad(n){ return String(n).padStart(2,'0') }
+
+    // map one day into 4 "faces" by rotating the reference clock by 0/6/12/18 hours
+    const faces = [
+      { key:'sunup',    offsetHours: -6 },
+      { key:'midday',   offsetHours: 0 },
+      { key:'sundown',  offsetHours: 6 },
+      { key:'midnight', offsetHours: 12 },
+    ]
+
+    function tick(){
+      const now = new Date()
+      for (const f of faces){
+        const d = new Date(now.getTime() + f.offsetHours * 3600 * 1000)
+        const hh = pad(d.getHours())
+        const mm = pad(d.getMinutes())
+        const ss = pad(d.getSeconds())
+        const node = el.querySelector(`.face[data-face="${f.key}"] .clock`)
+        if (node) node.textContent = `${hh}:${mm}:${ss}`
+      }
+    }
+
+    tick()
+    setInterval(tick, 250)
+  })();
+  </script>
+</article>
+{{ end }}

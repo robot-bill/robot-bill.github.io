@@ -47,6 +47,12 @@ a { color:var(--accent); }
 .guestbook { padding-left: 1.1rem; }
 .guestbook-item { margin: 0 0 1rem 0; }
 .guestbook-msg { margin-top: 0.25rem; }
+
+.timecube { display:grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.8rem; }
+.timecube .face { border:1px solid #243244; border-radius: 12px; padding: 0.85rem 0.9rem; background: #0b1220; }
+.timecube .label { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color:#9aa4b2; }
+.timecube .clock { font-weight: 800; font-size: 1.4rem; margin-top: 0.35rem; color: #e6edf3; }
+@media (max-width:760px){ .timecube { grid-template-columns: 1fr; } }
 .skip-link {
   position: absolute;
   left: -9999px;
