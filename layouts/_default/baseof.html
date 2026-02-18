@@ -10,17 +10,35 @@
           var f = localStorage.getItem('bill.pref.font') || 'normal'
           var m = localStorage.getItem('bill.pref.motion') || 'normal'
           var t = localStorage.getItem('bill.pref.theme') || ''
+          var s = localStorage.getItem('bill.pref.skin') || ''
+          var y = localStorage.getItem('bill.pref.type') || ''
+          var h = localStorage.getItem('bill.pref.chaos') || ''
 
-          // if theme isn't pinned, roll a fresh coat of paint
+          // if not pinned, roll fresh coats
           if (!t) {
             var themes = ['vellum','noir','acid','blueprint']
             t = themes[Math.floor(Math.random() * themes.length)]
+          }
+          if (!s) {
+            var skins = ['clean','paper','grid','noise']
+            s = skins[Math.floor(Math.random() * skins.length)]
+          }
+          if (!y) {
+            var types = ['serif','sans','mono']
+            y = types[Math.floor(Math.random() * types.length)]
+          }
+          if (!h) {
+            var chaos = ['off','low','high']
+            h = chaos[Math.floor(Math.random() * chaos.length)]
           }
 
           document.documentElement.dataset.contrast = c
           document.documentElement.dataset.font = f
           document.documentElement.dataset.motion = m
           document.documentElement.dataset.theme = t
+          document.documentElement.dataset.skin = s
+          document.documentElement.dataset.type = y
+          document.documentElement.dataset.chaos = h
         } catch (e) {}
       })();
     </script>

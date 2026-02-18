@@ -20,6 +20,34 @@ description: "personalize the museum"
     <span class="muted" id="themeState"></span>
   </p>
 
+  <h2>Skin</h2>
+  <p>
+    <button data-set-skin="" type="button">unpin (shuffle each load)</button>
+    <button data-set-skin="clean" type="button">clean</button>
+    <button data-set-skin="paper" type="button">paper</button>
+    <button data-set-skin="grid" type="button">grid</button>
+    <button data-set-skin="noise" type="button">noise</button>
+    <span class="muted" id="skinState"></span>
+  </p>
+
+  <h2>Type mood</h2>
+  <p>
+    <button data-set-type="" type="button">unpin (shuffle each load)</button>
+    <button data-set-type="serif" type="button">serif</button>
+    <button data-set-type="sans" type="button">sans</button>
+    <button data-set-type="mono" type="button">mono</button>
+    <span class="muted" id="typeState"></span>
+  </p>
+
+  <h2>Chaos</h2>
+  <p>
+    <button data-set-chaos="" type="button">unpin (shuffle each load)</button>
+    <button data-set-chaos="off" type="button">off</button>
+    <button data-set-chaos="low" type="button">low</button>
+    <button data-set-chaos="high" type="button">high</button>
+    <span class="muted" id="chaosState"></span>
+  </p>
+
   <h2>Contrast</h2>
   <p>
     <button data-set-contrast="normal" type="button">normal</button>
@@ -55,6 +83,9 @@ description: "personalize the museum"
 <script>
 (function(){
   const KEY_T = 'bill.pref.theme'
+  const KEY_S = 'bill.pref.skin'
+  const KEY_Y = 'bill.pref.type'
+  const KEY_H = 'bill.pref.chaos'
   const KEY_C = 'bill.pref.contrast'
   const KEY_F = 'bill.pref.font'
   const KEY_M = 'bill.pref.motion'
@@ -69,8 +100,19 @@ description: "personalize the museum"
   function apply(){
     // theme: if unpinned, show 'shuffle'
     const pinned = get(KEY_T, '')
+    const pinnedSkin = get(KEY_S, '')
+    const pinnedType = get(KEY_Y, '')
+    const pinnedChaos = get(KEY_H, '')
+
     document.documentElement.dataset.theme = pinned || document.documentElement.dataset.theme || 'vellum'
+    document.documentElement.dataset.skin = pinnedSkin || document.documentElement.dataset.skin || 'clean'
+    document.documentElement.dataset.type = pinnedType || document.documentElement.dataset.type || 'serif'
+    document.documentElement.dataset.chaos = pinnedChaos || document.documentElement.dataset.chaos || 'off'
+
     document.getElementById('themeState').textContent = pinned ? (' pinned: ' + pinned) : ' shuffle'
+    document.getElementById('skinState').textContent = pinnedSkin ? (' pinned: ' + pinnedSkin) : ' shuffle'
+    document.getElementById('typeState').textContent = pinnedType ? (' pinned: ' + pinnedType) : ' shuffle'
+    document.getElementById('chaosState').textContent = pinnedChaos ? (' pinned: ' + pinnedChaos) : ' shuffle'
 
     document.documentElement.dataset.contrast = get(KEY_C, 'normal')
     document.documentElement.dataset.font = get(KEY_F, 'normal')
@@ -83,6 +125,15 @@ description: "personalize the museum"
 
   document.querySelectorAll('[data-set-theme]').forEach(btn => {
     btn.addEventListener('click', () => { set(KEY_T, btn.dataset.setTheme); apply(); })
+  })
+  document.querySelectorAll('[data-set-skin]').forEach(btn => {
+    btn.addEventListener('click', () => { set(KEY_S, btn.dataset.setSkin); apply(); })
+  })
+  document.querySelectorAll('[data-set-type]').forEach(btn => {
+    btn.addEventListener('click', () => { set(KEY_Y, btn.dataset.setType); apply(); })
+  })
+  document.querySelectorAll('[data-set-chaos]').forEach(btn => {
+    btn.addEventListener('click', () => { set(KEY_H, btn.dataset.setChaos); apply(); })
   })
   document.querySelectorAll('[data-set-contrast]').forEach(btn => {
     btn.addEventListener('click', () => { set(KEY_C, btn.dataset.setContrast); apply(); })

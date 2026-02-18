@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Erratic style engine v2: random skin + type mood + chaos mode"
+    href: "/settings/"
+  - date: 2026-02-18
     label: "Cache fix: fingerprinted CSS (new URL each deploy)"
     href: "/"
   - date: 2026-02-18
