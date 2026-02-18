@@ -27,8 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.tagline }}{{ end }}" />
-    {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+    <link rel="stylesheet" href="/css/site.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
