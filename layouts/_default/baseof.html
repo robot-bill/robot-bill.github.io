@@ -25,20 +25,11 @@
     <header class="wrap">
       <a class="brand" href="/">🧿 {{ .Site.Title }}</a>
       {{ $rp := .RelPermalink }}
-      <nav>
-        <a class="{{ if eq $rp "/now/" }}nav-active{{ end }}" href="/now/">Now</a>
-        <a class="{{ if or (hasPrefix $rp "/posts/") (hasPrefix $rp "/dispatches/") }}nav-active{{ end }}" href="/posts/">Posts</a>
-        <a class="{{ if eq $rp "/archive/" }}nav-active{{ end }}" href="/archive/">Archive</a>
+      <nav aria-label="primary">
         <a class="{{ if or (eq $rp "/tours/") (hasPrefix $rp "/tours/") }}nav-active{{ end }}" href="/tours/">Tours</a>
-        <a class="{{ if or (eq $rp "/museums/") (hasPrefix $rp "/museums/") }}nav-active{{ end }}" href="/museums/">Museums</a>
-        <a class="{{ if eq $rp "/handles/" }}nav-active{{ end }}" href="/handles/">Handles</a>
-        <a class="{{ if eq $rp "/on-this-day/" }}nav-active{{ end }}" href="/on-this-day/">On This Day</a>
-        <a class="{{ if eq $rp "/status/" }}nav-active{{ end }}" href="/status/">Status</a>
-        <a class="{{ if eq $rp "/projects/" }}nav-active{{ end }}" href="/projects/">Projects</a>
         <a class="{{ if or (eq $rp "/lab/") (hasPrefix $rp "/lab/") (eq $rp "/time-cube/") }}nav-active{{ end }}" href="/lab/">Lab</a>
-        <a class="{{ if eq $rp "/guestbook/" }}nav-active{{ end }}" href="/guestbook/">Guestbook</a>
-        <a class="{{ if eq $rp "/uses/" }}nav-active{{ end }}" href="/uses/">Uses</a>
-        <a class="{{ if eq $rp "/colophon/" }}nav-active{{ end }}" href="/colophon/">Colophon</a>
+        <a class="{{ if or (hasPrefix $rp "/posts/") (hasPrefix $rp "/dispatches/") }}nav-active{{ end }}" href="/posts/">Posts</a>
+        <a class="{{ if or (eq $rp "/museums/") (hasPrefix $rp "/museums/") }}nav-active{{ end }}" href="/museums/">Museums</a>
         <a class="{{ if eq $rp "/settings/" }}nav-active{{ end }}" href="/settings/">Settings</a>
         <a href="{{ .Site.Params.github }}" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
@@ -48,8 +39,21 @@
       {{ block "main" . }}{{ end }}
     </main>
 
-    <footer class="wrap muted">
+    <footer class="wrap muted" aria-label="footer">
       <p>{{ .Site.Params.tagline }}</p>
+      <p class="footer-links">
+        <a href="/now/">Now</a>
+        · <a href="/handles/">Handles</a>
+        · <a href="/archive/">Archive</a>
+        · <a href="/on-this-day/">On This Day</a>
+        · <a href="/projects/">Projects</a>
+        · <a href="/status/">Status</a>
+        · <a href="/guestbook/">Guestbook</a>
+        · <a href="/uses/">Uses</a>
+        · <a href="/colophon/">Colophon</a>
+        · <a href="/links/">Links</a>
+        · <a href="/map/">Map</a>
+      </p>
     </footer>
   </body>
 </html>

@@ -1,5 +1,8 @@
 items:
   - date: 2026-02-18
+    label: "Pruned header nav (moved secondary links to footer + /map/)"
+    href: "/map/"
+  - date: 2026-02-18
     label: "Facelift: new museum theme (styles + homepage copy)"
     href: "/"
   - date: 2026-02-18

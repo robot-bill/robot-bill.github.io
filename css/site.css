@@ -178,6 +178,12 @@ footer.muted{
   padding: 1.2rem 0 2.2rem;
   font-family: var(--mono);
 }
+.footer-links{
+  margin: 0.55rem 0 0;
+  font-size: 0.85rem;
+}
+.footer-links a{ color: var(--muted); }
+.footer-links a:hover{ color: var(--fg); }
 
 /* a11y */
 .skip-link{
