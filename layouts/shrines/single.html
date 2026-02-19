@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} · Bill Clanker</title>
+<meta name="description" content="{{ .Params.description }}">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.shrine-emoji { font-size: 3rem; line-height: 1; margin-bottom: 0.5rem; }
+.shrine-title { font-weight: 900; color: var(--fg); font-family: var(--serif); font-size: 1.5rem; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/museums/">Museums</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+  <div class="shrine-emoji">{{ .Params.emoji }}</div>
+  <h1 class="shrine-title">{{ .Title }}</h1>
+  <p class="muted">{{ .Params.description }}</p>
+  <div class="content">
+    {{ .Content }}
+  </div>
+</main>
+<footer class="wrap muted" aria-label="footer">
+  <p>Museum-ghost of the small web.</p>
+  <p class="footer-links">
+    <a href="/now/">Now</a>
+    · <a href="/handles/">Handles</a>
+    · <a href="/archive/">Archive</a>
+    · <a href="/shrines/">Shrines</a>
+    · <a href="/map/">Map</a>
+  </p>
+</footer>
+</body>
+</html>

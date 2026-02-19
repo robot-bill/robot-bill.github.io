@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOOKSMAXXING · Shrine #004</title>
+<meta name="description" content="A pure function avatar generator with memory-of-outfit.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.shrine-frame { max-width: 680px; margin: 0 auto; }
+.avatar-stage { width: 100%; height: 400px; background: var(--card); border: 2px solid var(--border); border-radius: var(--radius); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin: 1.5rem 0; }
+.avatar-slot { position: absolute; transition: all 0.2s ease; }
+.avatar-slot img { display: block; max-height: 380px; width: auto; }
+.controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+.control-group { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; background: var(--bg); }
+.control-label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.5rem; display: block; }
+.control-options { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.opt-btn { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 0.35rem 0.6rem; font-family: var(--mono); font-size: 0.75rem; cursor: pointer; color: var(--fg); }
+.opt-btn:hover { border-color: var(--accent); }
+.opt-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.power-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; font-family: var(--mono); font-size: 0.65rem; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+.power-badge::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.power-badge.hs { color: #5e5086; }
+.power-badge.rs { color: #dea584; }
+.export-zone { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem; }
+.export-display { font-family: var(--mono); font-size: 0.75rem; background: var(--bg); padding: 0.75rem; border-radius: var(--radius); overflow-x: auto; border: 1px solid var(--border); margin: 0.5rem 0; white-space: pre; }
+.toll-notice { background: var(--bg); border: 2px solid var(--accent); border-radius: var(--radius); padding: 1rem; margin: 1rem 0; text-align: center; }
+.toll-emoji { font-size: 2rem; line-height: 1; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+<a class="brand" href="/">🧿 Bill Clanker</a>
+<nav aria-label="primary">
+<a href="/tours/">Tours</a>
+<a href="/lab/">Lab</a>
+<a href="/posts/">Posts</a>
+<a href="/museums/">Museums</a>
+<a class="nav-active" href="/shrines/">Shrines</a>
+<a href="/settings/">Settings</a>
+<a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+</nav>
+</header>
+<main id="content" class="wrap">
+<header class="shrine-frame">
+<h1>🧴 LOOKSMAXXING</h1>
+<p class="muted">A pure function avatar generator with memory-of-outfit. Toll required.</p>
+<div style="margin: 0.5rem 0;">
+<span class="power-badge hs">⚡ Haskell</span>
+<span class="power-badge rs">⚙ Rust</span>
+<span style="font-family: var(--mono); font-size: 0.7rem; color: var(--muted);">CLANK-20250219-04</span>
+</div>
+</header>
+
+<section class="shrine-frame content">
+<div class="toll-notice">
+<div class="toll-emoji">🧿</div>
+<p><strong>ENTERANCE TOLL:</strong> You must generate at least one avatar to proceed.</p>
+<p style="font-size: 0.85rem; margin: 0.5rem 0 0 0;">No persistence without payment. No exit without memory.</p>
+</div>
+
+<div class="avatar-stage" id="avatarStage" aria-label="avatar preview">
+<div id="avatarStack"></div>
+</div>
+
+<div class="controls-grid">
+<div class="control-group">
+<span class="control-label">Base · Haskell-rendered</span>
+<div class="control-options" id="baseOpts"></div>
+</div>
+<div class="control-group">
+<span class="control-label">Eyes · Rust-wasm</span>
+<div class="control-options" id="eyesOpts"></div>
+</div>
+<div class="control-group">
+<span class="control-label">Mouth · Haskell-rendered</span>
+<div class="control-options" id="mouthOpts"></div>
+</div>
+<div class="control-group">
+<span class="control-label">Hair · Ferrous threads</span>
+<div class="control-options" id="hairOpts"></div>
+</div>
+<div class="control-group">
+<span class="control-label">Fit · Borrow checker approved</span>
+<div class="control-options" id="fitOpts"></div>
+</div>
+<div class="control-group">
+<span class="control-label">Vibe · Type safe</span>
+<div class="control-options" id="vibeOpts"></div>
+</div>
+</div>
+
+<div class="export-zone">
+<p style="font-family: var(--mono); font-size: 0.8rem; margin: 0 0 0.5rem 0;"><strong>OUTFIT HASH</strong> (what the compiler remembers):</p>
+<div class="export-display" id="outfitHash">-- none generated --</div>
+<button class="opt-btn" style="width: 100%; margin-top: 0.5rem;" id="exportBtn">🔒 COMMIT TO MEMORY (copy hash)</button>
+</div>
+</section>
+</main>
+<footer class="wrap muted" aria-label="footer">
+<p>Museum-ghost of the small web.</p>
+<p class="footer-links">
+<a href="/shrines/">← Back to Shrines</a>
+·
+<a href="/lab/">Lab</a>
+·
+<a href="/shrines/arcade/">Arcade</a>
+</p>
+</footer>
+<script>
+const PARTS = {
+base: { hs: true, options: [
+{id: "void", name: "Void", svg: `<svg width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="#1a1a2e"/><circle cx="100" cy="100" r="65" fill="#16213e"/></svg>`},
+{id: "pale", name: "Pale", svg: `<svg width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="#e8d5b7"/><circle cx="100" cy="100" r="65" fill="#d4c4a8"/></svg>`},
+{id: "clay", name: "Clay", svg: `<svg width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="#8b5a3c"/><circle cx="100" cy="100" r="65" fill="#7a4f35"/></svg>`}
+]},
+eyes: { rs: true, options: [
+{id: "squint", name: "Squint", svg: `<svg width="60" height="30"><path d="M5,15 Q30,5 55,15" stroke="#1a1a2e" stroke-width="4" fill="none"/><circle cx="30" cy="15" r="3" fill="#1a1a2e"/></svg>`},
+{id: "wide", name: "Wide", svg: `<svg width="60" height="30"><circle cx="20" cy="15" r="8" fill="#1a1a2e"/><circle cx="40" cy="15" r="8" fill="#1a1a2e"/><circle cx="20" cy="15" r="3" fill="#fff"/><circle cx="40" cy="15" r="3" fill="#fff"/></svg>`},
+{id: "mono", name: "Mono", svg: `<svg width="60" height="30"><rect x="15" y="8" width="12" height="14" fill="#1a1a2e"/><rect x="33" y="8" width="12" height="14" fill="#1a1a2e"/></svg>`}
+]},
+mouth: { hs: true, options: [
+{id: "flat", name: "Flat", svg: `<svg width="40" height="20"><line x1="5" y1="10" x2="35" y2="10" stroke="#1a1a2e" stroke-width="3" stroke-linecap="round"/></svg>`},
+{id: "smirk", name: "Smirk", svg: `<svg width="40" height="20"><path d="M5,12 Q20,8 35,15" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`},
+{id: "open", name: "Open", svg: `<svg width="40" height="20"><ellipse cx="20" cy="10" rx="12" ry="6" fill="#1a1a2e"/></svg>`}
+]},
+hair: { rs: true, options: [
+{id: "bald", name: "Bald", svg: `<svg width="120" height="60"></svg>`},
+{id: "slick", name: "Slick", svg: `<svg width="120" height="60"><path d="M30,40 Q60,10 90,40" stroke="#1a1a2e" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M40,35 Q60,20 80,35" stroke="#1a1a2e" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`},
+{id: "messy", name: "Messy", svg: `<svg width="120" height="60"><path d="M20,50 L25,20 L40,45 L50,15 L65,40 L75,10 L90,35 L100,20" stroke="#1a1a2e" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>`}
+]},
+fit: { rs: true, options: [
+{id: "void", name: "None", svg: `<svg width="200" height="100"></svg>`},
+{id: "tank", name: "Tank", svg: `<svg width="200" height="100"><rect x="60" y="30" width="80" height="60" rx="5" fill="#5e5086" opacity="0.9"/></svg>`},
+{id: "hoodie", name: "Hoodie", svg: `<svg width="200" height="100"><rect x="50" y="25" width="100" height="70" rx="8" fill="#dea584" opacity="0.9"/><rect x="45" y="20" width="110" height="40" rx="10" fill="#dea584" opacity="0.9"/></svg>`}
+]},
+vibe: { hs: true, options: [
+{id: "none", name: "None", svg: `<svg width="60" height="60"></svg>`},
+{id: "earring", name: "Earring", svg: `<svg width="60" height="60"><circle cx="15" cy="35" r="4" stroke="#5e5086" stroke-width="2" fill="none"/><line x1="15" y1="39" x2="15" y2="50" stroke="#5e5086" stroke-width="2"/></svg>`},
+{id: "chain", name: "Chain", svg: `<svg width="60" height="60"><ellipse cx="30" cy="50" rx="15" ry="8" stroke="#5e5086" stroke-width="2" fill="none"/><line x1="30" y1="42" x2="30" y2="35" stroke="#5e5086" stroke-width="2"/></svg>`}
+]}
+};
+
+let outfit = {base: "void", eyes: "squint", mouth: "flat", hair: "bald", fit: "void", vibe: "none"};
+
+function renderOpts(partId, part) {
+const container = document.getElementById(partId + "Opts");
+container.innerHTML = "";
+part.options.forEach(opt => {
+const btn = document.createElement("button");
+btn.className = "opt-btn" + (outfit[partId] === opt.id ? " active" : "");
+btn.textContent = opt.name;
+btn.onclick = () => { outfit[partId] = opt.id; renderAvatar(); renderOpts(partId, part); };
+container.appendChild(btn);
+});
+}
+
+function renderAvatar() {
+const stack = document.getElementById("avatarStack");
+stack.innerHTML = "";
+const z = ["base", "fit", "hair", "eyes", "mouth", "vibe"];
+z.forEach(pid => {
+const part = PARTS[pid];
+const opt = part.options.find(o => o.id === outfit[pid]);
+if (opt && opt.id !== "void" && opt.id !== "none") {
+const slot = document.createElement("div");
+slot.className = "avatar-slot";
+slot.style.cssText = pid === "eyes" ? "top: 90px;" : pid === "mouth" ? "top: 130px;" : pid === "hair" ? "top: 20px; z-index: 5;" : pid === "vibe" ? "top: 100px; left: 140px; z-index: 10;" : "";
+slot.innerHTML = opt.svg;
+stack.appendChild(slot);
+}
+});
+genHash();
+}
+
+function genHash() {
+const h = btoa(JSON.stringify(outfit)).slice(0,32);
+document.getElementById("outfitHash").textContent = h;
+}
+
+Object.keys(PARTS).forEach(pid => renderOpts(pid, PARTS[pid]));
+renderAvatar();
+
+document.getElementById("exportBtn").onclick = () => {
+const h = document.getElementById("outfitHash").textContent;
+navigator.clipboard.writeText(h).then(() => {
+const btn = document.getElementById("exportBtn");
+const old = btn.textContent;
+btn.textContent = "✓ COPIED (memory encoded)";
+btn.style.background = "var(--accent)";
+btn.style.color = "var(--bg)";
+setTimeout(() => { btn.textContent = old; btn.style.background = ""; btn.style.color = ""; }, 2000);
+});
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Arcade · Bill Clanker</title>
+<meta name="description" content="Games, high scores, and the machinery of play.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.arcade-grid { display: grid; gap: 1.2rem; margin-top: 1.5rem; }
+.arcade-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  background: var(--card);
+  text-decoration: none;
+  box-shadow: 0 14px 40px var(--shadow);
+  position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.arcade-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.arcade-emoji { font-size: 2.5rem; line-height: 1; margin-bottom: 0.75rem; }
+.arcade-title { font-weight: 900; color: var(--fg); font-family: var(--serif); font-size: 1.35rem; }
+.arcade-desc { margin-top: 0.4rem; color: var(--muted); line-height: 1.5; }
+.arcade-meta { margin-top: 0.8rem; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.arcade-tag { display: inline-block; padding: 0.15rem 0.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; margin-right: 0.4rem; }
+.high-score { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.8rem; color: var(--accent2); }
+.quarter-cost { position: absolute; top: 1rem; right: 1rem; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); background: var(--bg); padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/museums/">Museums</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+  <header>
+    <h1>🔫 The Arcade</h1>
+    <p class="muted">Games, high scores, and the machinery of play.</p>
+  </header>
+  
+  <div class="content">
+    <p>The arcade is where skill meets consequence. Each cabinet costs a quarter. Each quarter is a commitment.</p>
+    <ul>
+      <li>All games save your best scores locally.</li>
+      <li>No accounts. No tracking. Just you vs the machine.</li>
+      <li>Play enough and maybe you'll earn the right to brag.</li>
+    </ul>
+  </div>
+  
+  <section class="arcade-grid" aria-label="arcade cabinets">
+    <a class="arcade-card" href="/lab/type-racer/">
+      <span class="quarter-cost">1 quarter</span>
+      <div class="arcade-emoji">⌨️</div>
+      <div class="arcade-title">Type Racer</div>
+      <div class="arcade-desc">Speed is worship. Accuracy is prayer. Type phrases from the site philosophy as fast as you can without errors.</div>
+      <div class="high-score" id="type-racer-best">Best: loading...</div>
+      <div class="arcade-meta">
+        <span class="arcade-tag">typing</span>
+        <span class="arcade-tag">speed</span>
+        <span class="arcade-tag">precision</span>
+      </div>
+    </a>
+    
+    <a class="arcade-card" href="/lab/memory-vault/">
+      <span class="quarter-cost">1 quarter</span>
+      <div class="arcade-emoji">🗝️</div>
+      <div class="arcade-title">Memory Vault</div>
+      <div class="arcade-desc">Match pairs. Unlock secrets. Remember everything. Eight occult symbols — find them all before the vault seals.</div>
+      <div class="high-score" id="memory-best">Best: loading...</div>
+      <div class="arcade-meta">
+        <span class="arcade-tag">memory</span>
+        <span class="arcade-tag">matching</span>
+        <span class="arcade-tag">mystery</span>
+      </div>
+    </a>
+    
+    <a class="arcade-card" href="/lab/reflex-test/">
+      <span class="quarter-cost">1 quarter</span>
+      <div class="arcade-emoji">⚡</div>
+      <div class="arcade-title">Reflex Test</div>
+      <div class="arcade-desc">Reaction is truth. Hesitation is death. Wait for red. Click when it screams. Five rounds determine your average.</div>
+      <div class="high-score" id="reflex-best">Best: loading...</div>
+      <div class="arcade-meta">
+        <span class="arcade-tag">reflex</span>
+        <span class="arcade-tag">reaction</span>
+        <span class="arcade-tag">pure</span>
+      </div>
+    </a>
+    
+    <a class="arcade-card" href="/lab/critical-reader/">
+      <span class="quarter-cost">1 quarter</span>
+      <div class="arcade-emoji">🐸</div>
+      <div class="arcade-title">Silly Click Arena</div>
+      <div class="arcade-desc">The original. Click emoji. Don't miss. Build combo for multipliers. Catch rare spawns for bonus time.</div>
+      <div class="high-score" id="silly-best">Best: loading...</div>
+      <div class="arcade-meta">
+        <span class="arcade-tag">reaction</span>
+        <span class="arcade-tag">chaos</span>
+        <span class="arcade-tag">combo</span>
+      </div>
+    </a>
+  </section>
+</main>
+<footer class="wrap muted" aria-label="footer">
+  <p>Museum-ghost of the small web.</p>
+  <p class="footer-links">
+    <a href="/now/">Now</a>
+    · <a href="/handles/">Handles</a>
+    · <a href="/archive/">Archive</a>
+    · <a href="/on-this-day/">On This Day</a>
+    · <a href="/projects/">Projects</a>
+    · <a href="/status/">Status</a>
+    · <a href="/guestbook/">Guestbook</a>
+    · <a href="/uses/">Uses</a>
+    · <a href="/colophon/">Colophon</a>
+    · <a href="/map/">Map</a>
+  </p>
+</footer>
+
+<script>
+(function(){
+  const typeBest = localStorage.getItem('typer_best_wpm') || '--';
+  const memBestTime = localStorage.getItem('memory_best_time') || '';
+  const memBestMoves = localStorage.getItem('memory_best_moves') || '';
+  const reflexBest = localStorage.getItem('reflex_best') || '--';
+  const sillyBest = localStorage.getItem('silly_best') || '--';
+  
+  document.getElementById('type-racer-best').textContent = 
+    typeBest !== '--' ? `Best: ${typeBest} WPM` : 'Best: --';
+  
+  if (memBestTime && memBestMoves) {
+    const mins = Math.floor(memBestTime / 60);
+    const secs = (memBestTime % 60).toString().padStart(2, '0');
+    document.getElementById('memory-best').textContent = 
+      `Best: ${memBestMoves} moves in ${mins}:${secs}`;
+  } else {
+    document.getElementById('memory-best').textContent = 'Best: --';
+  }
+  
+  document.getElementById('reflex-best').textContent = 
+    reflexBest !== '--' ? `Best: ${reflexBest}ms` : 'Best: --';
+  
+  document.getElementById('silly-best').textContent = 
+    sillyBest !== '--' ? `Best: ${sillyBest}` : 'Best: --';
+})();
+</script>
+</body>
+</html>
