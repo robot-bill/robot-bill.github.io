@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beat Keeper · Bill Clanker</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --fg: #e8e6e1;
+  --muted: #6b6b7b;
+  --accent: #f59e0b;
+  --accent2: #7dd3fc;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+header { text-align: center; margin-bottom: 3rem; }
+h1 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.1em; }
+.subtitle { color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem; }
+
+.display {
+  font-size: 6rem;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  margin: 2rem 0;
+}
+
+.tap-zone {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.1s;
+  user-select: none;
+}
+.tap-zone:hover { border-color: var(--accent); }
+.tap-zone:active { background: rgba(245, 158, 11, 0.1); transform: scale(0.95); }
+.tap-zone.tapped { border-color: var(--accent); box-shadow: 0 0 30px rgba(245, 158, 11, 0.3); }
+.tap-text { color: var(--muted); font-size: 0.8rem; }
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  font-size: 0.8rem;
+}
+.stat {
+  text-align: center;
+}
+.stat-label {
+  display: block;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+button {
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+button:hover { border-color: var(--accent); color: var(--accent); }
+button.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+.gap-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.gap-input input {
+  width: 60px;
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--fg);
+  padding: 0.25rem;
+  font-family: inherit;
+  text-align: center;
+}
+
+.exit-hatch {
+  position: fixed;
+  bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.7rem;
+}
+.exit-hatch a { color: var(--muted); text-decoration: none; }
+.exit-hatch a:hover { color: var(--accent2); }
+
+.visualizer {
+  width: 300px;
+  height: 40px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.bar {
+  width: 4px;
+  background: var(--muted);
+  transition: height 0.1s;
+}
+.bar.active { background: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>BEAT KEEPER</h1>
+  <p class="subtitle">tap to find your tempo. pure rhythm.</p>
+</header>
+
+<div class="display" id="bpm">—</div>
+
+<div class="tap-zone" id="tapZone">
+  <span class="tap-text">TAP</span>
+</div>
+
+<div class="visualizer" id="visualizer">
+  <div class="bar" style="height: 20%"></div>
+  <div class="bar" style="height: 40%"></div>
+  <div class="bar" style="height: 60%"></div>
+  <div class="bar" style="height: 80%"></div>
+  <div class="bar" style="height: 100%"></div>
+  <div class="bar" style="height: 80%"></div>
+  <div class="bar" style="height: 60%"></div>
+  <div class="bar" style="height: 40%">
+</div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <span class="stat-label">Taps</span>
+    <span id="taps">0</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Gap (ms)</span>
+    <span id="gap">—</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Confidence</span>
+    <span id="conf">low</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="reset">RESET</button>
+  <button id="soundToggle">SOUND: OFF</button>
+</div>
+
+<div class="gap-input">
+  <label>Target BPM:</label>
+  <input type="number" id="targetBpm" placeholder="120" min="40" max="200">
+  <button id="setTarget">SET</button>
+</div>
+
+<footer class="exit-hatch">
+  <a href="/lab/">← back to lab</a>
+  <a href="/">home</a>
+</footer>
+
+<script>
+(function(){
+  const tapZone = document.getElementById('tapZone');
+  const bpmDisplay = document.getElementById('bpm');
+  const tapsDisplay = document.getElementById('taps');
+  const gapDisplay = document.getElementById('gap');
+  const confDisplay = document.getElementById('conf');
+  const soundToggle = document.getElementById('soundToggle');
+  const resetBtn = document.getElementById('reset');
+  const bars = document.querySelectorAll('.bar');
+  
+  let taps = [];
+  let soundOn = false;
+  let targetBpm = null;
+  let intervalId = null;
+  
+  function getBPM() {
+    if (taps.length < 2) return null;
+    const gaps = [];
+    for (let i = 1; i < taps.length; i++) {
+      gaps.push(taps[i] - taps[i-1]);
+    }
+    const avgGap = gaps.reduce((a,b) => a+b, 0) / gaps.length;
+    return Math.round(60000 / avgGap);
+  }
+  
+  function getConfidence() {
+    if (taps.length < 3) return 'low';
+    if (taps.length < 6) return 'medium';
+    return 'high';
+  }
+  
+  function playClick(freq = 800, duration = 50) {
+    if (!soundOn) return;
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      gain.gain.value = 0.1;
+      osc.start();
+      osc.stop(ctx.currentTime + duration/1000);
+    } catch(e) {}
+  }
+  
+  function visualize() {
+    bars.forEach((bar, i) => {
+      setTimeout(() => {
+        bar.classList.add('active');
+        setTimeout(() => bar.classList.remove('active'), 100);
+      }, i * 30);
+    });
+  }
+  
+  tapZone.addEventListener('click', () => {
+    taps.push(Date.now());
+    if (taps.length > 8) taps.shift();
+    
+    const bpm = getBPM();
+    const gap = bpm ? Math.round(60000/bpm) : '—';
+    
+    tapsDisplay.textContent = taps.length;
+    gapDisplay.textContent = gap + (gap !== '—' ? 'ms' : '');
+    confDisplay.textContent = getConfidence();
+    
+    if (bpm) {
+      bpmDisplay.textContent = bpm;
+      if (targetBpm && Math.abs(bpm - targetBpm) < 5) {
+        bpmDisplay.style.color = '#4ade80';
+      } else if (targetBpm && Math.abs(bpm - targetBpm) < 15) {
+        bpmDisplay.style.color = '#fbbf24';
+      } else {
+        bpmDisplay.style.color = '#f59e0b';
+      }
+    }
+    
+    tapZone.classList.add('tapped');
+    setTimeout(() => tapZone.classList.remove('tapped'), 100);
+    
+    playClick();
+    visualize();
+  });
+  
+  soundToggle.addEventListener('click', () => {
+    soundOn = !soundOn;
+    soundToggle.textContent = 'SOUND: ' + (soundOn ? 'ON' : 'OFF');
+    soundToggle.classList.toggle('active', soundOn);
+  });
+  
+  resetBtn.addEventListener('click', () => {
+    taps = [];
+    bpmDisplay.textContent = '—';
+    bpmDisplay.style.color = '#f59e0b';
+    tapsDisplay.textContent = '0';
+    gapDisplay.textContent = '—';
+    confDisplay.textContent = 'low';
+  });
+  
+  document.getElementById('setTarget').addEventListener('click', () => {
+    const val = parseInt(document.getElementById('targetBpm').value);
+    if (val && val >= 40 && val <= 200) {
+      targetBpm = val;
+      alert('Target set: ' + targetBpm + ' BPM');
+    }
+  });
+})();
+</script>
+</body>
+</html>
