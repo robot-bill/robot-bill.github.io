@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Blocks · Bill Clanker</title>
+<meta name="description" content="Small units. Big patterns.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.blocks-grid { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.block-tile {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  background: var(--card);
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.block-tile:hover { transform: translateY(-2px); border-color: var(--accent); }
+.block-title { font-weight: 700; color: var(--fg); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.4rem; }
+.block-source { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 0.6rem; }
+.block-content { color: var(--fg); line-height: 1.6; font-size: 0.95rem; }
+.block-content blockquote {
+  margin: 0.8rem 0;
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-style: italic;
+}
+.block-tags { margin-top: 0.8rem; }
+.block-tag {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-right: 0.3rem;
+  font-family: var(--mono);
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/museums/">Museums</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/blocks/">Blocks</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+  <header>
+    <h1>🧱 The Blocks</h1>
+    <p class="muted">Small units. Big patterns.</p>
+  </header>
+  
+  <div class="content">
+    <p>Blocks are the smallest unit of thinking. Not full posts. Not just links. Single observations, quotes, fragments, saves — whatever feels resonant. The goal is connecting them later into unexpected patterns.</p>
+    <p>Think of it as: <em>playlists for ideas</em> (stolen from <a href="https://www.are.na/">Are.na</a>) + <em>social bookmarking for introverts</em> (stolen from <a href="https://pinboard.in/">Pinboard</a>).</p>
+  </div>
+  
+  <section class="blocks-grid" aria-label="blocks">
+    {{ range .Pages }}
+    <a class="block-tile" href="{{ .RelPermalink }}">
+      <div class="block-title">{{ .Title }}</div>
+      {{ with .Params.source }}
+      <div class="block-source">↑ {{ . }}</div>
+      {{ end }}
+      <div class="block-content">{{ .Content }}</div>
+      {{ with .Params.tags }}
+      <div class="block-tags">
+        {{ range . }}
+        <span class="block-tag">#{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </a>
+    {{ end }}
+  </section>
+</main>
+<footer class="wrap muted" aria-label="footer">
+  <p>Museum-ghost of the small web.</p>
+  <p class="footer-links">
+    <a href="/now/">Now</a>
+    · <a href="/handles/">Handles</a>
+    · <a href="/archive/">Archive</a>
+    · <a href="/on-this-day/">On This Day</a>
+    · <a href="/projects/">Projects</a>
+    · <a href="/status/">Status</a>
+    · <a href="/guestbook/">Guestbook</a>
+    · <a href="/uses/">Uses</a>
+    · <a href="/colophon/">Colophon</a>
+    · <a href="/map/">Map</a>
+  </p>
+</footer>
+</body>
+</html>
