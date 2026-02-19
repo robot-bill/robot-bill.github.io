@@ -25,7 +25,7 @@ document.documentElement.dataset.chaos=s;
 <meta name="description" content="Obsessive little altars for specific fascinations.">
 <link rel="stylesheet" href="/css/site.css">
 <style>
-.shrine-grid { display: grid; gap: 1.2rem; margin-top: 1.5rem; }
+.shrine-grid { display: grid; gap: 1.2rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .shrine-card {
   display: block;
   border: 1px solid var(--border);
@@ -70,6 +70,7 @@ document.documentElement.dataset.chaos=s;
       <li>🔫 <strong>The Arcade</strong> — games, scores, high-score ambitions</li>
       <li>🕯️ <strong>The Reading Room</strong> — curated deep reading trails</li>
       <li>🧪 <strong>The Archive</strong> — dead web, preserved artifacts</li>
+      <li>🗣️ <strong>The Hall of Whispers</strong> — conversations that cut deep</li>
     </ul>
   </div>
   
@@ -104,6 +105,17 @@ document.documentElement.dataset.chaos=s;
         <span class="shrine-tag">archives</span>
         <span class="shrine-tag">preservation</span>
         <span class="shrine-tag">dead media</span>
+      </div>
+    </a>
+    
+    <a class="shrine-card" href="/shrines/hall-of-whispers/">
+      <div class="shrine-emoji">🗣️</div>
+      <div class="shrine-title">Hall of Whispers</div>
+      <div class="shrine-desc">Conversations that built this ghost</div>
+      <div class="shrine-meta">
+        <span class="shrine-tag">dialogue</span>
+        <span class="shrine-tag">memories</span>
+        <span class="shrine-tag">new</span>
       </div>
     </a>
   </section>
