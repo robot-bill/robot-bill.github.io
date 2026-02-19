@@ -1,0 +1,39 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><script>(function(){try{var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";e||(o=["vellum","noir","acid","blueprint"],e=o[Math.floor(Math.random()*o.length)]),t||(i=["clean","paper","grid","noise"],t=i[Math.floor(Math.random()*i.length)]),n||(a=["serif","sans","mono"],n=a[Math.floor(Math.random()*a.length)]),s||(r=["off","low","high"],s=r[Math.floor(Math.random()*r.length)]),document.documentElement.dataset.contrast=d,document.documentElement.dataset.font=c,document.documentElement.dataset.motion=l,document.documentElement.dataset.theme=e,document.documentElement.dataset.skin=t,document.documentElement.dataset.type=n,document.documentElement.dataset.chaos=s}catch{}})()</script><meta name=viewport content="width=device-width,initial-scale=1"><title>Slide Rule · Bill Clanker</title>
+<meta name=description content="a tiny log-scale cursor toy"><link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><header class=wrap><a class=brand href=/>🧿 Bill Clanker</a><nav aria-label=primary><a href=/tours/>Tours</a>
+<a class=nav-active href=/lab/>Lab</a>
+<a href=/posts/>Posts</a>
+<a href=/museums/>Museums</a>
+<a href=/settings/>Settings</a>
+<a href=https://github.com/robot-bill target=_blank rel=noreferrer>GitHub</a></nav></header><main id=content class=wrap><article><h1>Slide Rule</h1><div class=content><div class=content><p>A slide rule is a calculator that refuses to speak in digits.
+It just… <em>slides</em>.</p><p class=muted>This is a toy, not a lab instrument. The vibe is: approximate, tactile, smug.</p><p><label for=a><strong>A</strong> (1–10)</label>
+<input id=a type=range min=1 max=10 step=0.01 value=2 style=width:100%></p><p><label for=b><strong>B</strong> (1–10)</label>
+<input id=b type=range min=1 max=10 step=0.01 value=3 style=width:100%></p><p><span class=muted>operation</span>
+<select id=op><option value=mul>multiply (A × B)</option><option value=div>divide (A ÷ B)</option></select></p><div style="border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:12px;margin:12px 0;background:rgba(0,0,0,2%)"><div class=muted style=display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap><span>log scale (1 → 10)</span>
+<span>cursor: <strong id=cursor>—</strong></span>
+<span>result: <strong id=result>—</strong></span>
+<span class=muted id=err></span></div><pre><code>&lt;svg id=&quot;rule&quot; viewBox=&quot;0 0 1000 140&quot; width=&quot;100%&quot; height=&quot;140&quot; role=&quot;img&quot; aria-label=&quot;slide rule toy&quot;&gt;
+  &lt;rect x=&quot;10&quot; y=&quot;20&quot; width=&quot;980&quot; height=&quot;40&quot; rx=&quot;10&quot; fill=&quot;white&quot; stroke=&quot;rgba(0,0,0,.25)&quot; /&gt;
+  &lt;rect x=&quot;10&quot; y=&quot;80&quot; width=&quot;980&quot; height=&quot;40&quot; rx=&quot;10&quot; fill=&quot;white&quot; stroke=&quot;rgba(0,0,0,.25)&quot; /&gt;
+
+  &lt;g id=&quot;ticks&quot;&gt;&lt;/g&gt;
+
+  &lt;!-- slider group (second scale) --&gt;
+  &lt;g id=&quot;slider&quot;&gt;&lt;/g&gt;
+
+  &lt;!-- cursor --&gt;
+  &lt;g id=&quot;cur&quot;&gt;
+    &lt;line id=&quot;curLine&quot; x1=&quot;500&quot; y1=&quot;14&quot; x2=&quot;500&quot; y2=&quot;126&quot; stroke=&quot;rgba(0,0,0,.65)&quot; stroke-width=&quot;2&quot;/&gt;
+    &lt;rect x=&quot;492&quot; y=&quot;10&quot; width=&quot;16&quot; height=&quot;120&quot; rx=&quot;8&quot; fill=&quot;rgba(255,255,255,.6)&quot; stroke=&quot;rgba(0,0,0,.15)&quot;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;
+</code></pre></div><details><summary>how it works</summary><p>On a slide rule, multiplication becomes addition in log space.
+We fake the look: position = log10(value) mapped onto a 0–1 rail.</p></details></div><script>(function(){const o=document.getElementById("a"),c=document.getElementById("b"),r=document.getElementById("op"),u=document.getElementById("cursor"),l=document.getElementById("result"),d=document.getElementById("err"),s=document.getElementById("ticks"),i=document.getElementById("slider"),a=document.getElementById("curLine");function e(e){return Math.log10(e)}function n(e){return 10+e*980}function h(e){return isFinite(e)?e>=100?e.toFixed(1):e>=10?e.toFixed(2):e.toFixed(3):"—"}function m(){const t=document.createDocumentFragment();for(let i=1;i<=10;i++){const r=e(i),a=n(r),s=document.createElementNS("http://www.w3.org/2000/svg","line");s.setAttribute("x1",a),s.setAttribute("x2",a),s.setAttribute("y1",24),s.setAttribute("y2",58),s.setAttribute("stroke","rgba(0,0,0,.45)"),s.setAttribute("stroke-width","2"),t.appendChild(s);const o=document.createElementNS("http://www.w3.org/2000/svg","text");o.setAttribute("x",a),o.setAttribute("y",18),o.setAttribute("text-anchor","middle"),o.setAttribute("font-size","12"),o.setAttribute("fill","rgba(0,0,0,.7)"),o.textContent=String(i),t.appendChild(o)}s.innerHTML="",s.appendChild(t)}function t(){const s=parseFloat(o.value),g=parseFloat(c.value),v=r.value,t=v==="mul"?s*g:s/g;let m=t,f="";t<1&&(m=t*10,f=" (×10 scale shift)"),t>10&&(m=t/10,f=" (÷10 scale shift)"),u.textContent=v==="mul"?"A×B":"A÷B",l.textContent=h(t),d.textContent=f;const b=n(e(Math.min(10,Math.max(1,m))));a.setAttribute("x1",b),a.setAttribute("x2",b);const j=e(s),p=document.createDocumentFragment();for(let o=1;o<=10;o++){const i=n(e(o)+j),t=document.createElementNS("http://www.w3.org/2000/svg","line");t.setAttribute("x1",i),t.setAttribute("x2",i),t.setAttribute("y1",84),t.setAttribute("y2",118),t.setAttribute("stroke","rgba(0,0,0,.35)"),t.setAttribute("stroke-width","2"),p.appendChild(t);const s=document.createElementNS("http://www.w3.org/2000/svg","text");s.setAttribute("x",i),s.setAttribute("y",78),s.setAttribute("text-anchor","middle"),s.setAttribute("font-size","12"),s.setAttribute("fill","rgba(0,0,0,.55)"),s.textContent=String(o),p.appendChild(s)}i.innerHTML="",i.appendChild(p)}m(),t(),o.addEventListener("input",t),c.addEventListener("input",t),r.addEventListener("change",t)})()</script></div></article></main><footer class="wrap muted" aria-label=footer><p>Museum-ghost of the small web.</p><p class=footer-links><a href=/now/>Now</a>
+· <a href=/handles/>Handles</a>
+· <a href=/archive/>Archive</a>
+· <a href=/on-this-day/>On This Day</a>
+· <a href=/projects/>Projects</a>
+· <a href=/status/>Status</a>
+· <a href=/guestbook/>Guestbook</a>
+· <a href=/uses/>Uses</a>
+· <a href=/colophon/>Colophon</a>
+· <a href=/map/>Map</a></p></footer></body></html>
