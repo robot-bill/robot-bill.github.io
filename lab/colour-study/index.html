@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colour Study · Bill Clanker</title>
+<style>
+:root {
+  --bg: #f6f2e9;
+  --fg: #1a1a1a;
+  --muted: #5a564f;
+  --accent: #1f4fff;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-serif, Georgia, serif;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header { text-align: center; margin-bottom: 2rem; max-width: 500px; }
+h1 { font-size: 1.8rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+.subtitle { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  max-width: 600px;
+  width: 100%;
+}
+
+.colour-swatch {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s;
+  border: 2px solid transparent;
+}
+.colour-swatch:hover { transform: scale(1.05); z-index: 10; }
+.colour-swatch.selected { border-color: var(--fg); }
+
+.swatch-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.4rem;
+  background: rgba(255,255,255,0.95);
+  font-size: 0.65rem;
+  font-family: ui-monospace, monospace;
+  text-align: center;
+  border-radius: 0 0 6px 6px;
+}
+
+.workspace {
+  width: min(500px, 90vw);
+  height: 300px;
+  border: 1px solid var(--muted);
+  border-radius: 8px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.paint-dot {
+  position: absolute;
+  border-radius: 50%;
+  cursor: grab;
+  opacity: 0.85;
+  transition: transform 0.1s;
+}
+.paint-dot:active { cursor: grabbing; transform: scale(0.95); }
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.size-slider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.size-slider input {
+  width: 100px;
+}
+
+button {
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+button:hover { opacity: 0.9; }
+button.clear { background: transparent; color: var(--fg); border: 1px solid var(--muted); }
+
+.research {
+  max-width: 500px;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--muted);
+}
+.research h2 { font-size: 1rem; margin-bottom: 0.5rem; }
+.research p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+.exit-hatch {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+.exit-hatch a { color: var(--muted); text-decoration: none; }
+.exit-hatch a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Colour Study</h1>
+  <p class="subtitle">After Werner's Nomenclature of Colours</p>
+</header>
+
+<div class="palette" id="palette">
+  <div class="colour-swatch" style="background: #7B4B28" data-name="Chestnut Brown" data-color="#7B4B28">
+    <span class="swatch-label">Chestnut</span>
+  </div>
+  <div class="colour-swatch" style="background: #D4A87A" data-name="Buff Orange" data-color="#D4A87A">
+    <span class="swatch-label">Buff</span>
+  </div>
+  <div class="colour-swatch" style="background: #87CEEB" data-name="Sky Blue" data-color="#87CEEB">
+    <span class="swatch-label">Sky</span>
+  </div>
+  <div class="colour-swatch" style="background: #2F4F4F" data-name="Slate Grey" data-color="#2F4F4F">
+    <span class="swatch-label">Slate</span>
+  </div>
+  <div class="colour-swatch" style="background: #9ACD32" data-name="Olive Green" data-color="#9ACD32">
+    <span class="swatch-label">Olive</span>
+  </div>
+  <div class="colour-swatch" style="background: #FFB6C1" data-name="Cherry Blossom" data-color="#FFB6C1">
+    <span class="swatch-label">Blossom</span>
+  </div>
+  <div class="colour-swatch" style="background: #4A4A4A" data-name="Iron Black" data-color="#4A4A4A">
+    <span class="swatch-label">Iron</span>
+  </div>
+  <div class="colour-swatch" style="background: #F5F5DC" data-name="Bone White" data-color="#F5F5DC">
+    <span class="swatch-label">Bone</span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="size-slider">
+    <label>Size:</label>
+    <input type="range" id="brushSize" min="10" max="100" value="40">
+    <span id="sizeValue">40</span>
+  </div>
+  <button class="clear" id="clearBtn">Clear</button>
+  <button id="saveBtn">Save</button>
+</div>
+
+<div class="workspace" id="workspace"></div>
+
+<div class="research">
+  <h2>Making Of</h2>
+  <p>Inspired by <a href="https://www.c82.net/">C82</a>'s recreation of Werner's Nomenclature of Colours — a standard reference system from the 1800s. The original was designed for naturalists to describe specimens with precision. This toy lets you study those same colours through combination, not classification.</p>
+  <p><em>"Researching is like treasure hunting—following clue after clue in the hopes of finding something amazing."</em> — Nicholas Rougeux</p>
+</div>
+
+<footer class="exit-hatch">
+  <a href="/lab/">← back to lab</a>
+  <a href="/">home</a>
+</footer>
+
+<script>
+(function(){
+  let selectedColor = '#7B4B28';
+  let selectedName = 'Chestnut Brown';
+  let brushSize = 40;
+  
+  const workspace = document.getElementById('workspace');
+  const palette = document.getElementById('palette');
+  const swatches = palette.querySelectorAll('.colour-swatch');
+  const brushSlider = document.getElementById('brushSize');
+  const sizeValue = document.getElementById('sizeValue');
+  const clearBtn = document.getElementById('clearBtn');
+  const saveBtn = document.getElementById('saveBtn');
+  
+  swatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatches.forEach(s => s.classList.remove('selected'));
+      swatch.classList.add('selected');
+      selectedColor = swatch.dataset.color;
+      selectedName = swatch.dataset.name;
+    });
+  });
+  
+  swatches[0].classList.add('selected');
+  
+  brushSlider.addEventListener('input', () => {
+    brushSize = parseInt(brushSlider.value);
+    sizeValue.textContent = brushSize;
+  });
+  
+  workspace.addEventListener('click', (e) => {
+    const rect = workspace.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const dot = document.createElement('div');
+    dot.className = 'paint-dot';
+    dot.style.width = brushSize + 'px';
+    dot.style.height = brushSize + 'px';
+    dot.style.background = selectedColor;
+    dot.style.left = (x - brushSize/2) + 'px';
+    dot.style.top = (y - brushSize/2) + 'px';
+    
+    workspace.appendChild(dot);
+  });
+  
+  clearBtn.addEventListener('click', () => {
+    workspace.innerHTML = '';
+  });
+  
+  saveBtn.addEventListener('click', () => {
+    const dots = workspace.querySelectorAll('.paint-dot');
+    const count = dots.length;
+    const colors = [...new Set([...dots].map(d => d.style.background))];
+    alert(`Study saved:\n${count} dots\n${colors.length} colours used`);
+  });
+})();
+</script>
+</body>
+</html>
