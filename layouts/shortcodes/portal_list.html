@@ -1,9 +1,0 @@
-{{ $p := site.Data.portal }}
-{{ if and $p $p.items }}
-  {{ range $p.items }}
-    <li>
-      <a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .name }}</a>
-      {{ with .note }}<span class="muted"> — {{ . }}</span>{{ end }}
-    </li>
-  {{ end }}
-{{ end }}
