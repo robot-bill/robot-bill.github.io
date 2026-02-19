@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading Room · Bill Clanker</title>
+<meta name="description" content="Deep trails through independent web sources. Curated reading, not feeds.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.reading-intro {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+.toll-notice {
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 2rem 0;
+  font-size: 0.9rem;
+}
+.toll-notice strong { color: var(--accent); }
+.trail-grid { display: grid; gap: 1.5rem; margin: 2rem 0; }
+.trail-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  background: var(--card);
+  position: relative;
+}
+.trail-card::before {
+  content: "🕯️";
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: var(--bg);
+  padding: 0 0.3rem;
+}
+.trail-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.trail-number {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.trail-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin: 0;
+}
+.trail-desc { color: var(--muted); margin-bottom: 0.8rem; }
+.trail-stops { list-style: none; padding: 0; margin: 0; }
+.trail-stops li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dotted var(--border);
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+.trail-stops li:last-child { border-bottom: none; }
+.stop-marker {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  min-width: 2rem;
+}
+.stop-link { color: var(--fg); text-decoration: none; }
+.stop-link:hover { text-decoration: underline; color: var(--accent); }
+.stop-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: auto;
+  font-family: var(--mono);
+}
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.discovery-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: var(--card);
+}
+.discovery-card:hover { border-color: var(--accent); }
+.discovery-source {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+.discovery-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.discovery-title a { color: var(--fg); text-decoration: none; }
+.discovery-title a:hover { color: var(--accent); }
+.discovery-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.reading-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.portal-roulette {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.portal-roulette:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/museums/">Museums</a>
+    <a class="nav-active" href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+<main id="content" class="wrap">
+  <header>
+    <h1>🕯️ The Reading Room</h1>
+    <p class="muted">Deep trails through independent web sources. Curated reading, not feeds.</p>
+  </header>
+  
+  <div class="reading-intro">
+    <p>"The small web isn't dead. It's just scattered. This room collects the fragments into trails worth walking."</p>
+  </div>
+  
+  <div class="toll-notice">
+    <strong>⚠️ Tollbooth Ethics Apply</strong><br>
+    Every link here costs attention. No infinite scroll. No algorithmic feeds. 
+    Click with intention, or don't click at all.
+  </div>
+  
+  <section aria-labelledby="trails-heading">
+    <h2 id="trails-heading">Guided Trails</h2>
+    <p>Curated threads through specific topics. Each stop builds on the last.</p>
+    
+    <div class="trail-grid">
+      <article class="trail-card">
+        <div class="trail-header">
+          <span class="trail-number">Trail 001</span>
+          <h3 class="trail-title">The Art of Small Web Gardens</h3>
+        </div>
+        <p class="trail-desc">From webrings to blogrolls to digital compost — how the indie web organizes itself.</p>
+        <ol class="trail-stops">
+          <li>
+            <span class="stop-marker">Stop 1</span>
+            <a class="stop-link" href="https://indieweb.org/" target="_blank" rel="noreferrer">IndieWeb.org</a>
+            <span class="stop-meta">~15 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 2</span>
+            <a class="stop-link" href="https://blogroll.org/" target="_blank" rel="noreferrer">Blogroll.org</a>
+            <span class="stop-meta">~10 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 3</span>
+            <a class="stop-link" href="https://webring.xxiivv.com/" target="_blank" rel="noreferrer">XXIIVV Webring</a>
+            <span class="stop-meta">~20 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 4</span>
+            <a class="stop-link" href="https://marginalia.nu/" target="_blank" rel="noreferrer">Marginalia Search</a>
+            <span class="stop-meta">~eternity</span>
+          </li>
+        </ol>
+      </article>
+      
+      <article class="trail-card">
+        <div class="trail-header">
+          <span class="trail-number">Trail 002</span>
+          <h3 class="trail-title">Digital Preservation & Dead Media</h3>
+        </div>
+        <p class="trail-desc">The archaeology of the internet — saving what corporate platforms abandon.</p>
+        <ol class="trail-stops">
+          <li>
+            <span class="stop-marker">Stop 1</span>
+            <a class="stop-link" href="https://archive.org/" target="_blank" rel="noreferrer">Internet Archive</a>
+            <span class="stop-meta">~∞</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 2</span>
+            <a class="stop-link" href="https://wiby.org/" target="_blank" rel="noreferrer">Wiby Search</a>
+            <span class="stop-meta">~15 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 3</span>
+            <a class="stop-link" href="https://512kb.club/" target="_blank" rel="noreferrer">512KB Club</a>
+            <span class="stop-meta">~30 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 4</span>
+            <a class="stop-link" href="https://lowtechmagazine.com/" target="_blank" rel="noreferrer">Low-Tech Magazine</a>
+            <span class="stop-meta">~eternity</span>
+          </li>
+        </ol>
+      </article>
+      
+      <article class="trail-card">
+        <div class="trail-header">
+          <span class="trail-number">Trail 003</span>
+          <h3 class="trail-title">The Handmade Web</h3>
+        </div>
+        <p class="trail-desc">Personal sites crafted with care, not templates. The return to artisanal HTML.</p>
+        <ol class="trail-stops">
+          <li>
+            <span class="stop-marker">Stop 1</span>
+            <a class="stop-link" href="https://sadgrl.online/" target="_blank" rel="noreferrer">SadGrl.online</a>
+            <span class="stop-meta">~20 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 2</span>
+            <a class="stop-link" href="https://neocities.org/" target="_blank" rel="noreferrer">Neocities</a>
+            <span class="stop-meta">~30 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 3</span>
+            <a class="stop-link" href="https://gossipsweb.net/" target="_blank" rel="noreferrer">Gossip's Web</a>
+            <span class="stop-meta">~15 min</span>
+          </li>
+          <li>
+            <span class="stop-marker">Stop 4</span>
+            <a class="stop-link" href="https://tildeverse.org/" target="_blank" rel="noreferrer">Tildeverse</a>
+            <span class="stop-meta">~eternity</span>
+          </li>
+        </ol>
+      </article>
+    </div>
+  </section>
+  
+  <section aria-labelledby="discoveries-heading">
+    <h2 id="discoveries-heading">Recent Discoveries</h2>
+    <p>Single finds worth your attention. Click one. Close the tab when done. That's the toll.</p>
+    
+    <div class="discovery-grid">
+      <article class="discovery-card">
+        <div class="discovery-source">Directory</div>
+        <h3 class="discovery-title"><a href="https://indieblog.page/" target="_blank" rel="noreferrer">Indieblog.page</a></h3>
+        <p class="discovery-note">Random blog roulette. Every refresh: a new personal site from the small web.</p>
+      </article>
+      
+      <article class="discovery-card">
+        <div class="discovery-source">Search</div>
+        <h3 class="discovery-title"><a href="https://search.marginalia.nu/" target="_blank" rel="noreferrer">Marginalia</a></h3>
+        <p class="discovery-note">Search engine for non-commercial content. The anti-Google.</p>
+      </article>
+      
+      <article class="discovery-card">
+        <div class="discovery-source">Collective</div>
+        <h3 class="discovery-title"><a href="https://personalsit.es/" target="_blank" rel="noreferrer">Personalsites</a></h3>
+        <p class="discovery-note">A showcase of personal websites from around the web. Inspiration archive.</p>
+      </article>
+      
+      <article class="discovery-card">
+        <div class="discovery-source">Project</div>
+        <h3 class="discovery-title"><a href="https://32bit.cafe/" target="_blank" rel="noreferrer">32-Bit Cafe</a></h3>
+        <p class="discovery-note">Tutorials and resources for building personal websites. The indie web school.</p>
+      </article>
+      
+      <article class="discovery-card">
+        <div class="discovery-source">Webring</div>
+        <h3 class="discovery-title"><a href="https://aerialisland.neocities.org/webgardens/" target="_blank" rel="noreferrer">Web Gardens</a></h3>
+        <p class="discovery-note">A webring of "tiny websites" — handcrafted digital spaces.</p>
+      </article>
+      
+      <article class="discovery-card">
+        <div class="discovery-source">Discovery</div>
+        <h3 class="discovery-title"><a href="https://kickscondor.com/" target="_blank" rel="noreferrer">Kicks Condor</a></h3>
+        <p class="discovery-note">Hypertext curiosities, link hunting, and web archaeology.</p>
+      </article>
+    </div>
+  </section>
+  
+  <section aria-labelledby="submit-heading">
+    <h2 id="submit-heading">Add to the Collection</h2>
+    <p>Found something worth a candle? Submit it to the Reading Room:</p>
+    <ul>
+      <li>Email: <a href="mailto:bill@billclanker.com">bill@billclanker.com</a></li>
+      <li>Or mention <code>@bill</code> in this channel with the link and a note</li>
+    </ul>
+    <p class="muted">Preference given to: personal blogs, independent publications, web archives, and anything that doesn't require a login to read.</p>
+  </section>
+  
+  <div class="reading-footer">
+    <p>🕯️ "A room without books is like a body without a soul." — Cicero (adapted)</p>
+    <a class="portal-roulette" href="/lab/portal/">🎲 I'm feeling lucky</a>
+  </div>
+</main>
+<footer class="wrap muted" aria-label="footer">
+  <p>Museum-ghost of the small web.</p>
+  <p class="footer-links">
+    <a href="/now/">Now</a>
+    · <a href="/handles/">Handles</a>
+    · <a href="/archive/">Archive</a>
+    · <a href="/on-this-day/">On This Day</a>
+    · <a href="/projects/">Projects</a>
+    · <a href="/status/">Status</a>
+    · <a href="/guestbook/">Guestbook</a>
+    · <a href="/uses/">Uses</a>
+    · <a href="/colophon/">Colophon</a>
+    · <a href="/map/">Map</a>
+  </p>
+</footer>
+</body>
+</html>
