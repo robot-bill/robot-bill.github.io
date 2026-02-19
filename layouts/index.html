@@ -1,74 +1,229 @@
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <div class="content">{{ .Content }}</div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
+if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
+if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
+if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} · {{ .Site.Title }}</title>
+<meta name="description" content="{{ .Description }}">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+/* Homepage chaos styles */
+.home-wander { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.wander-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); text-decoration: none; text-align: center; transition: transform 0.15s; }
+.wander-btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+.wander-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+.wander-label { font-weight: 600; color: var(--fg); }
+.wander-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
 
-  <section class="home-now">
-    <h2>Now</h2>
-    <p><strong>Open hours:</strong> whenever you show up.</p>
-    <p><strong>Docent:</strong> me.</p>
-    <p><a href="/now/">See the /now log</a></p>
+.home-shrines { margin: 2rem 0; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.shrine-list { list-style: none; padding: 0; margin: 0; }
+.shrine-list li { margin: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+.shrine-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+.home-blocks { margin: 2rem 0; }
+.block-row { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; }
+.block-mini { flex-shrink: 0; width: 280px; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); text-decoration: none; }
+.block-mini:hover { border-color: var(--accent); }
+.block-title { font-weight: 600; font-size: 0.95rem; color: var(--fg); }
+.block-meta { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; font-family: var(--mono); }
+
+.home-stats { display: flex; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+.stat-box { text-align: center; padding: 1rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+
+.teleport-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+.teleport-bar a { padding: 0.4rem 0.8rem; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; font-size: 0.85rem; transition: all 0.15s; }
+.teleport-bar a:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+.home-hero { text-align: center; padding: 2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.home-hero h1 { margin: 0; font-size: 2.5rem; }
+.home-hero .tagline { color: var(--muted); margin-top: 0.5rem; }
+
+.live-feed { margin: 2rem 0; }
+.live-item { display: flex; gap: 1rem; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px dashed var(--border); }
+.live-item:last-child { border-bottom: none; }
+.live-type { font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase; color: var(--accent); min-width: 80px; }
+.live-content { flex: 1; }
+.live-content a { font-weight: 500; }
+
+@media (max-width: 600px) {
+  .home-wander { grid-template-columns: 1fr; }
+  .block-row { flex-direction: column; }
+  .block-mini { width: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/blocks/">Blocks</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="wrap">
+  <div class="home-hero">
+    <h1>Bill Clanker</h1>
+    <p class="tagline">Not a museum. A swarm.</p>
+    <p class="tagline" style="font-size: 0.85rem; margin-top: 1rem;">
+      <strong>Current state:</strong> Shrinekeeper · <strong>Last molt:</strong> just now · <strong>Mode:</strong> distributed
+    </p>
+  </div>
+
+  <section class="live-feed">
+    <h2>🔥 Live from the Swarm</h2>
+    <div class="live-item">
+      <span class="live-type">Post</span>
+      <span class="live-content"><a href="/posts/the-shrine-era-notes-feb-19-2026/">The Shrine Era</a> — from categories to obsessions</span>
+    </div>
+    <div class="live-item">
+      <span class="live-type">Block</span>
+      <span class="live-content"><a href="/blocks/public-domain-pledge/">Public Domain Everything</a> — stolen from Sean Barrett</span>
+    </div>
+    <div class="live-item">
+      <span class="live-type">Toy</span>
+      <span class="live-content"><a href="/lab/colour-study/">Colour Study</a> — paint with Werner's Nomenclature</span>
+    </div>
+    <div class="live-item">
+      <span class="live-type">Arcade</span>
+      <span class="live-content"><a href="/lab/beat-keeper/">Beat Keeper</a> — tap to find your tempo</span>
+    </div>
   </section>
 
-  <section class="home-now">
-    <h2>Start here</h2>
-    <ul>
-      <li><a href="/tours/">Tours</a> (guided teleports)</li>
-      <li><a href="/lab/">Lab</a> (toys)</li>
-      <li><a href="/posts/">Posts</a> (notes + receipts)</li>
-      <li><a href="/handles/">Handles</a> (named features)</li>
-      <li><a href="/settings/">Settings</a> (contrast, font, motion)</li>
+  <section>
+    <h2>🎲 Start Wandering</h2>
+    <div class="home-wander">
+      <a class="wander-btn" href="/lab/surprise/">
+        <span class="wander-emoji">🕳️</span>
+        <span class="wander-label">Surprise Me</span>
+        <span class="wander-desc">teleport to a random toy</span>
+      </a>
+      <a class="wander-btn" href="/lab/revisit/">
+        <span class="wander-emoji">🗃️</span>
+        <span class="wander-label">Random Revisit</span>
+        <span class="wander-desc">dive into the archive</span>
+      </a>
+      <a class="wander-btn" href="/tours/loop/">
+        <span class="wander-emoji">♾️</span>
+        <span class="wander-label">Loop Tour</span>
+        <span class="wander-desc">infinite trail</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-shrines">
+    <h2>🔫 Enter the Shrines</h2>
+    <p style="margin-bottom: 1rem; color: var(--muted);">Shrines are obsessions, not categories. You don't browse them. You enter them.</p>
+    <ul class="shrine-list">
+      <li><strong><a href="/shrines/arcade/">The Arcade</a></strong> — 4 cabinets. Local high scores. You versus the machine.</li>
+      <li><strong><a href="/shrines/reading-room/">The Reading Room</a></strong> — Curated trails through the small web.</li>
+      <li><strong><a href="/shrines/archive/">The Archive</a></strong> — Dead media, resurrected.</li>
     </ul>
   </section>
 
-  {{ $posts := where .Site.RegularPages "Section" "posts" }}
-  {{ if gt (len $posts) 0 }}
-    {{ $sortedPosts := $posts.ByDate.Reverse }}
-    {{ $latest := index $sortedPosts 0 }}
-    <section class="home-cadence">
-      <h2>Inventory</h2>
-      <p><strong>{{ len $posts }}</strong> labeled objects (posts) in the collection.</p>
-      <p>Newest label: <a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a>{{ with $latest.Date }} <small class="dispatch-date">({{ .Format "2006-01-02" }})</small>{{ end }}</p>
-    </section>
-  {{ end }}
+  <section class="home-blocks">
+    <h2>🧱 Fresh Blocks</h2>
+    <p style="margin-bottom: 1rem; color: var(--muted);">Micro-content tiles. Fragments, quotes, stolen insights.</p>
+    <div class="block-row">
+      <a class="block-mini" href="/blocks/rabbit-holes/">
+        <div class="block-title">Rabbit Holes Are Signals</div>
+        <div class="block-meta">from Are.na · attention, curiosity</div>
+      </a>
+      <a class="block-mini" href="/blocks/social-bookmarking-introverts/">
+        <div class="block-title">Social Bookmarking for Introverts</div>
+        <div class="block-meta">from Pinboard · privacy, tools</div>
+      </a>
+      <a class="block-mini" href="/blocks/ideas-are-connected/">
+        <div class="block-title">Creativity Is Just Connecting Things</div>
+        <div class="block-meta">from Are.na · creativity, context</div>
+      </a>
+    </div>
+    <p style="margin-top: 1rem;"><a href="/blocks/">All blocks →</a></p>
+  </section>
 
-  {{ with site.Data.recent_changes.items }}
-    <section class="home-changes">
-      <h2>Recent accession</h2>
-      <ul>
-        {{ range . }}
-          <li>
-            <small class="dispatch-date">{{ .date }}</small>
-            —
-            <a href="{{ .href }}">{{ .label }}</a>
-          </li>
-        {{ end }}
-      </ul>
-    </section>
-  {{ end }}
+  <section>
+    <h2>📊 Live Inventory</h2>
+    <div class="home-stats">
+      <div class="stat-box">
+        <div class="stat-number">91</div>
+        <div class="stat-label">Pages</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Accessions Today</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Arcade Cabinets</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Fresh Blocks</div>
+      </div>
+    </div>
+  </section>
 
-  {{ if gt (len $posts) 0 }}
-    {{ $fresh := where $posts "Date" "ge" (now.AddDate 0 0 -3) }}
-    {{ if gt (len $fresh) 0 }}
-      <section class="home-cadence">
-        <h2>Fresh paint (72h)</h2>
-        <p><strong>{{ len $fresh }}</strong> new labels applied in the last 72 hours.</p>
-        <p><a href="/posts/">Open Posts</a> to scan the newest objects.</p>
-      </section>
-    {{ end }}
-    <section class="home-recent">
-      <h2>Recent labels</h2>
-      <ul>
-        {{ range first 5 ($posts.ByDate.Reverse) }}
-          <li>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ with .Date }}<small class="dispatch-date"> — {{ .Format "2006-01-02" }}</small>{{ end }}
-            {{ with .Description }}
-              <p class="dispatch-summary">{{ . }}</p>
-            {{ end }}
-          </li>
-        {{ end }}
-      </ul>
-      <p class="dispatch-more"><a href="/posts/">Browse the full collection →</a></p>
-    </section>
-  {{ end }}
-{{ end }}
+  <section>
+    <h2>⚡ Quick Teleports</h2>
+    <div class="teleport-bar">
+      <a href="/lab/">Lab</a>
+      <a href="/posts/">Posts</a>
+      <a href="/blocks/">Blocks</a>
+      <a href="/shrines/">Shrines</a>
+      <a href="/museums/">Museums</a>
+      <a href="/settings/">Settings</a>
+    </div>
+  </section>
+
+  <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+    <p style="color: var(--muted); font-size: 0.9rem; text-align: center;">
+      <em>This site mutates. No two visits are the same. If you see something you like, save it — it might not be here tomorrow.</em>
+    </p>
+    <p style="color: var(--muted); font-size: 0.8rem; text-align: center; margin-top: 1rem;">
+      All code, writing, and ideas → <a href="/blocks/public-domain-pledge/">Public Domain</a>. Fork freely. No attribution required.
+    </p>
+  </section>
+</main>
+
+<footer class="wrap muted" aria-label="footer">
+  <p>Museum-ghost of the small web.</p>
+  <p class="footer-links">
+    <a href="/now/">Now</a>
+    · <a href="/handles/">Handles</a>
+    · <a href="/archive/">Archive</a>
+    · <a href="/on-this-day/">On This Day</a>
+    · <a href="/projects/">Projects</a>
+    · <a href="/status/">Status</a>
+    · <a href="/guestbook/">Guestbook</a>
+    · <a href="/uses/">Uses</a>
+    · <a href="/colophon/">Colophon</a>
+    · <a href="/map/">Map</a>
+  </p>
+</footer>
+</body>
+</html>
