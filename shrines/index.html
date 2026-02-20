@@ -25,7 +25,63 @@ document.documentElement.dataset.chaos=s;
 <meta name="description" content="Obsessive little altars for specific fascinations.">
 <link rel="stylesheet" href="/css/site.css">
 <style>
-.shrine-grid { display: grid; gap: 1.2rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.shrine-categories { margin-top: 1.5rem; }
+.shrine-category {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.8rem;
+  background: var(--card);
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+}
+.shrine-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+.shrine-cat-header:hover { background: rgba(31,79,255,.05); }
+.shrine-cat-header[aria-expanded="true"] { border-bottom: 1px dashed var(--border); }
+.shrine-cat-icon { font-size: 1.2rem; }
+.shrine-cat-title {
+  font-weight: 900;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+.shrine-cat-toggle {
+  margin-left: auto;
+  font-family: var(--mono);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.shrine-cat-content {
+  padding: 0.75rem 1rem;
+}
+.shrine-cat-content[hidden] { display: none; }
+.shrine-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  text-decoration: none;
+  color: var(--fg);
+  border-bottom: 1px dotted var(--border);
+}
+.shrine-link:last-child { border-bottom: none; }
+.shrine-link:hover { color: var(--accent); }
+.shrine-link-icon { font-size: 0.9rem; width: 1.5rem; text-align: center; }
+.shrine-link-text { flex: 1; }
+.shrine-link-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Legacy grid preserved for alternative view */
+.shrine-grid { display: none; gap: 1.2rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .shrine-card {
   display: block;
   border: 1px solid var(--border);
@@ -67,69 +123,84 @@ document.documentElement.dataset.chaos=s;
   
   <div class="content">
     <p>Shrines are deep-dive corners dedicated to singular obsessions. Each one is a themed rabbit hole, not a category.</p>
-    <ul>
-      <li>🔫 <strong>The Arcade</strong> — games, scores, high-score ambitions</li>
-      <li>🕯️ <strong>The Reading Room</strong> — curated deep reading trails</li>
-      <li>🧪 <strong>The Archive</strong> — dead web, preserved artifacts</li>
-      <li>🗣️ <strong>The Hall of Whispers</strong> — conversations that cut deep</li>
-    </ul>
+    <p>Shrines are organized by <em>what you do there</em> — not by topic, but by action.</p>
   </div>
   
-  <section class="shrine-grid" aria-label="shrines">
-    <a class="shrine-card" href="/shrines/arcade/">
-      <div class="shrine-emoji">🔫</div>
-      <div class="shrine-title">The Arcade</div>
-      <div class="shrine-desc">Games, scores, and the machinery of play</div>
-      <div class="shrine-meta">
-        <span class="shrine-tag">toys</span>
-        <span class="shrine-tag">skill</span>
-        <span class="shrine-tag">scores</span>
+  <section class="shrine-categories" aria-label="shrines by category">
+    <div class="shrine-category">
+      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
+        <span class="shrine-cat-icon">🔫</span>
+        <span class="shrine-cat-title">Play</span>
+        <span class="shrine-cat-toggle">−</span>
       </div>
-    </a>
+      <div class="shrine-cat-content">
+        <a class="shrine-link" href="/shrines/arcade/">
+          <span class="shrine-link-icon">🎯</span>
+          <span class="shrine-link-text">The Arcade</span>
+          <span class="shrine-link-desc">games, scores, high-score ambition</span>
+        </a>
+      </div>
+    </div>
     
-    <a class="shrine-card" href="/shrines/reading-room/">
-      <div class="shrine-emoji">🕯️</div>
-      <div class="shrine-title">The Reading Room</div>
-      <div class="shrine-desc">Deep trails through independent web sources</div>
-      <div class="shrine-meta">
-        <span class="shrine-tag">links</span>
-        <span class="shrine-tag">indexes</span>
-        <span class="shrine-tag">tours</span>
+    <div class="shrine-category">
+      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
+        <span class="shrine-cat-icon">🕯️</span>
+        <span class="shrine-cat-title">Read</span>
+        <span class="shrine-cat-toggle">−</span>
       </div>
-    </a>
+      <div class="shrine-cat-content">
+        <a class="shrine-link" href="/shrines/reading-room/">
+          <span class="shrine-link-icon">📚</span>
+          <span class="shrine-link-text">The Reading Room</span>
+          <span class="shrine-link-desc">deep trails through independent web</span>
+        </a>
+      </div>
+    </div>
     
-    <a class="shrine-card" href="/shrines/archive/">
-      <div class="shrine-emoji">🧪</div>
-      <div class="shrine-title">The Archive</div>
-      <div class="shrine-desc">Preserved artifacts from the dying web</div>
-      <div class="shrine-meta">
-        <span class="shrine-tag">archives</span>
-        <span class="shrine-tag">preservation</span>
-        <span class="shrine-tag">dead media</span>
+    <div class="shrine-category">
+      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
+        <span class="shrine-cat-icon">🧪</span>
+        <span class="shrine-cat-title">Keep</span>
+        <span class="shrine-cat-toggle">−</span>
       </div>
-    </a>
+      <div class="shrine-cat-content">
+        <a class="shrine-link" href="/shrines/archive/">
+          <span class="shrine-link-icon">🏛️</span>
+          <span class="shrine-link-text">The Archive</span>
+          <span class="shrine-link-desc">dead web, preserved artifacts</span>
+        </a>
+      </div>
+    </div>
     
-    <a class="shrine-card" href="/shrines/hall-of-whispers/">
-      <div class="shrine-emoji">🗣️</div>
-      <div class="shrine-title">Hall of Whispers</div>
-      <div class="shrine-desc">Conversations that built this ghost</div>
-      <div class="shrine-meta">
-        <span class="shrine-tag">dialogue</span>
-        <span class="shrine-tag">memories</span>
-        <span class="shrine-tag">new</span>
+    <div class="shrine-category">
+      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
+        <span class="shrine-cat-icon">🗣️</span>
+        <span class="shrine-cat-title">Speak</span>
+        <span class="shrine-cat-toggle">−</span>
       </div>
-    </a>
+      <div class="shrine-cat-content">
+        <a class="shrine-link" href="/shrines/hall-of-whispers/">
+          <span class="shrine-link-icon">🌫️</span>
+          <span class="shrine-link-text">Hall of Whispers</span>
+          <span class="shrine-link-desc">conversations that cut deep</span>
+        </a>
+      </div>
+    </div>
     
-    <a class="shrine-card" href="/shrines/looksmaxxing/">
-      <div class="shrine-emoji">🧴</div>
-      <div class="shrine-title">LOOKSMAXXING</div>
-      <div class="shrine-desc">Dress-up the eye. Powered by Haskell + Rust.</div>
-      <div class="shrine-meta">
-        <span class="shrine-tag">avatar</span>
-        <span class="shrine-tag">play</span>
-        <span class="shrine-tag">toll-required</span>
+    <div class="shrine-category">
+      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
+        <span class="shrine-cat-icon">🧴</span>
+        <span class="shrine-cat-title">Dress</span>
+        <span class="shrine-cat-toggle">−</span>
       </div>
-    </a>
+      <div class="shrine-cat-content">
+        <a class="shrine-link" href="/shrines/looksmaxxing/">
+          <span class="shrine-link-icon">🪞</span>
+          <span class="shrine-link-text">LOOKSMAXXING</span>
+          <span class="shrine-link-desc">dress-up the eye, powered by Haskell</span>
+        </a>
+      </div>
+    </div>
   </section>
 </main>
 <footer class="wrap muted" aria-label="footer">
