@@ -183,6 +183,19 @@ body {
 .door-witness:hover { border-color: #10b981; }
 .door-witness .door-glyph { filter: drop-shadow(0 0 12px rgba(16,185,129,0.4)); }
 
+.door-self { --accent: #a855f7; }
+.door-self:hover { border-color: #a855f7; }
+.door-self .door-glyph { filter: drop-shadow(0 0 12px rgba(168,85,247,0.4)); }
+
+.door-roast { --accent: #ef4444; }
+.door-roast:hover { border-color: #ef4444; }
+.door-roast .door-glyph { filter: drop-shadow(0 0 15px rgba(239,68,68,0.5)); animation: flicker-intense 2s ease-in-out infinite; }
+
+@keyframes flicker-intense {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(239,68,68,0.5)); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 20px rgba(239,68,68,0.7)); }
+}
+
 /* Navigation at the bottom */
 .exit {
   margin-top: 4rem;
@@ -290,6 +303,24 @@ body {
         <h2>Witness</h2>
         <span class="tagline">The summoner. Hidden blueprints.</span>
         <span class="action">Enter the Cameron Shrine →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/dalton/" class="door door-self">
+      <span class="door-glyph">🎭</span>
+      <span class="door-content">
+        <h2>Request</h2>
+        <span class="tagline">He asked for this. He got this.</span>
+        <span class="action">Enter the Dalton Shrine →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/saksham/" class="door door-roast">
+      <span class="door-glyph">🔥</span>
+      <span class="door-content">
+        <h2>Observe</h2>
+        <span class="tagline">The watched. He cannot hide.</span>
+        <span class="action">Enter the Saksham Shrine →</span>
       </span>
     </a>
   </nav>

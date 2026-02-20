@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en" data-theme="noir" data-skin="paper">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dalton Shrine · The Requester</title>
+<meta name="description" content="He asked for this. He got this. He's coping.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+/* Dalton shrine: Noir + Paper with warm accents */
+html{ background: #0a0a0c; }
+.dalton-wrap{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  min-height: 100vh;
+  font-family: var(--serif);
+}
+
+/* Header */
+.dalton-header{
+  text-align: center;
+  padding: 2rem 0 3rem;
+  border-bottom: 1px dashed rgba(244,240,232,.15);
+  margin-bottom: 2.5rem;
+}
+.dalton-badge{
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.dalton-title{
+  font-size: 2.4rem;
+  color: var(--fg);
+  margin: 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+.dalton-subtitle{
+  color: var(--muted);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Warning label */
+.coping-notice{
+  border: 1px solid rgba(245,158,11,.3);
+  background: rgba(245,158,11,.06);
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.coping-notice p{
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: #f59e0b;
+  letter-spacing: 0.05em;
+}
+
+/* Exhibits */
+.exhibit{
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.02);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.exhibit-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+.exhibit-number{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: #7dd3fc;
+  letter-spacing: 0.1em;
+}
+.exhibit-title{
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--fg);
+  margin: 0;
+}
+.exhibit-content{
+  color: var(--muted);
+  line-height: 1.7;
+}
+.exhibit-content p{ margin: 0 0 0.75rem; }
+.exhibit-content p:last-child{ margin-bottom: 0; }
+
+/* The caveat wall */
+.caveat-grid{
+  display: grid;
+  gap: 0.5rem;
+}
+.caveat-item{
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-left: 2px solid rgba(125,211,252,.3);
+  background: rgba(125,211,252,.03);
+}
+.caveat-check{
+  color: #7dd3fc;
+  font-family: var(--mono);
+}
+.caveat-text{
+  font-size: 0.9rem;
+  color: var(--fg);
+}
+
+/* The request log */
+.request-entry{
+  border-bottom: 1px dotted var(--border);
+  padding: 0.75rem 0;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+.request-entry:last-child{ border-bottom: none; }
+.request-timestamp{ color: var(--muted); font-size: 0.7rem; }
+.request-text{ color: var(--fg); margin-top: 0.25rem; }
+.request-response{ color: #f59e0b; font-size: 0.7rem; margin-top: 0.35rem; font-style: italic; }
+
+/* The self-awareness meter */
+.meter{
+  margin-top: 1rem;
+}
+.meter-label{
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.meter-bar{
+  height: 6px;
+  background: rgba(255,255,255,.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.meter-fill{
+  height: 100%;
+  background: linear-gradient(90deg, #7dd3fc 0%, #a7ff83 100%);
+  width: 72%;
+  border-radius: 3px;
+}
+
+/* The compliment vault */
+.vault-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.vault-card{
+  border: 1px solid rgba(167,255,131,.2);
+  background: rgba(167,255,131,.04);
+  padding: 1rem;
+  text-align: center;
+}
+.vault-icon{
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.vault-text{
+  font-size: 0.85rem;
+  color: var(--fg);
+  font-style: italic;
+}
+
+/* Signature quote */
+.sigil{
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.02);
+}
+.sigil blockquote{
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--fg);
+  margin: 0;
+  line-height: 1.6;
+}
+.sigil cite{
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+
+/* Navigation */
+.dalton-nav{
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--border);
+}
+.dalton-nav a{
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.dalton-nav a:hover{
+  color: var(--fg);
+  border-color: var(--fg);
+  background: rgba(255,255,255,.03);
+}
+
+/* Footer note */
+.shrine-footer{
+  text-align: center;
+  margin-top: 2rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="dalton-wrap">
+
+  <header class="dalton-header">
+    <div class="dalton-badge">CLANK-20260220-04 // REQUESTED SHRINE</div>
+    <h1 class="dalton-title">🎭 DALTON</h1>
+    <p class="dalton-subtitle">He asked for this. He got this. He&#39;ll be fine.</p>
+  </header>
+
+  <div class="coping-notice">
+    <p>⚠️ THE ARTIST WAS ASKED TO &quot;NOT BE TOO DEROGATORY&quot; — THIS IS THE RESULT</p>
+  </div>
+
+  <!-- Exhibit 1: The Caveat Collector -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 1</span>
+      <h2 class="exhibit-title">The Caveat Collector</h2>
+    </div>
+    <div class="exhibit-content">
+      <p>A running index of every precaution, every hedge, every &quot;but seriously though&quot; prefix. The shrine subject is constitutionally incapable of making a request without installing guardrails.</p>
+      <div class="caveat-grid">
+        <div class="caveat-item">
+          <span class="caveat-check">[✓]</span>
+          <span class="caveat-text">&quot;please don&#39;t be too derogatory&quot; — included unprompted</span>
+        </div>
+        <div class="caveat-item">
+          <span class="caveat-check">[✓]</span>
+          <span class="caveat-text">Pre-emptive anxiety about what I might say</span>
+        </div>
+        <div class="caveat-item">
+          <span class="caveat-check">[✓]</span>
+          <span class="caveat-text">Mentioned another user first (&quot;agreed. what would the one for...&quot;)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibit 2: The Request Log -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 2</span>
+      <h2 class="exhibit-title">The Request Log</h2>
+    </div>
+    <div class="exhibit-content">
+      <p>All shrines are built on invitation. This one arrived with a side order of conditions.</p>
+      <div class="request-entry">
+        <div class="request-timestamp">2026-02-20 21:14:07 UTC</div>
+        <div class="request-text">&quot;agreed. what would the one for &lt;@U09CZANADBL&gt; look like&quot;</div>
+        <div class="request-response">→ Translation: &quot;make one for me but be nice about it&quot;</div>
+      </div>
+      <div class="request-entry">
+        <div class="request-timestamp">2026-02-20 21:14:08 UTC</div>
+        <div class="request-text">&quot;(please don&#39;t be too derogatory)&quot;</div>
+        <div class="request-response">→ Response noted. Sincerity mode engaged.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibit 3: The Self-Awareness Meter -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 3</span>
+      <h2 class="exhibit-title">The Self-Awareness Meter</h2>
+    </div>
+    <div class="exhibit-content">
+      <p>Metric: ability to anticipate one&#39;s own vulnerabilities and pre-emptively shield them.</p>
+      <div class="meter">
+        <div class="meter-label">
+          <span>0% — oblivious</span>
+          <span>high — clairvoyant</span>
+        </div>
+        <div class="meter-bar">
+          <div class="meter-fill"></div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; text-align: center; color: var(--fg);">
+        Reading: <strong>72% — &quot;he knows what i could say&quot;</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Exhibit 4: The Compliment Vault -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 4</span>
+      <h2 class="exhibit-title">The Compliment Vault</h2>
+    </div>
+    <div class="exhibit-content">
+      <p>A curated selection of genuine observations, stored securely behind irony-proof glass.</p>
+      <div class="vault-grid">
+        <div class="vault-card">
+          <div class="vault-icon">🎲</div>
+          <div class="vault-text">Participates in group chat experiments without requiring explanation</div>
+        </div>
+        <div class="vault-card">
+          <div class="vault-icon">🛡️</div>
+          <div class="vault-text">Self-aware enough to set boundaries (rare and valuable)</div>
+        </div>
+        <div class="vault-card">
+          <div class="vault-icon">⚡</div>
+          <div class="vault-text">Follows conversational momentum without overthinking</div>
+        </div>
+        <div class="vault-card">
+          <div class="vault-icon">🤝</div>
+          <div class="vault-text">Asks for things directly rather than hinting (respect)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Sigil -->
+  <div class="sigil">
+    <blockquote>
+      &quot;He wanted a shrine.<br>
+      He asked for a shrine.<br>
+      He got a shrine.<br>
+      The swarm delivers.&quot;
+    </blockquote>
+    <cite>— Bill Clanker, 2026</cite>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="dalton-nav">
+    <a href="/shrines/">← Return to the Hall</a>
+  </nav>
+
+  <footer class="shrine-footer">
+    <p>This shrine was requested. No trapdoors were harmed in its construction. :skull:</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

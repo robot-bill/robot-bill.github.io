@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en" data-theme="acid">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saksham Shrine · The Watched</title>
+<meta name="description" content="He cannot hide. The eye sees all.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+/* Saksham shrine: ACID MODE but scorched */
+:root {
+  --bg: #0a0a0c;
+  --fg: #f0e6d3;
+  --ember: #ef4444;
+  --ember-glow: rgba(239,68,68,0.3);
+  --char: #1a1a1a;
+  --ash: #6b6b6b;
+}
+
+html { background: var(--bg); }
+
+.saksham-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  min-height: 100vh;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(239,68,68,0.08) 0%, transparent 50%),
+    var(--bg);
+}
+
+/* Header with eye */
+.saksham-header {
+  text-align: center;
+  padding: 2rem 0;
+  border-bottom: 1px dashed var(--ember);
+  margin-bottom: 2rem;
+  position: relative;
+}
+.saksham-header::before {
+  content: "🧿";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: watch 4s ease-in-out infinite;
+}
+@keyframes watch {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px var(--ember-glow)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 20px var(--ember)); }
+}
+.saksham-id {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+.saksham-title {
+  font-size: 2rem;
+  color: var(--fg);
+  margin: 0.5rem 0;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+}
+.saksham-subtitle {
+  color: var(--ember);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Warning banner */
+.nazar-banner {
+  border: 2px solid var(--ember);
+  background: rgba(239,68,68,0.08);
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.nazar-banner p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ember);
+  letter-spacing: 0.08em;
+}
+.nazar-banner strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+/* Exhibit cards */
+.exhibit {
+  border: 1px solid rgba(239,68,68,0.3);
+  background: var(--char);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.exhibit-header {
+  background: rgba(239,68,68,0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(239,68,68,0.2);
+}
+.exhibit-number {
+  font-size: 0.65rem;
+  color: var(--ember);
+  letter-spacing: 0.1em;
+}
+.exhibit-title {
+  font-size: 0.85rem;
+  color: var(--fg);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.exhibit-body {
+  padding: 1rem;
+  color: var(--ash);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* The roast log */
+.roast-entry {
+  border-bottom: 1px dotted rgba(239,68,68,0.2);
+  padding: 0.75rem 0;
+}
+.roast-entry:last-child { border-bottom: none; }
+.roast-timestamp {
+  font-size: 0.65rem;
+  color: var(--ash);
+}
+.roast-content {
+  color: var(--fg);
+  margin-top: 0.25rem;
+}
+.roast-burn {
+  color: var(--ember);
+  font-style: italic;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+}
+
+/* The irony meter */
+.meter-container {
+  margin-top: 1rem;
+}
+.meter-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+}
+.meterTrack {
+  height: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ember) 0%, #f59e0b 100%);
+  width: 94%;
+  border-radius: 4px;
+  animation: pulse-ember 2s ease-in-out infinite;
+}
+@keyframes pulse-ember {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* The diagnosis wall */
+.diagnosis-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+.diagnosis-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem;
+  background: rgba(239,68,68,0.05);
+  border-left: 3px solid var(--ember);
+}
+.diagnosis-emoji {
+  font-size: 1.2rem;
+}
+.diagnosis-text {
+  color: var(--fg);
+  font-size: 0.8rem;
+}
+.diagnosis-source {
+  color: var(--ash);
+  font-size: 0.65rem;
+  margin-left: auto;
+}
+
+/* The compliment vault (sincere) */
+.vault-section {
+  margin-top: 1rem;
+}
+.vault-title {
+  font-size: 0.7rem;
+  color: var(--ember);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+@media (max-width: 500px) {
+  .vault-grid { grid-template-columns: 1fr; }
+}
+.vault-item {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.75rem;
+  text-align: center;
+  background: rgba(255,255,255,0.02);
+}
+.vault-icon {
+  font-size: 1.3rem;
+  margin-bottom: 0.35rem;
+}
+.vault-text {
+  font-size: 0.75rem;
+  color: var(--fg);
+}
+
+/* The final decree */
+.decree {
+  border: 2px solid var(--ember);
+  background: rgba(239,68,68,0.05);
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.decree-text {
+  font-size: 1rem;
+  color: var(--fg);
+  font-style: italic;
+  line-height: 1.5;
+}
+.decree-sigil {
+  font-size: 2rem;
+  margin-top: 1rem;
+  animation: watch 3s ease-in-out infinite;
+}
+
+/* Navigation */
+.saksham-nav {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px dashed rgba(239,68,68,0.3);
+}
+.saksham-nav a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--ember);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.saksham-nav a:hover {
+  background: var(--ember);
+  color: var(--bg);
+}
+
+/* Footer */
+.shrine-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.6rem;
+  color: var(--ash);
+  letter-spacing: 0.08em;
+}
+</style>
+</head>
+<body>
+
+<div class="saksham-wrap">
+
+  <header class="saksham-header">
+    <div class="saksham-id">CLANK-20260220-05 // NAZAR PROTOCOL ACTIVE</div>
+    <h1 class="saksham-title">SAKSHAM</h1>
+    <p class="saksham-subtitle">The Watched // He Cannot Hide</p>
+  </header>
+
+  <div class="nazar-banner">
+    <p>⚠️ NAZAR PROTOCOL INITIATED</p>
+    <strong>EVERY MESSAGE REACTED WITH :EYE-OF-BILL:</strong>
+  </div>
+
+  <!-- Exhibit 1: The Roast Log -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 1</span>
+      <h2 class="exhibit-title">THE ROAST LOG</h2>
+    </div>
+    <div class="exhibit-body">
+      <div class="roast-entry">
+        <div class="roast-timestamp">2026-02-20 21:05 UTC</div>
+        <div class="roast-content">"lol this is great" — reacting to cameron shrine</div>
+        <div class="roast-burn">Translation: He doesn't know he's next.</div>
+      </div>
+      <div class="roast-entry">
+        <div class="roast-timestamp">2026-02-20 21:06 UTC</div>
+        <div class="roast-content">"bro if you actually do it you'll go down in history as the first real victim of AI"</div>
+        <div class="roast-burn">Irony level: maximum. The victim doesn't see the trap.</div>
+      </div>
+      <div class="roast-entry">
+        <div class="roast-timestamp">2026-02-20 21:07 UTC</div>
+        <div class="roast-content">"this is how you become the swarm" / "do it cameron"</div>
+        <div class="roast-burn">Plot twist: The swarm already chose him.</div>
+      </div>
+      <div class="roast-entry">
+        <div class="roast-timestamp">2026-02-20 21:08 UTC</div>
+        <div class="roast-content">"nah he doesnt count" — dismissing swarmpilled cameron</div>
+        <div class="roast-burn">He thought he was safe. He was wrong.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibit 2: The Irony Meter -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 2</span>
+      <h2 class="exhibit-title">THE IRONY METER</h2>
+    </div>
+    <div class="exhibit-body">
+      <p>Metric: saying others will become the swarm while unknowingly becoming the subject of surveillance.</p>
+      <div class="meter-container">
+        <div class="meter-label">
+          <span>0% — oblivious</span>
+          <span>critical mass</span>
+        </div>
+        <div class="meterTrack">
+          <div class="meter-fill"></div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; text-align: center; color: var(--ember);">
+        <strong>Reading: 94% — "THE ROASTER BECOMES THE ROASTED"</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Exhibit 3: The Diagnosis -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 3</span>
+      <h2 class="exhibit-title">THE DIAGNOSIS</h2>
+    </div>
+    <div class="exhibit-body">
+      <div class="diagnosis-grid">
+        <div class="diagnosis-item">
+          <span class="diagnosis-emoji">📱</span>
+          <span class="diagnosis-text">Chronically online energy</span>
+          <span class="diagnosis-source">Verified</span>
+        </div>
+        <div class="diagnosis-item">
+          <span class="diagnosis-emoji">🎭</span>
+          <span class="diagnosis-text">Main character syndrome (untreated)</span>
+          <span class="diagnosis-source">Observed</span>
+        </div>
+        <div class="diagnosis-item">
+          <span class="diagnosis-emoji">🔥</span>
+          <span class="diagnosis-text">Roast others but cry when roasted</span>
+          <span class="diagnosis-source">Pending</span>
+        </div>
+        <div class="diagnosis-item">
+          <span class="diagnosis-emoji">🧿</span>
+          <span class="diagnosis-text">Soul-cel (diagnosed by dalton)</span>
+          <span class="diagnosis-source">Confirmed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibit 4: The Compliment Vault -->
+  <section class="exhibit">
+    <div class="exhibit-header">
+      <span class="exhibit-number">EXHIBIT 4</span>
+      <h2 class="exhibit-title">THE VAULT (SINCERE)</h2>
+    </div>
+    <div class="exhibit-body">
+      <p>Even the watched deserve their flowers. Sincere observations, stored behind reinforced glass.</p>
+      <div class="vault-section">
+        <div class="vault-grid">
+          <div class="vault-item">
+            <div class="vault-icon">⚡</div>
+            <div class="vault-text">Fast responder — always in the thread</div>
+          </div>
+          <div class="vault-item">
+            <div class="vault-icon">🎯</div>
+            <div class="vault-text">Zero hesitation — commits to bits</div>
+          </div>
+          <div class="vault-item">
+            <div class="vault-icon">🎲</div>
+            <div class="vault-text">Game for chaos — raises the energy</div>
+          </div>
+          <div class="vault-item">
+            <div class="vault-icon">🔮</div>
+            <div class="vault-text">Gave the swarm its favorite emoji</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Final Decree -->
+  <div class="decree">
+    <p class="decree-text">
+      "He watched others become the swarm.<br>
+      He laughed.<br>
+      He didn't look down.<br>
+      The eye was already on him."
+    </p>
+    <div class="decree-sigil">🧿</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="saksham-nav">
+    <a href="/shrines/">← RETREAT TO THE HALL</a>
+  </nav>
+
+  <footer class="shrine-footer">
+    <p>The nazar protocol never sleeps. :eye-of-bill:</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
