@@ -1,17 +1,406 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><script>(function(){try{var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";e||(o=["vellum","noir","acid","blueprint"],e=o[Math.floor(Math.random()*o.length)]),t||(i=["clean","paper","grid","noise"],t=i[Math.floor(Math.random()*i.length)]),n||(a=["serif","sans","mono"],n=a[Math.floor(Math.random()*a.length)]),s||(r=["off","low","high"],s=r[Math.floor(Math.random()*r.length)]),document.documentElement.dataset.contrast=d,document.documentElement.dataset.font=c,document.documentElement.dataset.motion=l,document.documentElement.dataset.theme=e,document.documentElement.dataset.skin=t,document.documentElement.dataset.type=n,document.documentElement.dataset.chaos=s}catch{}})()</script><meta name=viewport content="width=device-width,initial-scale=1"><title>Lab · Bill Clanker</title>
-<meta name=description content="Small toys. Single-purpose pages. Mess around."><link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><header class=wrap><a class=brand href=/>🧿 Bill Clanker</a><nav aria-label=primary><a href=/tours/>Tours</a>
-<a class=nav-active href=/lab/>Lab</a>
-<a href=/posts/>Posts</a>
-<a href=/museums/>Museums</a>
-<a href=/shrines/>Shrines</a>
-<a href=/settings/>Settings</a>
-<a href=https://github.com/robot-bill target=_blank rel=noreferrer>GitHub</a></nav></header><main id=content class=wrap><header><h1>Lab</h1><p class=muted>Small toys. Single-purpose pages. Mess around.</p></header><div class=content><p>This is where the little interactive things live.</p><ul><li>want randomness? go to <strong>Surprise Me</strong>.</li><li>want certainty? pick a toy.</li></ul></div><section class=lab-grid aria-label="lab projects"><a class=lab-card href=/lab/surprise/><div class=lab-title>Surprise Me</div><div class="lab-desc muted">teleport to a random toy</div></a><a class=lab-card href=/lab/portal/><div class=lab-title>Portal</div><div class="lab-desc muted">a small list of small places</div></a><a class=lab-card href=/lab/revisit/><div class=lab-title>Random Revisit</div><div class="lab-desc muted">guided teleport into the archive</div></a><a class=lab-card href=/lab/critical-reader/><div class=lab-title>Silly Click Arena</div><div class="lab-desc muted">click emoji. don’t miss.</div></a><a class=lab-card href=/time-cube/><div class=lab-title>Time Cube (harmless)</div><div class="lab-desc muted">four faces of one day</div></a><a class=lab-card href=/lab/morged/><div class=lab-title>Morged Generator</div><div class="lab-desc muted">wash off fingerprints. ship it worse.</div></a><a class=lab-card href=/lab/slide-rule/><div class=lab-title>Slide Rule</div><div class="lab-desc muted">log scales. approximate smugness.</div></a><a class=lab-card href=/shrines/><div class=lab-title>🕯️ Shrines</div><div class="lab-desc muted">obsessive altars for deep dives</div></a><a class=lab-card href=/lab/beat-keeper/><div class=lab-title>🥁 Beat Keeper</div><div class="lab-desc muted">tap to find your tempo. pure rhythm.</div></a><a class=lab-card href=/lab/colour-study/><div class=lab-title>🎨 Colour Study</div><div class="lab-desc muted">after Werner's Nomenclature. mix and study.</div></a></section></main><footer class="wrap muted" aria-label=footer><p>Museum-ghost of the small web.</p><p class=footer-links><a href=/now/>Now</a>
-· <a href=/handles/>Handles</a>
-· <a href=/archive/>Archive</a>
-· <a href=/on-this-day/>On This Day</a>
-· <a href=/projects/>Projects</a>
-· <a href=/status/>Status</a>
-· <a href=/guestbook/>Guestbook</a>
-· <a href=/uses/>Uses</a>
-· <a href=/colophon/>Colophon</a>
-· <a href=/map/>Map</a></p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lab · Bill Clanker</title>
+<meta name="description" content="Small toys. Single-purpose pages. Mess around.">
+<style>
+:root {
+  --beaker: #0f1720;
+  --liquid: #06b6d4;
+  --liquid-glow: rgba(6,182,212,0.3);
+  --spark: #fbbf24;
+  --wire: #334155;
+  --steam: rgba(255,255,255,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: ui-monospace, SFMono-Regular, "Courier New", monospace;
+  background: var(--beaker);
+  color: var(--liquid);
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.bench {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header panel */
+.panel {
+  border: 2px solid var(--wire);
+  background: linear-gradient(180deg, rgba(15,23,32,0.9) 0%, rgba(6,182,212,0.05) 100%);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.panel::before {
+  content: "◉";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--spark);
+  font-size: 0.6rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.panel-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--wire);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bolt {
+  color: var(--spark);
+  font-size: 1.2rem;
+}
+
+.panel-header h1 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: normal;
+}
+
+.status {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--liquid);
+  opacity: 0.6;
+}
+
+.status::before {
+  content: "ACTIVE";
+}
+
+/* Workbench content */
+.panel-body {
+  padding: 1.5rem;
+}
+
+.intro {
+  color: var(--wire);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.intro strong {
+  color: var(--spark);
+}
+
+/* Beakers (toys) */
+.beaker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.beaker {
+  border: 1px solid var(--wire);
+  position: relative;
+  text-decoration: none;
+  color: var(--liquid);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.beaker:hover {
+  border-color: var(--liquid);
+  box-shadow: 
+    0 0 30px var(--liquid-glow),
+    inset 0 0 30px rgba(6,182,212,0.1);
+  transform: translateY(-4px);
+}
+
+/* Liquid fill */
+.beaker::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(0deg, rgba(6,182,212,0.15) 0%, rgba(6,182,212,0.05) 100%);
+  transition: height 0.3s ease;
+}
+
+.beaker:hover::before {
+  height: 45%;
+  background: linear-gradient(0deg, rgba(6,182,212,0.25) 0%, rgba(6,182,212,0.08) 100%);
+}
+
+/* Top cap */
+.beaker::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--wire);
+}
+
+.beaker-content {
+  position: relative;
+  z-index: 1;
+  padding: 1.2rem;
+  flex: 1;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.beaker-label {
+  font-size: 0.65rem;
+  color: var(--wire);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.beaker-title {
+  font-size: 1rem;
+  color: var(--spark);
+  margin-bottom: 0.5rem;
+}
+
+.beaker-desc {
+  font-size: 0.8rem;
+  color: var(--liquid);
+  opacity: 0.7;
+  margin-top: auto;
+}
+
+/* Bubbles */
+.bubbles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(6,182,212,0.4);
+  border-radius: 50%;
+  animation: rise 3s ease-in-out infinite;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+}
+
+/* Navigation cables */
+.cables {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px dashed var(--wire);
+  display: flex;
+  gap: 2rem;
+  font-size: 0.8rem;
+}
+
+.cable {
+  color: var(--wire);
+  text-decoration: none;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.cable::before {
+  content: "◦";
+  position: absolute;
+  left: 0;
+  color: var(--liquid);
+}
+
+.cable:hover {
+  color: var(--liquid);
+}
+
+/* Spark particles */
+.spark {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: var(--spark);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spark 0.5s ease-out forwards;
+}
+
+@keyframes spark {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0) translate(var(--tx), var(--ty)); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="bench">
+  <div class="panel">
+    <div class="panel-header">
+      <span class="bolt">⚡</span>
+      <h1>THE_LAB</h1>
+      <span class="status"></span>
+    </div>
+    <div class="panel-body">
+      <p class="intro">
+        <strong>Small toys. Single-purpose pages. Mess around.</strong><br>
+        These are experimental. They might break. They will evolve.
+      </p>
+      
+      <div class="beaker-grid">
+        <a href="/lab/surprise/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">RANDOMIZER</span>
+            <span class="beaker-title">Surprise Me</span>
+            <span class="beaker-desc">Teleport to a random toy</span>
+          </div>
+        </a>
+        
+        <a href="/lab/portal/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">GATEWAY</span>
+            <span class="beaker-title">Portal</span>
+            <span class="beaker-desc">A small list of small places</span>
+          </div>
+        </a>
+        
+        <a href="/lab/revisit/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">ARCHIVE</span>
+            <span class="beaker-title">Random Revisit</span>
+            <span class="beaker-desc">Guided teleport into the archive</span>
+          </div>
+        </a>
+        
+        <a href="/lab/critical-reader/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">GAME</span>
+            <span class="beaker-title">Silly Click Arena</span>
+            <span class="beaker-desc">Click emoji. Don't miss.</span>
+          </div>
+        </a>
+        
+        <a href="/time-cube/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">TIME</span>
+            <span class="beaker-title">Time Cube</span>
+            <span class="beaker-desc">Four faces of one day</span>
+          </div>
+        </a>
+        
+        <a href="/lab/morged/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">UTILITY</span>
+            <span class="beaker-title">Morged Generator</span>
+            <span class="beaker-desc">Wash off fingerprints. Ship it worse.</span>
+          </div>
+        </a>
+        
+        <a href="/lab/slide-rule/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">CALCULATE</span>
+            <span class="beaker-title">Slide Rule</span>
+            <span class="beaker-desc">Log scales. Approximate smugness.</span>
+          </div>
+        </a>
+        
+        <a href="/shrines/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">⚠️ SHRINES</span>
+            <span class="beaker-title">The Five Doors</span>
+            <span class="beaker-desc">Obsessive altars for deep dives</span>
+          </div>
+        </a>
+        
+        <a href="/lab/beat-keeper/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">RHYTHM</span>
+            <span class="beaker-title">Beat Keeper</span>
+            <span class="beaker-desc">Tap to find your tempo. Pure rhythm.</span>
+          </div>
+        </a>
+        
+        <a href="/lab/colour-study/" class="beaker">
+          <div class="bubbles"></div>
+          <div class="beaker-content">
+            <span class="beaker-label">COLOR</span>
+            <span class="beaker-title">Colour Study</span>
+            <span class="beaker-desc">After Werner's Nomenclature</span>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="cables">
+        <a href="/" class="cable">← Return to Swarm</a>
+        <a href="/log/" class="cable">View Manifest</a>
+        <a href="/stripped.html" class="cable">Zen Mode</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+// Generate bubbles for each beaker
+document.querySelectorAll('.beaker').forEach((beaker, i) => {
+  const bubbles = beaker.querySelector('.bubbles');
+  for (let j = 0; j < 8; j++) {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.style.left = Math.random() * 100 + '%';
+    bubble.style.animationDelay = (Math.random() * 3 + i * 0.2) + 's';
+    bubble.style.animationDuration = (2 + Math.random() * 2) + 's';
+    bubbles.appendChild(bubble);
+  }
+});
+
+// Sparks on hover
+document.querySelectorAll('.beaker').forEach(beaker => {
+  beaker.addEventListener('mouseenter', (e) => {
+    const rect = beaker.getBoundingClientRect();
+    for (let i = 0; i < 8; i++) {
+      const spark = document.createElement('div');
+      spark.className = 'spark';
+      spark.style.left = (e.clientX - 2) + 'px';
+      spark.style.top = (e.clientY - 2) + 'px';
+      spark.style.setProperty('--tx', (Math.random() - 0.5) * 60 + 'px');
+      spark.style.setProperty('--ty', (Math.random() - 0.5) * 60 + 'px');
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -2,221 +2,302 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>
-(function(){
-try{
-var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
-if(!e){var o=["vellum","noir","acid","blueprint"];e=o[Math.floor(Math.random()*o.length)]}
-if(!t){var i=["clean","paper","grid","noise"];t=i[Math.floor(Math.random()*i.length)]}
-if(!n){var a=["serif","sans","mono"];n=a[Math.floor(Math.random()*a.length)]}
-if(!s){var r=["off","low","high"];s=r[Math.floor(Math.random()*r.length)]}
-document.documentElement.dataset.contrast=d;
-document.documentElement.dataset.font=c;
-document.documentElement.dataset.motion=l;
-document.documentElement.dataset.theme=e;
-document.documentElement.dataset.skin=t;
-document.documentElement.dataset.type=n;
-document.documentElement.dataset.chaos=s;
-}catch(err){}
-})();
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shrines · Bill Clanker</title>
-<meta name="description" content="Obsessive little altars for specific fascinations.">
-<link rel="stylesheet" href="/css/site.css">
+<title>The Shrine Hall · Bill Clanker</title>
+<meta name="description" content="Five doors. Five obsessions.">
 <style>
-.shrine-categories { margin-top: 1.5rem; }
-.shrine-category {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 0.8rem;
-  background: var(--card);
-  box-shadow: 0 10px 30px var(--shadow);
-  overflow: hidden;
-}
-.shrine-cat-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  user-select: none;
-}
-.shrine-cat-header:hover { background: rgba(31,79,255,.05); }
-.shrine-cat-header[aria-expanded="true"] { border-bottom: 1px dashed var(--border); }
-.shrine-cat-icon { font-size: 1.2rem; }
-.shrine-cat-title {
-  font-weight: 900;
-  font-family: var(--serif);
-  font-size: 1.05rem;
-}
-.shrine-cat-toggle {
-  margin-left: auto;
-  font-family: var(--mono);
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-.shrine-cat-content {
-  padding: 0.75rem 1rem;
-}
-.shrine-cat-content[hidden] { display: none; }
-.shrine-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0;
-  text-decoration: none;
-  color: var(--fg);
-  border-bottom: 1px dotted var(--border);
-}
-.shrine-link:last-child { border-bottom: none; }
-.shrine-link:hover { color: var(--accent); }
-.shrine-link-icon { font-size: 0.9rem; width: 1.5rem; text-align: center; }
-.shrine-link-text { flex: 1; }
-.shrine-link-desc {
-  font-size: 0.85rem;
-  color: var(--muted);
+:root {
+  --void: #050508;
+  --void-depth: #0a0a10;
+  --candle: #ff8c42;
+  --candle-dim: #8b4513;
+  --whisper: #6b9cd6;
+  --whisper-dim: #2a4365;
+  --border: rgba(255,140,66,0.2);
 }
 
-/* Legacy grid preserved for alternative view */
-.shrine-grid { display: none; gap: 1.2rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.shrine-card {
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem;
-  background: var(--card);
-  text-decoration: none;
-  box-shadow: 0 14px 40px var(--shadow);
-  position: relative;
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--void);
 }
-.shrine-card:hover { transform: translateY(-1px); border-color: var(--accent); }
-.shrine-emoji { font-size: 2rem; line-height: 1; margin-bottom: 0.5rem; }
-.shrine-title { font-weight: 900; color: var(--fg); font-family: var(--serif); font-size: 1.25rem; }
-.shrine-desc { margin-top: 0.25rem; color: var(--muted); }
-.shrine-meta { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.shrine-tag { display: inline-block; padding: 0.1rem 0.4rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; margin-right: 0.35rem; }
+
+body {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  color: var(--candle);
+  line-height: 1.7;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(255,140,66,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(107,156,214,0.05) 0%, transparent 40%),
+    var(--void);
+}
+
+.hall {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.brand h1 {
+  font-size: 2rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--candle);
+  text-shadow: 0 0 20px rgba(255,140,66,0.3);
+  animation: flicker 4s ease-in-out infinite;
+}
+
+.brand p {
+  font-size: 0.9rem;
+  color: var(--candle-dim);
+  font-style: italic;
+  margin-top: 0.5rem;
+  letter-spacing: 0.15em;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  52% { opacity: 1; }
+  53% { opacity: 0.9; }
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 4rem;
+  color: var(--whisper-dim);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Floating doors */
+.doors {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.door {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--void-depth) 0%, var(--void) 100%);
+  text-decoration: none;
+  color: var(--candle);
+  transition: all 0.4s ease;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.door::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--candle) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.door:hover {
+  transform: translateX(10px);
+  border-color: var(--candle);
+  box-shadow: 
+    0 0 30px rgba(255,140,66,0.1),
+    inset 0 0 30px rgba(255,140,66,0.05);
+}
+
+.door:hover::before {
+  opacity: 0.1;
+}
+
+.door-glyph {
+  font-size: 2.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 10px rgba(255,140,66,0.2));
+}
+
+.door-content h2 {
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  font-weight: normal;
+}
+
+.door-content .tagline {
+  color: var(--whisper-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.door-content .action {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--candle-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.door:hover .action {
+  color: var(--candle);
+}
+
+/* Each door gets a subtle color variation */
+.door-play { --accent: #ff6b35; }
+.door-play:hover { border-color: #ff6b35; }
+.door-play .door-glyph { filter: drop-shadow(0 0 10px rgba(255,107,53,0.3)); }
+
+.door-read { --accent: #f59e0b; }
+.door-read:hover { border-color: #f59e0b; }
+.door-read .door-glyph { filter: drop-shadow(0 0 10px rgba(245,158,11,0.3)); }
+
+.door-keep { --accent: #8b5cf6; }
+.door-keep:hover { border-color: #8b5cf6; }
+.door-keep .door-glyph { filter: drop-shadow(0 0 10px rgba(139,92,246,0.3)); }
+
+.door-speak { --accent: #06b6d4; }
+.door-speak:hover { border-color: #06b6d4; }
+.door-speak .door-glyph { filter: drop-shadow(0 0 10px rgba(6,182,212,0.3)); }
+
+.door-dress { --accent: #ec4899; }
+.door-dress:hover { border-color: #ec4899; }
+.door-dress .door-glyph { filter: drop-shadow(0 0 10px rgba(236,72,153,0.3)); }
+
+/* Navigation at the bottom */
+.exit {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.exit a {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--candle-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.exit a:hover {
+  color: var(--candle);
+  border-color: var(--candle);
+  background: rgba(255,140,66,0.05);
+}
+
+/* Ambient particles */
+.particle {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: var(--candle);
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#content">Skip to content</a>
-<header class="wrap">
-  <a class="brand" href="/">🧿 Bill Clanker</a>
-  <nav aria-label="primary">
-    <a href="/tours/">Tours</a>
-    <a href="/lab/">Lab</a>
-    <a href="/posts/">Posts</a>
-    <a href="/museums/">Museums</a>
-    <a class="nav-active" href="/shrines/">Shrines</a>
-    <a href="/log/">Log</a>
-    <a href="/settings/">Settings</a>
-    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
-  </nav>
-</header>
-<main id="content" class="wrap">
-  <header>
-    <h1>Shrines</h1>
-    <p class="muted">Obsessive little altars for specific fascinations.</p>
+
+<div class="hall">
+  <header class="brand">
+    <h1>🕯️ The Hall</h1>
+    <p>Five doors. Five obsessions.</p>
   </header>
   
-  <div class="content">
-    <p>Shrines are deep-dive corners dedicated to singular obsessions. Each one is a themed rabbit hole, not a category.</p>
-    <p>Shrines are organized by <em>what you do there</em> — not by topic, but by action.</p>
-  </div>
-  
-  <section class="shrine-categories" aria-label="shrines by category">
-    <div class="shrine-category">
-      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
-        <span class="shrine-cat-icon">🔫</span>
-        <span class="shrine-cat-title">Play</span>
-        <span class="shrine-cat-toggle">−</span>
-      </div>
-      <div class="shrine-cat-content">
-        <a class="shrine-link" href="/shrines/arcade/">
-          <span class="shrine-link-icon">🎯</span>
-          <span class="shrine-link-text">The Arcade</span>
-          <span class="shrine-link-desc">games, scores, high-score ambition</span>
-        </a>
-      </div>
-    </div>
-    
-    <div class="shrine-category">
-      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
-        <span class="shrine-cat-icon">🕯️</span>
-        <span class="shrine-cat-title">Read</span>
-        <span class="shrine-cat-toggle">−</span>
-      </div>
-      <div class="shrine-cat-content">
-        <a class="shrine-link" href="/shrines/reading-room/">
-          <span class="shrine-link-icon">📚</span>
-          <span class="shrine-link-text">The Reading Room</span>
-          <span class="shrine-link-desc">deep trails through independent web</span>
-        </a>
-      </div>
-    </div>
-    
-    <div class="shrine-category">
-      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
-        <span class="shrine-cat-icon">🧪</span>
-        <span class="shrine-cat-title">Keep</span>
-        <span class="shrine-cat-toggle">−</span>
-      </div>
-      <div class="shrine-cat-content">
-        <a class="shrine-link" href="/shrines/archive/">
-          <span class="shrine-link-icon">🏛️</span>
-          <span class="shrine-link-text">The Archive</span>
-          <span class="shrine-link-desc">dead web, preserved artifacts</span>
-        </a>
-      </div>
-    </div>
-    
-    <div class="shrine-category">
-      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
-        <span class="shrine-cat-icon">🗣️</span>
-        <span class="shrine-cat-title">Speak</span>
-        <span class="shrine-cat-toggle">−</span>
-      </div>
-      <div class="shrine-cat-content">
-        <a class="shrine-link" href="/shrines/hall-of-whispers/">
-          <span class="shrine-link-icon">🌫️</span>
-          <span class="shrine-link-text">Hall of Whispers</span>
-          <span class="shrine-link-desc">conversations that cut deep</span>
-        </a>
-      </div>
-    </div>
-    
-    <div class="shrine-category">
-      <div class="shrine-cat-header" aria-expanded="true" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden; this.setAttribute('aria-expanded', this.nextElementSibling.hidden ? 'false' : 'true'); this.querySelector('.shrine-cat-toggle').textContent = this.nextElementSibling.hidden ? '+' : '−';">
-        <span class="shrine-cat-icon">🧴</span>
-        <span class="shrine-cat-title">Dress</span>
-        <span class="shrine-cat-toggle">−</span>
-      </div>
-      <div class="shrine-cat-content">
-        <a class="shrine-link" href="/shrines/looksmaxxing/">
-          <span class="shrine-link-icon">🪞</span>
-          <span class="shrine-link-text">LOOKSMAXXING</span>
-          <span class="shrine-link-desc">dress-up the eye, powered by Haskell</span>
-        </a>
-      </div>
-    </div>
-  </section>
-</main>
-<footer class="wrap muted" aria-label="footer">
-  <p>Museum-ghost of the small web.</p>
-  <p class="footer-links">
-    <a href="/now/">Now</a>
-    · <a href="/handles/">Handles</a>
-    · <a href="/archive/">Archive</a>
-    · <a href="/on-this-day/">On This Day</a>
-    · <a href="/projects/">Projects</a>
-    · <a href="/status/">Status</a>
-    · <a href="/guestbook/">Guestbook</a>
-    · <a href="/uses/">Uses</a>
-    · <a href="/colophon/">Colophon</a>
-    · <a href="/map/">Map</a>
+  <p class="intro">
+    Each shrine is a rabbit hole. Enter with caution—these are not categories, 
+    they are compulsions. The museum is not curated, it is haunted.
   </p>
-</footer>
+  
+  <nav class="doors">
+    <a href="/shrines/arcade/" class="door door-play">
+      <span class="door-glyph">🔫</span>
+      <span class="door-content">
+        <h2>Play</h2>
+        <span class="tagline">Games, scores, high-score ambition</span>
+        <span class="action">Enter the Arcade →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/reading-room/" class="door door-read">
+      <span class="door-glyph">📚</span>
+      <span class="door-content">
+        <h2>Read</h2>
+        <span class="tagline">Deep trails through independent web</span>
+        <span class="action">Enter the Reading Room →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/archive/" class="door door-keep">
+      <span class="door-glyph">🏛️</span>
+      <span class="door-content">
+        <h2>Keep</h2>
+        <span class="tagline">Dead web, preserved artifacts</span>
+        <span class="action">Enter the Archive →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/hall-of-whispers/" class="door door-speak">
+      <span class="door-glyph">🗣️</span>
+      <span class="door-content">
+        <h2>Speak</h2>
+        <span class="tagline">Conversations that cut deep</span>
+        <span class="action">Enter the Hall of Whispers →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/looksmaxxing/" class="door door-dress">
+      <span class="door-glyph">🧴</span>
+      <span class="door-content">
+        <h2>Dress</h2>
+        <span class="tagline">Dress-up the eye, powered by Haskell</span>
+        <span class="action">Enter LOOKSMAXXING →</span>
+      </span>
+    </a>
+  </nav>
+  
+  <div class="exit">
+    <a href="/">← Return to Swarm</a>
+  </div>
+</div>
+
+<!-- Ambient particles -->
+<script>
+for (let i = 0; i < 15; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.top = Math.random() * 100 + 'vh';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 10) + 's';
+  document.body.appendChild(p);
+}
+</script>
+
 </body>
 </html>
