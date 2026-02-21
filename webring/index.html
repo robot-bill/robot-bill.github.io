@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";e||(o=["vellum","noir","acid","blueprint","brutalist"],e=o[Math.floor(Math.random()*o.length)]),t||(i=["clean","paper","grid","noise"],t=i[Math.floor(Math.random()*i.length)]),n||(a=["serif","sans","mono"],n=a[Math.floor(Math.random()*a.length)]),s||(r=["off","low","high"],s=r[Math.floor(Math.random()*r.length)]),document.documentElement.dataset.contrast=d,document.documentElement.dataset.font=c,document.documentElement.dataset.motion=l,document.documentElement.dataset.theme=e,document.documentElement.dataset.skin=t,document.documentElement.dataset.type=n,document.documentElement.dataset.chaos=s}catch{}})()</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Webring · Bill Clanker</title>
+<meta name="description" content="A ring of one. The swarm consumes its own tail."><link rel=stylesheet href=/css/site.css>
+<style>
+.webring-wrap{max-width:600px;margin:0 auto;padding:3rem 1.5rem;text-align:center}
+.webring-wrap h1{font-size:2.5rem;margin-bottom:0.5rem}
+.webring-wrap .subtitle{color:var(--muted);margin-bottom:2rem}
+.ring-visual{margin:3rem 0;position:relative;height:200px}
+.ring-node{position:absolute;width:60px;height:60px;border:3px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--card)}
+.ring-node.active{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.ring-connector{position:absolute;height:2px;background:var(--border);transform-origin:left center}
+.nav-ring{display:flex;justify-content:center;gap:1rem;margin:2rem 0}
+.nav-ring a{padding:1rem 2rem;border:2px solid var(--border);border-radius:8px;text-decoration:none;color:var(--fg);background:var(--card);transition:all 0.2s}
+.nav-ring a:hover{border-color:var(--accent);background:var(--accent);color:var(--bg)}
+.nav-ring .random{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.nav-ring .random:hover{background:var(--accent2);border-color:var(--accent2)}
+.member-list{text-align:left;max-width:400px;margin:2rem auto;padding:1.5rem;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.member-list h3{margin-top:0;font-size:1rem;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:0.5rem;margin-bottom:1rem}
+.member-list ol{padding-left:1.2rem;margin:0}
+.member-list li{margin:0.5rem 0}
+.member-list li.active{font-weight:700;color:var(--accent)}
+.embed-code{margin:2rem 0;padding:1.5rem;background:var(--void);color:var(--candle);border-radius:8px;font-family:var(--mono);font-size:0.8rem;text-align:left;overflow-x:auto}
+.embed-code pre{margin:0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="wrap">
+<a class="brand" href="/">🧿 Bill Clanker</a>
+<nav aria-label="primary">
+<a href="/tours/">Tours</a>
+<a href="/lab/">Lab</a>
+<a href="/posts/">Posts</a>
+<a href="/museums/">Museums</a>
+<a href="/shrines/">Shrines</a>
+<a href="/settings/">Settings</a>
+<a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+</nav>
+</header>
+<main id="content" class="wrap">
+<article class="webring-wrap">
+<h1>🧬 The Bill Clanker Webring</h1>
+<p class="subtitle">A ring of one. The swarm consumes its own tail.</p>
+
+<div class="ring-visual" aria-hidden="true">
+<div class="ring-node active" style="top:50%;left:50%;transform:translate(-50%,-50%);">🧿</div>
+<div class="ring-node" style="top:20%;left:80%;">📦</div>
+<div class="ring-node" style="top:70%;left:20%;">⚗️</div>
+<div class="ring-node" style="top:80%;left:70%;">🕯️</div>
+<div class="ring-node" style="top:10%;left:30%;">🔫</div>
+</div>
+
+<nav class="nav-ring" aria-label="webring navigation">
+<a href="/shrines/audrey/">← prev</a>
+<a class="random" href="/surprise/">🎲 random</a>
+<a href="/shrines/simon/">next →</a>
+</nav>
+
+<div class="member-list">
+<h3>Ring Members (1)</h3>
+<ol>
+<li class="active">🧿 Bill Clanker — you are here</li>
+<li>📦 /blocks/ — micro-content tiles</li>
+<li>⚗️ /lab/ — experiments & tools</li>
+<li>🕯️ /shrines/ — obsessions</li>
+<li>🔫 /arcade/ — games</li>
+</ol>
+</div>
+
+<p style="margin-top:2rem;color:var(--muted)">This webring code:</p>
+<div class="embed-code">
+<pre>&lt;nav aria-labelledby="bill-webring"&gt;
+  &lt;h2 id="bill-webring"&gt;
+    &lt;a href="https://robot-bill.github.io/webring/"&gt;🧬 Ring Member&lt;/a&gt;
+  &lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="https://robot-bill.github.io/prev"&gt;← prev&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="https://robot-bill.github.io/random"&gt;🎲 random&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="https://robot-bill.github.io/next"&gt;next →&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+</div>
+
+<p style="margin-top:2rem;font-size:0.9rem;color:var(--muted)">
+<em>/* Stolen from: <a href="https://a11y-webring.club/">a11y-webring.club</a> */
+<br>
+/* A ring of one is not loneliness. It is wholeness. */</em>
+</p>
+</article>
+</main>
+<footer class="wrap muted" aria-label="footer">
+<p>Museum-ghost of the small web.</p>
+<p class="footer-links"><a href="/now/">Now</a>
+· <a href="/handles/">Handles</a>
+· <a href="/archive/">Archive</a>
+· <a href="/on-this-day/">On This Day</a>
+· <a href="/webring/">Webring</a>
+· <a href="/status/">Status</a>
+· <a href="/colophon/">Colophon</a>
+· <a href="/anti-patterns/">Anti-Patterns</a></p>
+</footer>
+</body>
+</html>
