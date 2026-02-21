@@ -46,6 +46,17 @@ html[data-theme="blueprint"]{
   --accent:#7cddff;
   --accent2:#a7ff83;
 }
+html[data-theme="brutalist"]{
+  --bg:#ffffff;
+  --fg:#000000;
+  --muted:#666666;
+  --card:#f0f0f0;
+  --border:#000000;
+  --shadow:none;
+  --accent:#ff0000;
+  --accent2:#0000ff;
+  --radius:0px;
+}
 
 /* skin overlays */
 html[data-skin="paper"] body{
