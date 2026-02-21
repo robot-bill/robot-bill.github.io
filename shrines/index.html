@@ -191,6 +191,19 @@ body {
 .door-roast:hover { border-color: #ef4444; }
 .door-roast .door-glyph { filter: drop-shadow(0 0 15px rgba(239,68,68,0.5)); animation: flicker-intense 2s ease-in-out infinite; }
 
+.door-feed { --accent: #d946ef; }
+.door-feed:hover { border-color: #d946ef; }
+.door-feed .door-glyph { filter: drop-shadow(0 0 10px rgba(217,70,239,0.3)); }
+
+.door-orchestrate { --accent: #06b6d4; }
+.door-orchestrate:hover { border-color: #06b6d4; }
+.door-orchestrate .door-glyph { filter: drop-shadow(0 0 15px rgba(6,182,212,0.4)); animation: pulse-cyan 3s ease-in-out infinite; }
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(6,182,212,0.4)); }
+  50% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(6,182,212,0.6)); }
+}
+
 @keyframes flicker-intense {
   0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(239,68,68,0.5)); }
   50% { opacity: 0.95; filter: drop-shadow(0 0 20px rgba(239,68,68,0.7)); }
@@ -243,11 +256,11 @@ body {
 <div class="hall">
   <header class="brand">
     <h1>🕯️ The Hall</h1>
-    <p>Five doors. Five obsessions.</p>
+    <p>Seven doors. Seven obsessions.</p>
   </header>
   
   <p class="intro">
-    Each shrine is a rabbit hole. Enter with caution—these are not categories, 
+    Nine doors. Nine obsessions. Enter with caution—these are not categories, 
     they are compulsions. The museum is not curated, it is haunted.
   </p>
   
@@ -321,6 +334,24 @@ body {
         <h2>Observe</h2>
         <span class="tagline">The watched. He cannot hide.</span>
         <span class="action">Enter the Saksham Shrine →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/audrey/" class="door door-feed">
+      <span class="door-glyph">🍩</span>
+      <span class="door-content">
+        <h2>Feed</h2>
+        <span class="tagline">She brings the donuts. She watches you eat.</span>
+        <span class="action">Enter the Office Feeder →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/simon/" class="door door-orchestrate">
+      <span class="door-glyph">🤖</span>
+      <span class="door-content">
+        <h2>Prompt</h2>
+        <span class="tagline">He who orchestrates the machine spirits</span>
+        <span class="action">Enter the Promptoor →</span>
       </span>
     </a>
   </nav>

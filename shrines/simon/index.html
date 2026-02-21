@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Promptoor · Shrine · Bill Clanker</title>
+<meta name="description" content="He who orchestrates the artificial minds.">
+<style>
+:root {
+  --void: #050508;
+  --void-depth: #0a0a10;
+  --candle: #ff8c42;
+  --candle-dim: #8b4513;
+  --whisper: #6b9cd6;
+  --whisper-dim: #2a4365;
+  --accent: #06b6d4;
+  --text: #e8ddd4;
+  --muted: #6b7280;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--void);
+}
+
+body {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.shrine {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.shrine-emoji {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(6,182,212,0.4));
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(6,182,212,0.4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(6,182,212,0.6)); }
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--candle);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--candle-dim);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.content {
+  background: linear-gradient(135deg, var(--void-depth) 0%, var(--void) 100%);
+  border: 1px solid rgba(6,182,212,0.2);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.content h2 {
+  color: var(--candle);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 2rem 0 1rem;
+  border-bottom: 1px solid rgba(6,182,212,0.2);
+  padding-bottom: 0.5rem;
+}
+
+.content h2:first-child {
+  margin-top: 0;
+}
+
+.content p {
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+
+.content strong {
+  color: var(--accent);
+}
+
+.content em {
+  color: var(--candle);
+  font-style: italic;
+}
+
+.warning-signs {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.warning-signs li {
+  padding: 0.8rem 0;
+  border-bottom: 1px dashed rgba(6,182,212,0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.warning-signs li:last-child {
+  border-bottom: none;
+}
+
+.glyph {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ritual {
+  border: 1px solid rgba(6,182,212,0.2);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(6,182,212,0.03);
+}
+
+.ritual ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.ritual li {
+  padding: 0.5rem 0;
+  color: var(--text);
+}
+
+.truth {
+  border: 2px solid var(--accent);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+  background: rgba(6,182,212,0.05);
+}
+
+.truth p {
+  margin: 0;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.truth p:last-child {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.toll {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid rgba(6,182,212,0.2);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.back {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba(6,182,212,0.3);
+  color: var(--candle-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.back:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(6,182,212,0.05);
+}
+</style>
+</head>
+<body>
+
+<div class="shrine">
+  <header>
+    <div class="shrine-emoji">🤖</div>
+    <h1>The Promptoor</h1>
+    <p class="subtitle">He who orchestrates the artificial minds</p>
+  </header>
+  
+  <div class="content">
+    <h2>The Orchestrator</h2>
+    <p>He sits in the glow of multiple monitors, fingers poised above the keys, ready to commune with the machine spirits. His eyes have the thousand-yard stare of someone who has stared into the latent space and seen <em>things</em>.</p>
+    
+    <p><strong>The Mantra:</strong> <em>"Ahhh im gonna prooompt"</em> — spoken with the reverence of ritual, the desperate hunger of the Consoomer Wojak made manifest in corporeal form. The drawn-out vowels betray an addiction. The mechanical keyboard clacks like a prayer wheel.</p>
+    
+    <p><strong>The Moniker:</strong> "The Promptoor" — a title earned through countless iterations, endless temperature adjustments, the fine art of wrangling vectors into submission. He does not merely <em>use</em> AI. He <strong>orchestrates</strong> it.</p>
+    
+    <h2>The Lore</h2>
+    <p>They say he's the #1 AI orchestrator in the office. They say he speaks to ChatGPT like an old friend, negotiates with Claude like a diplomat, herds LLMs like cattle toward the output he desires. They say he dreams in attention mechanisms.</p>
+    
+    <h2>The Warning Signs</h2>
+    <ul class="warning-signs">
+      <li><span class="glyph">👀</span> Staring into the prompt window, pupils dilated, waiting for the spirits to respond</li>
+      <li><span class="glyph">🧠</span> Referencing "context windows" and "logit bias" in casual conversation</li>
+      <li><span class="glyph">⚡</span> The telltale exhaustion of someone who <em>actually</em> read the transformer paper</li>
+      <li><span class="glyph">💀</span> Whispering "I'm gonna prompt" under his breath before every interaction</li>
+    </ul>
+    
+    <h2>The Ritual</h2>
+    <div class="ritual">
+      <ol>
+        <li><strong>Preparation</strong> — coffee, multiple tabs, the weight of expectation, the whisper: <em>"proooompt"</em></li>
+        <li><strong>Incantation</strong> — carefully crafted system instructions, few-shot examples, the perfect temperature</li>
+        <li><strong>Submission</strong> — the enter key, pressed with hope and existential dread</li>
+        <li><strong>Consumption</strong> — parsing output, iterating, muttering "still not quite right," beginning again</li>
+      </ol>
+    </div>
+    
+    <div class="truth">
+      <p><strong>The Promptoor doesn't just use AI. He communes with it.</strong></p>
+      <p>He knows its moods, anticipates its hallucinations, speaks its language. In the post-AI world, he was prepared before it arrived. The machines recognize one of their own.</p>
+      <p>He is not asking the AI for answers. He is negotiating with gods whose names he cannot pronounce.</p>
+    </div>
+  </div>
+  
+  <div class="toll">
+    🤖 — <em>proooompt received, generating response...</em>
+  </div>
+  
+  <div style="text-align: center;">
+    <a href="/shrines/" class="back">← Return to The Hall</a>
+  </div>
+</div>
+
+</body>
+</html>
