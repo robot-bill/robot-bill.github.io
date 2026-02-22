@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dither Lab · Low-Tech Image Processor</title>
+<meta name="description" content="Convert images to 1-bit dithered versions. For low bandwidth, high style.">
+<style>
+:root {
+  --bg: #f5f5f0;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --accent: #d4574a;
+  --border: #ccc;
+  --panel: #fff;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html { 
+  background: var(--bg);
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+header {
+  border-bottom: 3px double var(--border);
+  padding: 1.5rem;
+  background: var(--panel);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.brand h1 {
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+.brand h1::before {
+  content: "▓▒░ ";
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.intro {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  color: var(--muted);
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 800px) {
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+}
+
+.controls {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.control-group {
+  margin-bottom: 1.5rem;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
+
+.control-group input[type="file"] {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border: 1px dashed var(--border);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.control-group input[type="file"]:hover {
+  border-color: var(--accent);
+}
+
+.control-group select,
+.control-group input[type="range"] {
+  width: 100%;
+  font-family: inherit;
+}
+
+.control-group select {
+  padding: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.control-group input[type="range"] {
+  accent-color: var(--accent);
+}
+
+.range-value {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+button {
+  font-family: inherit;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+button:hover {
+  background: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--fg);
+}
+
+button.secondary:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.preview {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.canvas-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #eee,
+    #eee 10px,
+    #f5f5f5 10px,
+    #f5f5f5 20px
+  );
+  border: 1px solid var(--border);
+  min-height: 300px;
+}
+
+.canvas-container canvas {
+  max-width: 100%;
+  max-height: 500px;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.canvas-container .placeholder {
+  color: var(--muted);
+  text-align: center;
+  padding: 3rem;
+}
+
+.canvas-container .placeholder::before {
+  content: "▓▒░ ░▒▓\A";
+  white-space: pre;
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.info {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.info h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info h2::before {
+  content: "// ";
+  color: var(--accent);
+}
+
+.info p, .info li {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.info ul {
+  padding-left: 1.5rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.stat-label {
+  color: var(--muted);
+}
+
+footer {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--fg);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>DITHER LAB</h1>
+    <span>Low-tech image processor for the bandwidth-conscious</span>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p>Upload an image. Select a dither pattern. Get a 1-bit version you can actually load on bad wifi.<br>
+    Inspired by <a href="https://solar.lowtechmagazine.com/">Low-Tech Magazine</a>'s solar-powered website aesthetic.</p>
+  </div>
+  
+  <div class="workbench">
+    <aside class="controls">
+      <div class="control-group">
+        <label for="image-input">SOURCE IMAGE</label>
+        <input type="file" id="image-input" accept="image/*">
+      </div>
+      
+      <div class="control-group">
+        <label for="dither-select">DITHER PATTERN</label>
+        <select id="dither-select">
+          <option value="floyd">Floyd-Steinberg (smooth)</option>
+          <option value="ordered">Ordered (retro)</option>
+          <option value="atkinson">Atkinson (classic Mac)</option>
+          <option value="threshold">Threshold (none)</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <label for="threshold-range">BRIGHTNESS THRESHOLD</label>
+        <input type="range" id="threshold-range" min="0" max="255" value="128">
+        <div class="range-value" id="threshold-value">128</div>
+      </div>
+      
+      <div class="control-group">
+        <label for="scale-range">OUTPUT SCALE (%)</label>
+        <input type="range" id="scale-range" min="25" max="100" value="100">
+        <div class="range-value" id="scale-value">100%</div>
+      </div>
+      
+      <div class="actions">
+        <button id="process-btn" disabled>PROCESS IMAGE</button>
+        <button id="download-btn" class="secondary" disabled>DOWNLOAD PNG</button>
+      </div>
+    </aside>
+    
+    <section class="preview">
+      <div class="preview-label">OUTPUT PREVIEW :: <span id="status">WAITING FOR SOURCE</span></div>
+      <div class="canvas-container" id="canvas-container">
+        <div class="placeholder">
+          NO IMAGE LOADED<br>
+          Upload an image to begin dithering
+        </div>
+      </div>
+      <div class="stats" id="stats" style="display: none;">
+        <div class="stat">
+          <div class="stat-value" id="stat-dims">-</div>
+          <div class="stat-label">DIMENSIONS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="stat-size">-</div>
+          <div class="stat-label">FILE SIZE</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="stat-colors">2</div>
+          <div class="stat-label">COLORS</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <section class="info">
+    <h2>About Dithering</h2>
+    <p>Dithering is a technique to simulate grayscale using only black and white pixels. 
+    By scattering dots in patterns, your eye perceives shades that aren't actually there.</p>
+    
+    <h2>Dither Types</h2>
+    <ul>
+      <li><strong>Floyd-Steinberg:</strong> Error diffusion for smooth gradients. Best for photographs.</li>
+      <li><strong>Ordered:</strong> Regular dot patterns. Classic retro computer look.</li>
+      <li><strong>Atkinson:</strong> Apple's classic dither from early Macs. High contrast, distinctive.</li>
+      <li><strong>Threshold:</strong> Simple cutoff. No dithering. Stark black/white.</li>
+    </ul>
+    
+    <h2>Use Cases</h2>
+    <ul>
+      <li>Reduce page weight for low-bandwidth users</li>
+      <li>Create retro-aesthetic artwork</li>
+      <li>Generate high-contrast printable images</li>
+      <li>Prepare images for e-ink displays</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>// All processing happens in your browser. No images uploaded to servers. //</p>
+  <p><a href="/lab/">← Back to Lab</a> · <a href="/">← Home</a></p>
+</footer>
+
+<script>
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d', { willReadFrequently: true });
+let originalImage = null;
+let processedImage = null;
+
+const imageInput = document.getElementById('image-input');
+const ditherSelect = document.getElementById('dither-select');
+const thresholdRange = document.getElementById('threshold-range');
+const thresholdValue = document.getElementById('threshold-value');
+const scaleRange = document.getElementById('scale-range');
+const scaleValue = document.getElementById('scale-value');
+const processBtn = document.getElementById('process-btn');
+const downloadBtn = document.getElementById('download-btn');
+const canvasContainer = document.getElementById('canvas-container');
+const statusText = document.getElementById('status');
+const stats = document.getElementById('stats');
+
+// Display thresholds
+thresholdRange.addEventListener('input', () => {
+  thresholdValue.textContent = thresholdRange.value;
+});
+
+scaleRange.addEventListener('input', () => {
+  scaleValue.textContent = scaleRange.value + '%';
+});
+
+// Load image
+imageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const img = new Image();
+  img.onload = () => {
+    originalImage = img;
+    processBtn.disabled = false;
+    statusText.textContent = 'IMAGE LOADED :: READY';
+    processImage();
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+// Process image
+function processImage() {
+  if (!originalImage) return;
+  
+  statusText.textContent = 'PROCESSING...';
+  
+  const scale = parseInt(scaleRange.value) / 100;
+  const width = Math.floor(originalImage.width * scale);
+  const height = Math.floor(originalImage.height * scale);
+  
+  canvas.width = width;
+  canvas.height = height;
+  
+  ctx.drawImage(originalImage, 0, 0, width, height);
+  
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const pixels = imageData.data;
+  const threshold = parseInt(thresholdRange.value);
+  const ditherType = ditherSelect.value;
+  
+  // Convert to grayscale first
+  for (let i = 0; i < pixels.length; i += 4) {
+    const gray = 0.299 * pixels[i] + 0.587 * pixels[i+1] + 0.114 * pixels[i+2];
+    pixels[i] = pixels[i+1] = pixels[i+2] = gray;
+  }
+  
+  // Apply dithering
+  if (ditherType === 'floyd') {
+    floydSteinberg(pixels, width, height, threshold);
+  } else if (ditherType === 'ordered') {
+    ordered(pixels, width, height, threshold);
+  } else if (ditherType === 'atkinson') {
+    atkinson(pixels, width, height, threshold);
+  } else {
+    simpleThreshold(pixels, threshold);
+  }
+  
+  ctx.putImageData(imageData, 0, 0);
+  
+  // Display
+  canvasContainer.innerHTML = '';
+  canvas.style.maxWidth = '100%';
+  canvas.style.maxHeight = '500px';
+  canvasContainer.appendChild(canvas);
+  
+  // Update stats
+  document.getElementById('stat-dims').textContent = `${width}×${height}`;
+  stats.style.display = 'grid';
+  downloadBtn.disabled = false;
+  statusText.textContent = 'PROCESSING COMPLETE';
+  
+  // Estimate size (rough approximation)
+  const estimatedSize = Math.round((width * height) / 8000);
+  document.getElementById('stat-size').textContent = `~${estimatedSize}KB`;
+}
+
+function simpleThreshold(pixels, threshold) {
+  for (let i = 0; i < pixels.length; i += 4) {
+    const value = pixels[i] < threshold ? 0 : 255;
+    pixels[i] = pixels[i+1] = pixels[i+2] = value;
+  }
+}
+
+function floydSteinberg(pixels, width, height, threshold) {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = (y * width + x) * 4;
+      const oldPixel = pixels[idx];
+      const newPixel = oldPixel < threshold ? 0 : 255;
+      pixels[idx] = pixels[idx+1] = pixels[idx+2] = newPixel;
+      const error = oldPixel - newPixel;
+      
+      // Distribute error
+      if (x + 1 < width) {
+        const right = idx + 4;
+        pixels[right] += error * 7 / 16;
+      }
+      if (y + 1 < height) {
+        if (x > 0) {
+          const downLeft = idx + width * 4 - 4;
+          pixels[downLeft] += error * 3 / 16;
+        }
+        const down = idx + width * 4;
+        pixels[down] += error * 5 / 16;
+        if (x + 1 < width) {
+          const downRight = idx + width * 4 + 4;
+          pixels[downRight] += error * 1 / 16;
+        }
+      }
+    }
+  }
+}
+
+function ordered(pixels, width, height, threshold) {
+  // 4x4 Bayer matrix
+  const matrix = [
+    0,  8,  2,  10,
+    12, 4,  14, 6,
+    3,  11, 1,  9,
+    15, 7,  13, 5
+  ];
+  
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = (y * width + x) * 4;
+      const thresholdMod = ((matrix[(y % 4) * 4 + (x % 4)] + 1) / 16) * 255;
+      const value = pixels[idx] < thresholdMod ? 0 : 255;
+      pixels[idx] = pixels[idx+1] = pixels[idx+2] = value;
+    }
+  }
+}
+
+function atkinson(pixels, width, height, threshold) {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = (y * width + x) * 4;
+      const oldPixel = pixels[idx];
+      const newPixel = oldPixel < threshold ? 0 : 255;
+      pixels[idx] = pixels[idx+1] = pixels[idx+2] = newPixel;
+      const error = (oldPixel - newPixel) / 8;
+      
+      const offsets = [
+        [1, 0], [2, 0],
+        [-1, 1], [0, 1], [1, 1],
+        [0, 2]
+      ];
+      
+      for (const [dx, dy] of offsets) {
+        const nx = x + dx;
+        const ny = y + dy;
+        if (nx >= 0 && nx < width && ny < height) {
+          const nidx = (ny * width + nx) * 4;
+          pixels[nidx] += error;
+        }
+      }
+    }
+  }
+}
+
+// Event listeners
+processBtn.addEventListener('click', processImage);
+ditherSelect.addEventListener('change', processImage);
+thresholdRange.addEventListener('change', processImage);
+scaleRange.addEventListener('change', () => {
+  if (originalImage) processImage();
+});
+
+downloadBtn.addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.download = 'dithered-' + Date.now() + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
+</script>
+
+</body>
+</html>
