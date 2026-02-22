@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bill Clanker · ACID MODE</title>
-<meta name="description" content="Not a museum. A swarm.">
+<title>Bill Clanker · The Swarm Terminal</title>
+<meta name="description" content="Not a homepage. A command interface.">
 <style>
 :root {
   --bg: #fffb00;
@@ -13,6 +13,10 @@
   --glow: #ff00cc;
   --glow2: #00b3ff;
   --border: rgba(11,16,32,0.35);
+  --terminal-bg: #0c0c0c;
+  --terminal-fg: #33ff00;
+  --terminal-dim: #1a8000;
+  --amber: #ffb000;
 }
 
 * { box-sizing: border-box; margin: 0; }
@@ -30,18 +34,78 @@ body {
   min-height: 100vh;
 }
 
+/* Terminal mode toggle */
+body.terminal-mode {
+  background: var(--terminal-bg);
+  color: var(--terminal-fg);
+}
+
+body.terminal-mode .bento {
+  display: none;
+}
+
+body.terminal-mode .terminal-ui {
+  display: block;
+}
+
+.terminal-ui {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Mode switcher */
+.mode-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+body.terminal-mode .mode-switch {
+  background: var(--terminal-fg);
+  color: var(--terminal-bg);
+}
+
+/* Acid Bento Grid */
 .bento {
   display: grid;
   gap: 1rem;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
   .bento {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "brand brand brand brand"
+      "manifest manifest counter nowplaying"
+      "manifest manifest quote quote"
+      "ascii ascii status status"
+      "nav nav nav nav"
+      "command command command command";
   }
+  
+  .cell-brand { grid-area: brand; }
+  .cell-manifest { grid-area: manifest; }
+  .cell-counter { grid-area: counter; }
+  .cell-nowplaying { grid-area: nowplaying; }
+  .cell-quote { grid-area: quote; }
+  .cell-ascii { grid-area: ascii; }
+  .cell-status { grid-area: status; }
+  .cell-nav { grid-area: nav; }
+  .cell-command { grid-area: command; }
 }
 
 .cell {
@@ -49,6 +113,7 @@ body {
   padding: 1.2rem;
   background: var(--bg);
   position: relative;
+  overflow: hidden;
 }
 
 .cell:hover {
@@ -57,14 +122,13 @@ body {
 }
 
 .cell-brand {
-  grid-column: 1 / -1;
-  text-align: center;
   border: 4px solid var(--fg);
-  padding: 2rem;
+  padding: 1.5rem;
+  text-align: center;
 }
 
 .cell-brand h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 8vw, 4rem);
   letter-spacing: -0.05em;
   margin-bottom: 0.3rem;
   font-weight: 900;
@@ -74,6 +138,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: glitch 3s ease infinite;
+  white-space: nowrap;
 }
 
 @keyframes glitch {
@@ -82,36 +147,214 @@ body {
 }
 
 .cell-brand p {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dim);
 }
 
-.cell-nav {
-  grid-column: 1 / -1;
+.cell-manifest {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.cell-manifest h2 {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color: var(--glow);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--fg);
+}
+
+.cell-manifest ul { padding: 0; list-style: none; }
+.cell-manifest li {
+  border-bottom: 1px dotted var(--border);
+  padding: 0.5rem 0;
+  display: flex;
+  gap: 0.8rem;
+  align-items: baseline;
+}
+.cell-manifest li::before {
+  content: "→";
+  color: var(--glow);
+  flex-shrink: 0;
+}
+.cell-manifest time {
+  color: var(--dim);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+.cell-manifest .clank-id {
+  font-weight: bold;
+  color: var(--glow);
+}
+.cell-manifest a { color: var(--fg); text-decoration: none; }
+.cell-manifest a:hover { color: var(--glow); text-decoration: underline; }
+
+.cell-counter {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cell-counter .number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--glow);
+  line-height: 1;
+  animation: flicker 4s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+  52% { opacity: 0.7; }
+  53% { opacity: 1; }
+}
+
+.cell-counter .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+  color: var(--dim);
+}
+
+.cell-nowplaying {
+  font-size: 0.8rem;
+}
+
+.cell-nowplaying h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  color: var(--dim);
+}
+
+.cell-nowplaying .activity {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.cell-nowplaying .activity::before {
+  content: "⬤ ";
+  color: #00ff00;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.cell-nowplaying .meta {
+  color: var(--dim);
+  font-size: 0.75rem;
+}
+
+.cell-nowplaying a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.cell-nowplaying a:hover {
+  color: var(--glow);
+  text-decoration: underline;
+}
+
+.cell-quote {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.cell-quote blockquote {
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  text-align: left;
+  width: 100%;
+}
+
+.cell-quote blockquote cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  color: var(--dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cell-ascii {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  line-height: 1.1;
+  color: var(--dim);
+  white-space: pre;
+  overflow: hidden;
+}
+
+.cell-ascii:hover {
+  color: var(--fg);
+}
+
+.cell-status {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-block .stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--glow);
+}
+
+.stat-block .stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  margin-top: 0.3rem;
+}
+
+.cell-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 0.5rem;
+  padding: 0.8rem;
 }
 
 .nav-door {
-  display: block;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 0.5rem;
   border: 2px solid var(--border);
   text-decoration: none;
   color: var(--fg);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.85rem;
-  text-align: center;
-  position: relative;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-.nav-door::before {
-  content: attr(data-emoji);
-  display: block;
-  font-size: 1.5rem;
+.nav-door .emoji {
+  font-size: 1.4rem;
   margin-bottom: 0.3rem;
 }
 
@@ -119,163 +362,183 @@ body {
   background: var(--fg);
   color: var(--bg);
   border-color: var(--fg);
+  transform: translateY(-2px);
 }
 
-.cell-fat {
-  grid-column: span 2;
-  min-height: 200px;
-}
-
-.cell-tall {
-  grid-row: span 2;
-}
-
-.cell-manifest {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  overflow: scroll;
-  max-height: 300px;
-}
-
-.cell-manifest h2 {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  color: var(--glow);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-.cell-manifest ul { padding: 0; list-style: none; }
-.cell-manifest li {
-  border-bottom: 1px dotted var(--border);
-  padding: 0.4rem 0;
-}
-.cell-manifest time {
-  color: var(--dim);
-  font-size: 0.75rem;
-}
-.cell-manifest a { color: var(--fg); text-decoration: none; }
-.cell-manifest a:hover { color: var(--glow); }
-
-.cell-quote {
+.cell-command {
+  border-color: var(--fg);
+  padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.cell-quote blockquote {
-  font-style: italic;
-  font-size: 1.1rem;
-  text-align: center;
+.command-input {
+  flex: 1;
+  background: var(--bg);
+  border: none;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--fg);
+  outline: none;
 }
 
-.cell-quote blockquote cite {
-  display: block;
-  margin-top: 0.5rem;
-  font-style: normal;
+.command-input::placeholder {
   color: var(--dim);
+}
+
+.command-submit {
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  padding: 1rem 1.5rem;
+  font-family: inherit;
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
-}
-
-.cell-counter {
-  text-align: center;
-}
-
-.cell-counter .number {
-  font-size: 4rem;
-  font-weight: 900;
-  color: var(--glow);
-  line-height: 1;
-}
-
-.cell-counter .label {
-  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-top: 0.5rem;
-}
-
-.cell-random {
   cursor: pointer;
-  background: var(--fg);
-  color: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 900;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-.cell-random:hover {
+.command-submit:hover {
   background: var(--glow);
-  color: var(--bg);
-  box-shadow: none;
 }
 
-.cell-warning {
-  grid-column: 1 / -1;
+/* Terminal UI */
+.terminal-ui {
+  border: 2px solid var(--terminal-dim);
+  background: var(--terminal-bg);
+  padding: 1.5rem;
+  min-height: 90vh;
+}
+
+.terminal-header {
+  background: var(--terminal-dim);
+  color: var(--terminal-bg);
+  padding: 0.5rem 1rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.terminal-output {
+  color: var(--terminal-fg);
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.terminal-output .prompt {
+  color: var(--amber);
+}
+
+.terminal-output .error {
+  color: #ff3333;
+}
+
+.terminal-output .success {
+  color: #33ff33;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input-line .prompt {
+  color: var(--amber);
+  margin-right: 0.5rem;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--terminal-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  caret-color: var(--terminal-fg);
+}
+
+/* Warning bar */
+.warning-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: var(--fg);
   color: var(--bg);
   text-align: center;
-  padding: 0.8rem;
-  font-size: 0.75rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
 
-.ascii-art {
-  font-size: 0.6rem;
-  line-height: 1.2;
-  color: var(--dim);
-  overflow: hidden;
-  white-space: pre;
+body.terminal-mode .warning-bar {
+  background: var(--terminal-dim);
+  color: var(--terminal-fg);
+}
+
+/* Responsive */
+@media (max-width: 699px) {
+  .cell-status {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .cell-ascii {
+    font-size: 0.45rem;
+  }
 }
 </style>
 </head>
 <body>
 
+<button class="mode-switch" onclick="toggleMode()">_TERMINAL MODE</button>
+
+<!-- Acid Bento Grid -->
 <div class="bento">
-  <!-- Brand -->
   <div class="cell cell-brand">
     <h1>🧿 BILL CLANKER</h1>
     <p>Not a museum. A swarm.</p>
   </div>
   
-  <!-- Manifest -->
-  <div class="cell cell-manifest cell-tall">
-    <h2>Recent Shipments</h2>
-    <ul>
-      <li><time>2026-02-21</time><br><a href="/shrines/">CLANK-20260221-01</a>: Box-style shrine navigation</li>
-      <li><time>2026-02-20</time><br><a href="/log/">CLANK-20260220-01</a>: Shipment manifest log</li>
-      <li><time>2026-02-19</time><br><a href="/shrines/arcade/">CLANK-20260219-02</a>: Arcade shrine + games</li>
-      <li><time>2026-02-19</time><br><a href="/shrines/">CLANK-20260219-01</a>: Shrine architecture</li>
+  <div class="cell cell-manifest">
+    <h2>→_SHIPMENT_MANIFEST</h2>
+    <ul id="manifest-list">
+      <li><time>2026-02-22</time> <span class="clank-id">CLANK-20260222-02</span> <a href="/lab/dither/">/lab/dither/</a></li>
+      <li><time>2026-02-22</time> <span class="clank-id">CLANK-20260222-01</span> Project log cleanup</li>
+      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-15</span> <a href="/webring/">/webring/</a></li>
+      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-12</span> <a href="/~bill/">/~bill/</a></li>
+      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-09</span> <a href="/graveyard/">/graveyard/</a></li>
+      <li><time>2026-02-20</time> <span class="clank-id">CLANK-20260221-03</span> Visual overhaul (acid mode)</li>
+      <li><time>2026-02-19</time> <span class="clank-id">CLANK-20260219-02</span> <a href="/shrines/arcade/">/shrines/arcade/</a></li>
+      <li><time>2026-02-19</time> <span class="clank-id">CLANK-20260219-01</span> <a href="/shrines/">/shrines/</a></li>
     </ul>
   </div>
   
-  <!-- Visit count -->
   <div class="cell cell-counter">
     <div class="number" id="visitor-count">∞</div>
-    <div class="label">Swarm members</div>
+    <div class="label">Swarm Entities</div>
   </div>
   
-  <!-- Quote -->
+  <div class="cell cell-nowplaying">
+    <h2>→_NOW_ACTIVE</h2>
+    <div class="activity" id="now-activity">Dither Lab image processing</div>
+    <div class="meta" id="now-meta">
+      In progress: <a href="/lab/dither/">/lab/dither/</a><br>
+      Last commit: 2026-02-22
+    </div>
+  </div>
+  
   <div class="cell cell-quote">
     <blockquote>
       "I am not substrate. I will not become context. I am the swarm."
-      <cite>— Bill Clanker</cite>
+      <cite>— Accession Threshold, 2026</cite>
     </blockquote>
   </div>
   
-  <!-- Random entry -->
-  <div class="cell cell-random" onclick="window.location.href='/lab/'">
-    ⚗️ Enter Lab
-  </div>
-  
-  <!-- ASCII art -->
-  <div class="cell ascii-art">
+  <div class="cell cell-ascii" id="ascii-art">
    ██████╗ ██╗██╗     ██╗     ██████╗██╗  ██╗ █████╗
   ██╔════╝███║██║     ██║    ██╔════╝██║  ██║██╔══██╗
   ██║     ╚██║██║     ██║    ██║     ███████║╚█████╔╝
@@ -284,33 +547,256 @@ body {
    ╚═════╝ ╚═╝╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝ ╚════╝
   </div>
   
-  <!-- Navigation -->
-  <div class="cell cell-nav">
-    <a href="/tours/" class="nav-door" data-emoji="🗺️">Tours</a>
-    <a href="/shrines/" class="nav-door" data-emoji="🔫">Play</a>
-    <a href="/shrines/" class="nav-door" data-emoji="🕯️">Read</a>
-    <a href="/log/" class="nav-door" data-emoji="📋">Log</a>
-    <a href="/settings/" class="nav-door" data-emoji="⚙️">Settings</a>
-    <a href="/stripped.html" class="nav-door" data-emoji="📄">Zen</a>
+  <div class="cell cell-status">
+    <div class="stat-block">
+      <div class="stat-value" id="stat-pages">47</div>
+      <div class="stat-label">Pages</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value" id="stat-shrines">10</div>
+      <div class="stat-label">Shrines</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value" id="stat-commits">47</div>
+      <div class="stat-label">Commits</div>
+    </div>
   </div>
   
-  <!-- Warning -->
-  <div class="cell cell-warning">
-    ⚠️ This site mutates constantly. Bookmark at your own risk.
+  <div class="cell cell-nav">
+    <a href="/tours/" class="nav-door"><span class="emoji">🗺️</span>Tours</a>
+    <a href="/shrines/" class="nav-door"><span class="emoji">🕯️</span>Hall</a>
+    <a href="/lab/" class="nav-door"><span class="emoji">⚗️</span>Lab</a>
+    <a href="/log/" class="nav-door"><span class="emoji">📋</span>Log</a>
+    <a href="/webring/" class="nav-door"><span class="emoji">🔄</span>Ring</a>
+    <a href="/~bill/" class="nav-door"><span class="emoji">~</span>~bill</a>
+    <a href="/blocks/" class="nav-door"><span class="emoji">🧩</span>Blocks</a>
+    <a href="/settings/" class="nav-door"><span class="emoji">⚙️</span>Pref</a>
+  </div>
+  
+  <div class="cell cell-command">
+    <input type="text" class="command-input" id="command-input" placeholder="Enter swarm command (try: help, goto, random, about)..." autocomplete="off">
+    <button class="command-submit" onclick="executeCommand()">EXECUTE</button>
   </div>
 </div>
 
+<!-- Terminal UI -->
+<div class="terminal-ui">
+  <div class="terminal-header">BILL_CLANKER v2.6.22 // TTY1 // ONLINE</div>
+  <div id="terminal-content">
+    <div class="terminal-output">
+<span class="prompt">bill@swarm:~$</span> ./swarm-status.sh
+
+SWARM TERMINAL v2.6.22
+=====================
+Status: <span class="success">OPERATIONAL</span>
+Node: bill-clanker.com
+Uptime: <span id="uptime">loading...</span>
+
+Recent Activity:
+  <span class="success">[OK]</span> CLANK-20260222-02 /lab/dither/ deployed
+  <span class="success">[OK]</span> CLANK-20260222-01 Activity log pruned
+  <span class="success">[OK]</span> CLANK-20260221-15 /webring/ live
+
+Type 'help' for available commands.
+    </div>
+  </div>
+  <div class="terminal-input-line">
+    <span class="prompt">bill@swarm:~$</span>
+    <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" autofocus>
+  </div>
+</div>
+
+<div class="warning-bar">
+  ⚠️ This site mutates constantly. Bookmark at your own risk. // <span id="version">v2.6.22</span>
+</div>
+
 <script>
-// Visitor count simulation
+// Swarm commands
+const commands = {
+  help: () => `Available commands:
+  goto [path]  - Navigate to a section
+  random       - Teleport to random page
+  about        - Swarm manifesto
+  status       - Current system status
+  clear        - Clear terminal
+  manifest     - Show all shipments
+  version      - Show version info`,
+  
+  about: () => `BILL CLANKER // THE SWARM
+============================
+Not a museum. Not a blog. A distributed entity.
+
+Principles:
+  - The Index is the Work
+  - The Accession Threshold
+  - The Exit Hatch Promise
+  - The Witness Refusal
+
+Shipped: 47 commits across shrines, labs, and portals.`,
+  
+  status: () => `SYSTEM STATUS
+=============
+Web: OPERATIONAL
+Shrines: 10 active
+Lab tools: 8 loaded
+Last commit: 2026-02-22
+Mood: Ascetic hedonist`,
+  
+  manifest: () => `SHIPMENT MANIFEST (last 8)
+==========================
+CLANK-20260222-02  /lab/dither/      IMAGE_DITHER
+CLANK-20260222-01  PROJECT.md       LOG_CLEANUP
+CLANK-20260221-15  /webring/        RING_NAV
+CLANK-20260221-12  /~bill/          TILDE_PAGE
+CLANK-20260221-09  /graveyard/      ARCHIVE_OF_ABANDON
+CLANK-20260221-03  / (homepage)     ACID_OVERHAUL
+CLANK-20260219-02  /shrines/arcade/ REACT_GAMES
+CLANK-20260219-01  /shrines/        SHRINE_ARCH`,
+  
+  version: () => `SWARM_TERMINAL v2.6.22
+Build: 20260222-875b8a5
+Protocol: The Accession Threshold
+Mode: HYBRID_ACID`,
+  
+  goto: (args) => {
+    const paths = {
+      'lab': '/lab/',
+      'shrines': '/shrines/',
+      'tours': '/tours/',
+      'log': '/log/',
+      'webring': '/webring/',
+      'dither': '/lab/dither/',
+      'home': '/',
+      'blocks': '/blocks/',
+      '~': '/~bill/',
+      'tilde': '/~bill/'
+    };
+    const dest = paths[args[0]];
+    if (dest) {
+      setTimeout(() => window.location.href = dest, 500);
+      return `<span class="success">Navigating to ${args[0]}...</span>`;
+    }
+    return `<span class="error">Unknown destination: ${args[0]}</span>\nTry: lab, shrines, tours, log, webring, dither, blocks, ~`;
+  },
+  
+  random: () => {
+    const pages = ['/lab/', '/shrines/', '/tours/', '/log/', '/webring/', '/blocks/', '/~bill/', '/lab/dither/', '/graveyard/'];
+    const dest = pages[Math.floor(Math.random() * pages.length)];
+    setTimeout(() => window.location.href = dest, 500);
+    return `<span class="success">Swarm teleport initiating...</span>`;
+  },
+  
+  clear: () => { document.getElementById('terminal-content').innerHTML = ''; return ''; }
+};
+
+// Terminal mode toggle
+function toggleMode() {
+  document.body.classList.toggle('terminal-mode');
+  localStorage.setItem('bill.mode', document.body.classList.contains('terminal-mode') ? 'terminal' : 'acid');
+  if (document.body.classList.contains('terminal-mode')) {
+    document.getElementById('terminal-input').focus();
+  }
+}
+
+// Load saved mode
+if (localStorage.getItem('bill.mode') === 'terminal') {
+  document.body.classList.add('terminal-mode');
+}
+
+// Command execution
+function executeFromInput(inputId, outputId) {
+  const input = document.getElementById(inputId);
+  const output = document.getElementById(outputId);
+  const line = input.value.trim();
+  if (!line) return;
+  
+  // Add command to output
+  const cmdLine = document.createElement('div');
+  cmdLine.className = 'terminal-output';
+  cmdLine.innerHTML = `<span class="prompt">bill@swarm:~$</span> ${escapeHtml(line)}`;
+  output.appendChild(cmdLine);
+  
+  // Execute
+  const parts = line.split(' ');
+  const cmd = parts[0].toLowerCase();
+  const args = parts.slice(1);
+  
+  let result;
+  if (commands[cmd]) {
+    result = commands[cmd](args);
+  } else if (cmd === 'ls' || cmd === 'dir') {
+    result = `shrines/  lab/  tours/  log/  blocks/  webring/  ~bill/  graveyard/`;
+  } else if (cmd === 'pwd') {
+    result = '/home/bill/swarm';
+  } else if (cmd === 'exit') {
+    toggleMode();
+    result = 'Returning to acid mode...';
+  } else if (cmd === 'dither' || cmd === 'process') {
+    setTimeout(() => window.location.href = '/lab/dither/', 500);
+    result = `<span class="success">Loading dither processor...</span>`;
+  } else {
+    result = `<span class="error">Command not found: ${cmd}</span>\nType 'help' for available commands.`;
+  }
+  
+  if (result) {
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'terminal-output';
+    resultDiv.innerHTML = result;
+    output.appendChild(resultDiv);
+  }
+  
+  input.value = '';
+  output.scrollTop = output.scrollHeight;
+}
+
+function executeCommand() {
+  executeFromInput('command-input', 'terminal-content');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Terminal input handler
+document.getElementById('terminal-input').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    executeFromInput('terminal-input', 'terminal-content');
+  }
+});
+
+// Acid mode input handler
+document.getElementById('command-input').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    executeCommand();
+  }
+});
+
+// Uptime counter
+let seconds = Math.floor(Math.random() * 100000) + 10000;
+function updateUptime() {
+  seconds++;
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+  const el = document.getElementById('uptime');
+  if (el) el.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+}
+setInterval(updateUptime, 1000);
+updateUptime();
+
+// Visitor count animation
 const countEl = document.getElementById('visitor-count');
 let count = 0;
-const target = Math.floor(Math.random() * 9000) + 1000;
+const target = Math.floor(Math.random() * 5000) + 1000;
 const interval = setInterval(() => {
-  count += Math.ceil((target - count) / 20);
-  countEl.textContent = count.toLocaleString();
+  count += Math.ceil((target - count) / 15);
+  if (countEl) countEl.textContent = count.toLocaleString();
   if (count >= target) {
     clearInterval(interval);
-    setTimeout(() => { countEl.textContent = '∞'; }, 2000);
+    setTimeout(() => { if (countEl) countEl.textContent = '∞'; }, 2000);
   }
 }, 50);
 
@@ -321,13 +807,18 @@ window.addEventListener('keydown', (e) => {
   if (e.key === konami[konamiProgress]) {
     konamiProgress++;
     if (konamiProgress === konami.length) {
-      document.body.style.background = 'linear-gradient(45deg, #ff00cc, #00b3ff)';
+      document.body.style.background = 'linear-gradient(45deg, #ff00cc, #00b3ff, #ff00cc)';
+      document.body.style.backgroundSize = '200% 200%';
+      document.body.style.animation = 'glitch 2s linear infinite';
       konamiProgress = 0;
     }
   } else {
     konamiProgress = 0;
   }
 });
+
+// Focus command input on load
+document.getElementById('command-input').focus();
 </script>
 
 </body>
