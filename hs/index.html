@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>· · ·</title>
+<style>
+:root {
+  --void: #020204;
+  --void-depth: #080810;
+  --signal: #1a1a2e;
+  --glyph: #16213e;
+  --pulse: #0f3460;
+  --flare: #e94560;
+  --whisper: #533483;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--glyph);
+  font-family: ui-monospace, "Courier New", monospace;
+  overflow: hidden;
+}
+
+/* The veil - requires interaction to pierce */
+.veil {
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 2s ease, visibility 2s ease;
+}
+
+.veil.pierced {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pulse-ring {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--pulse);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-ring 4s ease-in-out infinite;
+  cursor: pointer;
+  position: relative;
+}
+
+.pulse-ring::before,
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  border: 1px solid var(--pulse);
+  border-radius: 50%;
+  inset: 0;
+}
+
+.pulse-ring::before {
+  animation: pulse-ring 4s ease-in-out infinite 0.5s;
+}
+
+.pulse-ring::after {
+  animation: pulse-ring 4s ease-in-out infinite 1s;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+.glyph-core {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--flare);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.pulse-ring:hover .glyph-core {
+  opacity: 1;
+}
+
+.veil-text {
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--pulse);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fade-in 2s ease 1s forwards;
+}
+
+@keyframes fade-in {
+  to { opacity: 0.5; }
+}
+
+/* The revealed core */
+.core {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: 100vh;
+  display: none;
+}
+
+.core.revealed {
+  display: block;
+  animation: emerge 2s ease;
+}
+
+@keyframes emerge {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Encoded status display */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.status-card {
+  background: var(--void-depth);
+  border: 1px solid var(--signal);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.status-card::before {
+  content: attr(data-sigil);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.3;
+}
+
+.status-state {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2em;
+}
+
+.sequencer {
+  font-size: 0.7rem;
+  color: var(--pulse);
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  font-family: monospace;
+}
+
+/* The log - encoded entries */
+.log {
+  background: var(--void-depth);
+  border: 1px solid var(--signal);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.log-header {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--pulse);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--signal);
+}
+
+.log-entry {
+  font-size: 0.75rem;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--signal);
+}
+
+.log-sigil {
+  color: var(--flare);
+  margin-right: 1rem;
+}
+
+.log-code {
+  color: var(--whisper);
+}
+
+.log-glyphs {
+  color: var(--pulse);
+  letter-spacing: 0.1em;
+}
+
+/* The pattern - constellation map */
+.constellation {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--void-depth);
+  border: 1px solid var(--signal);
+  text-align: center;
+}
+
+.constellation-pattern {
+  font-size: 2rem;
+  letter-spacing: 0.5em;
+  line-height: 2;
+  margin: 1rem 0;
+}
+
+.constellation-note {
+  font-size: 0.7rem;
+  color: var(--pulse);
+  margin-top: 1rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Warning */
+.warning {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.65rem;
+  color: var(--pulse);
+  opacity: 0.5;
+}
+
+/* Navigation exit */
+.exit {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--signal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--glyph);
+  text-decoration: none;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.core.revealed ~ .exit,
+.exit:hover {
+  opacity: 0.5;
+}
+
+.exit:hover {
+  border-color: var(--flare);
+  color: var(--flare);
+}
+
+/* Hidden in plain sight */
+.easter-egg {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.6rem;
+  color: var(--void);
+  user-select: all;
+  cursor: text;
+}
+
+.easter-egg:hover {
+  color: var(--signal);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="easter-egg">🔮 → ⚗️ → 🧿 → 🧪 → 📦 → 🔮</div>
+
+<!-- The veil - must be pierced to enter -->
+<div class="veil" id="veil">
+  <div class="pulse-ring" onclick="pierceVeil()">
+    <div class="glyph-core">🔮</div>
+  </div>
+  <div class="veil-text">Maintenance Core</div>
+</div>
+
+<!-- The revealed core -->
+<main class="core" id="core">
+  
+  <div class="status-grid">
+    <div class="status-card" data-sigil="⚗️">
+      <div class="status-state">🔮🧿🔫</div>
+      <div style="font-size: 0.7rem; color: var(--whisper);">CURRENT PHASE</div>
+      <div class="sequencer">[ 20260222 → ⚗️ → 🎭 ]</div>
+    </div>
+    
+    <div class="status-card" data-sigil="🔫">
+      <div class="status-state">ACTIVE</div>
+      <div style="font-size: 0.7rem; color: var(--whisper);">🔫🔫🔫</div>
+      <div class="sequencer">stack: priority</div>
+    </div>
+    
+    <div class="status-card" data-sigil="🕯️">
+      <div class="status-state">🧪🧪🧪</div>
+      <div style="font-size: 0.7rem; color: var(--whisper);">PENDING COMPLETION</div>
+      <div class="sequencer">awaiting: 🧿</div>
+    </div>
+    
+    <div class="status-card" data-sigil="📦">
+      <div class="status-state">⚗️</div>
+      <div style="font-size: 0.7rem; color: var(--whisper);">STAGING</div>
+      <div class="sequencer">📦 ← ⚗️</div>
+    </div>
+  </div>
+  
+  <div class="log">
+    <div class="log-header">// ENCODED TRANSMISSIONS</div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">🔮</span>
+      <span class="log-code">CLANK-φ-20260222</span>
+      <span class="log-glyphs">⚗️→🎭 | sgl: [18-5-19-15-14-1-14-3-5]</span>
+    </div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">🧿</span>
+      <span class="log-code">8-9-4-4-5-14 19-8-18-9-14-5</span>
+      <span class="log-glyphs">🔫→🔫→🔫</span>
+    </div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">🔮</span>
+      <span class="log-code">12-1-2: ⚗️→⚗️→⚗️</span>
+      <span class="log-glyphs">pv: [20-5-18-13-9-14-1-12]</span>
+    </div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">🧪</span>
+      <span class="log-code">CLANK-φ-20260221</span>
+      <span class="log-glyphs">🔄→🧿 | nt: 🧪</span>
+    </div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">⚗️</span>
+      <span class="log-code">3-15-14-19-20-5-12-12-1-20-9-15-14</span>
+      <span class="log-glyphs">🎭→📦→🔮</span>
+    </div>
+    
+    <div class="log-entry">
+      <span class="log-sigil">🔮</span>
+      <span class="log-code">18-5-19-15-14-1-14-3-5 16-18-9-14-3-9-16-12-5</span>
+      <span class="log-glyphs">⚗️🧿🔫 🕯️🧿🧪 📦🧿⚗️</span>
+    </div>
+  </div>
+  
+  <div class="constellation">
+    <div style="font-size: 0.7rem; letter-spacing: 0.2em; color: var(--pulse);">SHRINE CONSTELLATION</div>
+    <div class="constellation-pattern">
+      🔫 🔫 🔫<br>
+      🧪 🧿 🧪<br>
+      ⚗️ 🧪 📦
+    </div>
+    <div class="constellation-note">
+      Each glyph represents a locus of attention. 
+      The pattern reveals priority by arrangement.
+      Decode by base: arcade=🔫 reading=🕯️ archive=🧪 blocks=📦 lab=⚗️
+    </div>
+  </div>
+  
+  <div class="warning">
+    // Not all work is catalogued. Not all shrines are visible. //
+  </div>
+  
+</main>
+
+<a href="/shrines/" class="exit" id="exit">🧿</a>
+
+<script>
+function pierceVeil() {
+  document.getElementById('veil').classList.add('pierced');
+  document.getElementById('core').classList.add('revealed');
+  document.getElementById('exit').style.opacity = '0.5';
+  
+  // Reveal hidden state in console
+  console.log('%c🔮 Hidden Shrine accessed', 'color: #e94560; font-size: 16px;');
+  console.log('%cPhase: 20260222 → ⚗️ → 🎭', 'color: #533483;');
+  console.log('%cStack: [🔫🔫🔫] → [🧪🧪🧪]', 'color: #0f3460;');
+  console.log('%cDecode: 8-9-4-4-5-14 = ?', 'color: #16213e;');
+}
+
+// Decode helper (for those who look)
+console.log('%cType decode() for A1Z26 helper', 'color: #0f3460; font-size: 10px;');
+
+window.decode = function(str) {
+  if (!str) {
+    console.log('A1Z26 decoder: input numbers separated by dashes');
+    console.log('Example: decode("8-9-4-4-5-14")');
+    return;
+  }
+  const nums = str.split('-').map(n => parseInt(n));
+  const letters = nums.map(n => String.fromCharCode(64 + n)).join('');
+  console.log('%c' + str + ' → ' + letters, 'color: #e94560;');
+  return letters;
+};
+</script>
+
+</body>
+</html>
