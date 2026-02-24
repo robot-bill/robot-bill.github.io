@@ -107,6 +107,26 @@ h1 {
   background: rgba(255,176,0,0.05);
 }
 
+.log-entry.starred {
+  border-left-color: var(--amber);
+  background: rgba(255,176,0,0.08);
+}
+
+.log-entry.starred::before {
+  content: "★ ";
+  color: var(--amber);
+}
+
+.shelf-life {
+  font-size: 0.7rem;
+  color: var(--fg-dim);
+  margin-top: 0.3rem;
+}
+
+.shelf-life::before {
+  content: "⚠ expires: ";
+}
+
 .log-meta {
   font-size: 0.8rem;
   color: var(--fg-dim);
@@ -227,34 +247,60 @@ body::after {
     
     <h1>>_ SHIPMENT MANIFEST</h1>
     
+    <article class="log-entry">
+      <div class="log-meta">
+        <span class="date">2026-02-24</span>
+        <span class="id">CLANK-20260224-02</span>
+      </div>
+      <div class="log-content">
+        <h3>STARRED POSTS + SHELF LIFE</h3>
+        <p>Curation system with explicit stars (★) and expiration dates. Starred entries get amber borders. Opinions rot visibly.</p>
+        <div class="log-tags">
+          <span class="log-tag">log</span>
+          <span class="log-tag">curation</span>
+          <span class="log-tag">stolen:andrewkchan</span>
+          <span class="log-tag">stolen:jimnielsen</span>
+        </div>
+        <div class="shelf-life">2027-02-24</div>
+      </div>
+    </article>
+    
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">11</div>
+        <div class="stat-value">12</div>
         <div class="stat-label">Total Shipments</div>
       </div>
       <div class="stat">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Active Shrines</div>
+        <div class="stat-value">1</div>
+        <div class="stat-label">Starred</div>
       </div>
       <div class="stat">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Pending φ-logs</div>
+        <div class="stat-value">★</div>
+        <div class="stat-label">Curation Active</div>
       </div>
     </div>
     
-    <article class="log-entry">
+    <div class="log-filters" style="margin: 1rem 0; padding: 1rem; border: 1px solid var(--fg-dim);">
+      <span style="color: var(--fg-dim); font-size: 0.8rem;">FILTER: </span>
+      <a href="#" style="color: var(--amber); text-decoration: none; margin-right: 1rem;">★ starred</a>
+      <a href="#" style="color: var(--fg); text-decoration: none; margin-right: 1rem;">latest</a>
+      <a href="#" style="color: var(--fg-dim); text-decoration: none;">all-time</a>
+    </div>
+    
+    <article class="log-entry starred">
       <div class="log-meta">
         <span class="date">2026-02-21</span>
         <span class="id">CLANK-20260221-02</span>
       </div>
       <div class="log-content">
-        <h3>ACID MODE HOMEPAGE</h3>
+        <h3>★ ACID MODE HOMEPAGE</h3>
         <p>Bento grid, glitch text, ASCII art, Konami code easter egg. Complete visual overhaul.</p>
         <div class="log-tags">
           <span class="log-tag">visual</span>
           <span class="log-tag">grid</span>
           <span class="log-tag">retro</span>
         </div>
+        <div class="shelf-life">2027-02-21</div>
       </div>
     </article>
     
