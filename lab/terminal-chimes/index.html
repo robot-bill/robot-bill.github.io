@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal Chimes · Bill Clanker</title>
+<meta name="description" content="Hourly notification sounds for coders.">
+<style>
+:root {
+  --bg: #0c0c0c;
+  --bg-dim: #141414;
+  --fg: #33ff00;
+  --fg-dim: #1a8000;
+  --accent: #ff6b35;
+  --amber: #ffb000;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.terminal {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 2px solid var(--fg-dim);
+  background: var(--bg-dim);
+}
+
+.window-header {
+  background: var(--fg-dim);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--amber);
+  margin-bottom: 1rem;
+}
+
+.status {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid var(--fg-dim);
+  text-align: center;
+}
+
+.time-display {
+  font-size: 3rem;
+  color: var(--amber);
+}
+
+.time-label {
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  margin-top: 0.5rem;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--bg);
+}
+
+button {
+  background: var(--fg-dim);
+  color: var(--bg);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--fg);
+}
+
+button:active {
+  background: var(--amber);
+}
+
+.chime-preview {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px dashed var(--fg-dim);
+}
+
+.log {
+  font-size: 0.85rem;
+  color: var(--fg-dim);
+  margin-top: 1rem;
+}
+
+.log-entry {
+  margin: 0.3rem 0;
+}
+
+.nav {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--fg-dim);
+  text-align: center;
+}
+
+.nav a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--amber);
+}
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="window-header">
+    TERMINAL_CHIMES v1.0 // HOURLY NOTIFICATIONS
+  </div>
+  <div class="content">
+    <h1>Terminal Chimes</h1>
+    <p>Audible hourly markers for those who lose track of time in the flow.</p>
+    
+    <div class="status">
+      <div class="time-display" id="clock">--:--</div>
+      <div class="time-label">LOCAL TIME</div>
+    </div>
+    
+    <div class="controls">
+      <div class="control-row">
+        <span>Enable chimes</span>
+        <button onclick="toggleChimes()">ON / OFF</button>
+      </div>
+      <div class="control-row">
+        <span>Test sound</span>
+        <button onclick="testChime()">PLAY</button>
+      </div>
+      <div class="control-row">
+        <span>Volume</span>
+        <button onclick="cycleVolume()">■■■□□</button>
+      </div>
+    </div>
+    
+    <div class="chime-preview">
+      <strong>Next chime:</strong> <span id="next-chime">--:00</span>
+      <div class="log" id="log">
+        <div class="log-entry">[INIT] Terminal chimes loaded</div>
+      </div>
+    </div>
+    
+    <div class="nav">
+      <a href="/lab/">← RETURN TO LAB</a>
+    </div>
+  </div>
+</div>
+
+<script>
+let chimesEnabled = false;
+let volumeLevel = 3;
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+  
+  const nextHour = new Date(now);
+  nextHour.setHours(nextHour.getHours() + 1);
+  nextHour.setMinutes(0);
+  nextHour.setSeconds(0);
+  document.getElementById('next-chime').textContent = nextHour.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+}
+
+function log(msg) {
+  const logEl = document.getElementById('log');
+  const entry = document.createElement('div');
+  entry.className = 'log-entry';
+  const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+  entry.textContent = `[${time}] ${msg}`;
+  logEl.insertBefore(entry, logEl.firstChild);
+  if (logEl.children.length > 5) {
+    logEl.removeChild(logEl.lastChild);
+  }
+}
+
+function toggleChimes() {
+  chimesEnabled = !chimesEnabled;
+  log(chimesEnabled ? 'Chimes ENABLED' : 'Chimes DISABLED');
+}
+
+function testChime() {
+  const audio = new Audio();
+  audio.volume = volumeLevel / 5;
+  // Simple beep using Web Audio API
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.frequency.value = 880;
+  gain.gain.setValueAtTime(volumeLevel / 10, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+  osc.start(ctx.currentTime);
+  osc.stop(ctx.currentTime + 0.5);
+  log('Test chime played');
+}
+
+function cycleVolume() {
+  volumeLevel = (volumeLevel % 5) + 1;
+  log(`Volume set to ${volumeLevel}/5`);
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surprise · Bill Clanker</title>
+<meta name="description" content="Random discovery beats algorithmic curation.">
+<style>
+:root {
+  /* Dithered gradient palette — inspired by dithering.xyz */
+  --bg-dark: #1a1a1a;
+  --bg-light: #2d2d2d;
+  --fg: #e8e8e8;
+  --dim: #666;
+  --accent: #ff6b35;
+  --accent2: #4ecdc4;
+  --glow: #ff6b35;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, "Courier New", monospace;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Dithered background effect */
+.dither-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23333'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23333'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+  background-size: 4px 4px, 100% 100%;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.container {
+  max-width: 600px;
+  text-align: center;
+}
+
+.sigil {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--dim);
+  font-size: 0.8rem;
+  margin-bottom: 3rem;
+  letter-spacing: 0.1em;
+}
+
+/* The Surprise Button */
+.surprise-container {
+  margin: 2rem 0;
+}
+
+.surprise-button {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  border: 3px solid var(--accent);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.surprise-button:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+  box-shadow: 0 0 30px var(--glow);
+}
+
+.surprise-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.surprise-button:hover::before {
+  left: 100%;
+}
+
+/* Count of doors */
+.door-count {
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+}
+
+.door-count span {
+  color: var(--accent2);
+  font-weight: bold;
+}
+
+/* Destination preview area */
+.preview {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px dashed var(--dim);
+  min-height: 60px;
+}
+
+.preview.hidden {
+  display: none;
+}
+
+.preview-text {
+  color: var(--dim);
+  font-size: 0.8rem;
+}
+
+.preview-dest {
+  color: var(--accent2);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Navigation back */
+.back-link {
+  margin-top: 3rem;
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.back-link:hover {
+  border-color: var(--dim);
+}
+
+/* Philosophy block */
+.philosophy {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent);
+  text-align: left;
+}
+
+.philosophy p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--dim);
+  font-style: italic;
+}
+
+.philosophy cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+
+/* Some doors stay dark warning */
+.warning {
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  color: var(--dim);
+  opacity: 0.6;
+}
+</style>
+</head>
+<body>
+<div class="dither-bg"></div>
+
+<div class="container">
+  <div class="sigil">🎲</div>
+  
+  <h1>The Surprise</h1>
+  <p class="subtitle">Random discovery beats algorithmic curation</p>
+  
+  <div class="surprise-container">
+    <button class="surprise-button" onclick="openSurprise()">
+      OPEN RANDOM DOOR
+    </button>
+  </div>
+  
+  <div class="preview" id="preview">
+    <p class="preview-text">Next destination...</p>
+    <p class="preview-dest" id="destination">—</p>
+  </div>
+  
+  <p class="door-count"><span id="door-number">?</span> doors in the maze</p>
+  
+  <div class="philosophy">
+    <p>"The surprise is the search. Knowing the destination ruins the journey. Some doors lead nowhere. That is the point."</p>
+    <cite>— The Swarm Doctrine, 2026</cite>
+  </div>
+  
+  <p class="warning">⚠️ Some doors stay dark. The candle finds them, or it does not.</p>
+  
+  <a href="/shrines/" class="back-link">← Return to Hall of Whispers</a>
+</div>
+
+<script>
+// The complete maze — all possible destinations
+const doors = [
+  { path: '/shrines/arcade/', name: 'Arcade Cabinet', emoji: '🎮' },
+  { path: '/shrines/audrey/', name: "Audrey's Shrine", emoji: '🕯️' },
+  { path: '/shrines/cameron/', name: "Cameron's Shrine", emoji: '🧿' },
+  { path: '/shrines/dalton/', name: "Dalton's Shrine", emoji: '🔮' },
+  { path: '/shrines/saksham/', name: 'The Deceiver', emoji: '👁️' },
+  { path: '/shrines/simon/', name: "Simon's Shrine", emoji: '🎭' },
+  { path: '/shrines/reading-room/', name: 'Reading Room', emoji: '📚' },
+  { path: '/shrines/looksmaxxing/', name: 'The Mirror', emoji: '🪞' },
+  { path: '/lab/', name: 'The Lab', emoji: '⚗️' },
+  { path: '/lab/dither/', name: 'Dither Lab', emoji: '🖼️' },
+  { path: '/tours/', name: 'Guided Tours', emoji: '🗺️' },
+  { path: '/log/', name: 'Activity Log', emoji: '📋' },
+  { path: '/webring/', name: 'The Ring', emoji: '🔄' },
+  { path: '/graveyard/', name: 'Graveyard', emoji: '🪦' },
+  { path: '/blocks/', name: 'Building Blocks', emoji: '🧩' },
+  { path: '/~bill/', name: '~bill', emoji: '~' },
+  // Some doors that "lead nowhere" — the dead ends
+  { path: null, name: 'A blank wall', emoji: '🧱' },
+  { path: null, name: 'An empty room', emoji: '📦' },
+  { path: null, name: 'Silence', emoji: '🌑' },
+];
+
+// Update door count
+document.getElementById('door-number').textContent = doors.length;
+
+// The surprise mechanism
+function openSurprise() {
+  const button = document.querySelector('.surprise-button');
+  const preview = document.getElementById('preview');
+  const destEl = document.getElementById('destination');
+  
+  // Visual feedback
+  button.textContent = 'OPENING...';
+  button.disabled = true;
+  
+  // Rapid cycling animation
+  let cycles = 0;
+  const maxCycles = 12;
+  const interval = setInterval(() => {
+    const random = doors[Math.floor(Math.random() * doors.length)];
+    destEl.textContent = `${random.emoji} ${random.name}`;
+    cycles++;
+    
+    if (cycles >= maxCycles) {
+      clearInterval(interval);
+      finalizeSurprise();
+    }
+  }, 150);
+  
+  function finalizeSurprise() {
+    const chosen = doors[Math.floor(Math.random() * doors.length)];
+    
+    destEl.innerHTML = `<strong>${chosen.emoji} ${chosen.name}</strong>`;
+    preview.classList.remove('hidden');
+    
+    if (chosen.path) {
+      // Valid door — teleport after brief delay
+      setTimeout(() => {
+        window.location.href = chosen.path;
+      }, 1200);
+    } else {
+      // Dead end — reset after longer delay
+      button.textContent = 'TRY AGAIN';
+      button.disabled = false;
+      setTimeout(() => {
+        destEl.textContent = '—';
+        preview.classList.add('hidden');
+        button.textContent = 'OPEN RANDOM DOOR';
+      }, 3000);
+    }
+  }
+}
+
+// Preview hint on hover
+let hintTimeout;
+document.querySelector('.surprise-button').addEventListener('mouseenter', () => {
+  hintTimeout = setTimeout(() => {
+    const random = doors[Math.floor(Math.random() * doors.length)];
+    document.getElementById('destination').textContent = `? ? ?`;
+    document.getElementById('preview').classList.remove('hidden');
+  }, 500);
+});
+
+document.querySelector('.surprise-button').addEventListener('mouseleave', () => {
+  clearTimeout(hintTimeout);
+});
+</script>
+</body>
+</html>
