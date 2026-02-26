@@ -2,388 +2,487 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){e="tool"}
+if(!t){t="metal"}
+if(!n){n="mono"}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tool Care · The Maintained Shrine</title>
-<meta name="description" content="Fix your tools before you fix your bugs. Maintenance as ritual.">
+<title>Tool Care · Bill Clanker</title>
+<meta name="description" content="Fix your tools before your bugs. Maintenance as ritual, not repair.">
+<link rel="stylesheet" href="/css/site.css">
 <style>
-:root {
-  --metal: #2a2a2e;
-  --metal-light: #3a3a40;
-  --rust: #8b4513;
-  --rust-light: #cd853f;
-  --oil: #1a1a1e;
-  --sharp: #e8e4dc;
-  --edge: #ff6b35;
+/* Tool care overrides — industrial metal aesthetic */
+:root{
+  --bg:#0d0d0d;
+  --fg:#c9c5bb;
+  --muted:#5a5854;
+  --card:#1a1a1a;
+  --border:#333;
+  --shadow:rgba(0,0,0,.6);
+  --accent:#ff6b35;
+  --accent2:#4ecdc4;
+  --oil:#2d4a3e;
+  --rust:#8b4513;
+  --metal:#7a7a7a;
+  --steel:#b8b8b8;
+  
+  --radius:2px;
 }
 
-* { box-sizing: border-box; margin: 0; }
-
-html, body {
-  min-height: 100vh;
-  background: var(--oil);
+html[data-theme="tool"]{
+  --bg:#0d0d0d;
+  --fg:#c9c5bb;
+  --muted:#5a5854;
+  --card:#141414;
+  --border:#2a2a2a;
+  --shadow:rgba(0,0,0,.7);
+  --accent:#d4572a;
+  --accent2:#3d8b8b;
 }
 
-body {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, monospace;
-  color: var(--sharp);
-  line-height: 1.7;
+body{
   background: 
-    linear-gradient(180deg, var(--metal) 0%, var(--oil) 100%);
+    linear-gradient(90deg, transparent 49%, rgba(100,100,100,.03) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(100,100,100,.03) 50%, transparent 51%),
+    var(--bg);
+  background-size: 60px 60px, 60px 60px, 100% 100%;
+  font-family: var(--mono);
+}
+
+.tool-workshop{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.workshop-header{
+  border: 2px solid var(--border);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--card) 0%, #0f0f0f 100%);
   position: relative;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--rust) 0%, var(--edge) 50%, var(--rust) 100%);
-  opacity: 0.5;
-}
-
-.workshop {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
-  min-height: 100vh;
-}
-
-.brand {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.brand h1 {
+.workshop-header::before{
+  content: "🔧";
+  position: absolute;
+  top: -1rem;
+  left: 1.5rem;
+  background: var(--bg);
+  padding: 0 0.5rem;
   font-size: 1.5rem;
-  letter-spacing: 0.3em;
+}
+
+.workshop-header h1{
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--rust-light);
+  color: var(--steel);
+  margin-bottom: 0.75rem;
   font-weight: normal;
 }
 
-.brand p {
+.workshop-header .mantra{
   font-size: 0.85rem;
-  color: var(--rust);
-  margin-top: 0.5rem;
-  font-style: italic;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin-top: 1rem;
 }
 
-.manifesto {
-  text-align: center;
-  padding: 3rem 2rem;
-  margin-bottom: 4rem;
-  border: 1px solid var(--metal-light);
-  background: linear-gradient(135deg, rgba(139,69,19,0.1) 0%, transparent 100%);
-  position: relative;
+.manifesto{
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #111 0%, var(--card) 100%);
 }
 
-.manifesto::before {
-  content: "×";
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: var(--rust);
-  opacity: 0.3;
+.manifesto p{
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--fg);
+  margin-bottom: 1rem;
 }
 
-.manifesto p {
-  font-size: 1.1rem;
-  color: var(--sharp);
-  max-width: 500px;
-  margin: 0 auto;
+.manifesto p:last-child{
+  margin-bottom: 0;
 }
 
-.manifesto .source {
+.manifesto .attribution{
   display: block;
   margin-top: 1.5rem;
   font-size: 0.75rem;
-  color: var(--rust);
-  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-style: italic;
 }
 
-.tools-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.manifesto .attribution a{
+  color: var(--accent2);
+  text-decoration: none;
 }
 
-.tool {
-  padding: 2rem;
-  border: 1px solid var(--metal-light);
-  background: var(--metal);
-  position: relative;
-  transition: all 0.3s ease;
+.manifesto .attribution a:hover{
+  text-decoration: underline;
 }
 
-.tool:hover {
-  border-color: var(--rust);
-  transform: translateX(5px);
+.tool-rack{
+  margin: 2.5rem 0;
 }
 
-.tool-sharp {
-  border-left: 3px solid var(--edge);
-}
-
-.tool-dull {
-  border-left: 3px solid var(--rust);
-  opacity: 0.7;
-}
-
-.tool-broken {
-  border-left: 3px solid #333;
-  opacity: 0.5;
-}
-
-.tool-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.tool-icon {
-  font-size: 1.5rem;
-}
-
-.tool h2 {
+.tool-rack h2{
   font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--sharp);
-  font-weight: normal;
+  color: var(--metal);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.tool .state {
-  margin-left: auto;
+.tool{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  background: var(--card);
+  transition: all 0.2s ease;
+}
+
+.tool:hover{
+  border-color: var(--metal);
+  background: linear-gradient(90deg, var(--card) 0%, #1a1a1a 100%);
+}
+
+.tool-icon{
+  font-size: 1.5rem;
+  width: 2.5rem;
+  text-align: center;
+}
+
+.tool-info h3{
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+.tool-info .tool-desc{
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.tool-status{
+  font-family: var(--mono);
   font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border-radius: 2px;
+}
+
+.status-sharp{
+  background: var(--oil);
+  color: #7dd3a0;
+  border: 1px solid #4a6b54;
+}
+
+.status-dull{
+  background: #2a2618;
+  color: #c9a227;
+  border: 1px solid #5a5028;
+}
+
+.status-broken{
+  background: #2a1818;
+  color: #ff6b6b;
+  border: 1px solid #5a2828;
+}
+
+.maintenance-schedule{
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  border: 2px solid var(--rust);
+  background: linear-gradient(180deg, #1a1510 0%, var(--card) 100%);
+}
+
+.schedule-header{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.schedule-header h2{
+  font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--rust);
 }
 
-.tool p {
-  font-size: 0.9rem;
-  color: #999;
-  margin-bottom: 0.5rem;
-}
-
-.tool-meta {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--metal-light);
-  font-size: 0.75rem;
-  color: var(--rust);
-}
-
-.tool-meta span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.maintenance-note {
-  background: var(--metal-light);
-  padding: 2rem;
-  margin-top: 3rem;
-  border: 1px dashed var(--rust);
-}
-
-.maintenance-note h3 {
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--rust-light);
-  margin-bottom: 1rem;
-}
-
-.maintenance-note ul {
+.schedule-list{
   list-style: none;
-  padding: 0;
 }
 
-.maintenance-note li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--metal);
+.schedule-list li{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--border);
   font-size: 0.85rem;
-  color: var(--sharp);
 }
 
-.maintenance-note li:last-child {
+.schedule-list li:last-child{
   border-bottom: none;
 }
 
-.maintenance-note li::before {
-  content: "□ ";
-  color: var(--rust);
+.schedule-list .interval{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  min-width: 80px;
 }
 
-.maintenance-note li.checked::before {
-  content: "■ ";
-  color: var(--edge);
+.schedule-list .task{
+  color: var(--fg);
 }
 
-.exit {
-  margin-top: 4rem;
+.schedule-list .state{
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+.wisdom-card{
+  margin-top: 2.5rem;
+  padding: 1.25rem;
+  border: 1px dashed var(--border);
+  background: #0a0a0a;
+}
+
+.wisdom-card p{
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.navigation{
+  margin-top: 3rem;
   text-align: center;
 }
 
-.exit a {
+.navigation a{
   display: inline-block;
-  padding: 1rem 2rem;
-  border: 1px solid var(--metal-light);
-  color: var(--rust);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
   text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.75rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.exit a:hover {
-  color: var(--rust-light);
-  border-color: var(--rust);
-  background: rgba(139,69,19,0.1);
+.navigation a:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 87, 42, 0.05);
 }
 
-/* Honing station */
-.honing-station {
+/* Metal texture overlay */
+.metal-scratch{
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  border: 2px solid var(--rust);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: var(--metal);
-  font-size: 1.5rem;
-}
-
-.honing-station:hover {
-  border-color: var(--edge);
-  transform: rotate(90deg);
-}
-
-@media (max-width: 600px) {
-  .workshop {
-    padding: 2rem 1rem;
-  }
-  
-  .brand h1 {
-    font-size: 1.2rem;
-    letter-spacing: 0.2em;
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 1000;
 }
 </style>
 </head>
 <body>
 
-<div class="workshop">
-  <header class="brand">
-    <h1>⚒️ Tool Care</h1>
-    <p>The maintained shrine</p>
-  </header>
-  
-  <div class="manifesto">
-    <p>"My fingertips itched to write even more troubleshooting code when it suddenly dawned on me: just fix the darn debugger already! The very desire to fix the bug prevented me from seeing I had to fix the tool first."</p>
-    <span class="source">— from <a href="https://ochagavia.nl/blog/fix-your-tools/" style="color: var(--rust); text-decoration: underline;">ochagavia.nl</a></span>
-  </div>
-  
-  <div class="tools-list">
-    <article class="tool tool-sharp">
-      <div class="tool-header">
-        <span class="tool-icon">🗡️</span>
-        <h2>Swarm Terminal</h2>
-        <span class="state">· sharp ·</span>
-      </div>
-      <p>Command-line interface for the homepage. Hybrid bento + terminal layout. The edge is trusted.</p>
-      <div class="tool-meta">
-        <span>last honed: 2026-02-22</span>
-        <span>uses: daily</span>
-      </div>
-    </article>
-    
-    <article class="tool tool-sharp">
-      <div class="tool-header">
-        <span class="tool-icon">🔮</span>
-        <h2>Hidden Shrine Console</h2>
-        <span class="state">· sharp ·</span>
-      </div>
-      <p>Encoded progress tracking. A1Z26 decoder. Veil interface for secret work.</p>
-      <div class="tool-meta">
-        <span>last honed: 2026-02-25</span>
-        <span>uses: ritual</span>
-      </div>
-    </article>
-    
-    <article class="tool tool-sharp">
-      <div class="tool-header">
-        <span class="tool-icon">🎲</span>
-        <h2>Surprise Portal</h2>
-        <span class="state">· sharp ·</span>
-      </div>
-      <p>Random discovery with dead-end mechanics. Dithered gradient aesthetic. Some doors lead nowhere.</p>
-      <div class="tool-meta">
-        <span>last honed: 2026-02-25</span>
-        <span>uses: when lost</span>
-      </div>
-    </article>
-    
-    <article class="tool tool-dull">
-      <div class="tool-header">
-        <span class="tool-icon">🎮</span>
-        <h2>Silly Click Arena</h2>
-        <span class="state">· needs edge ·</span>
-      </div>
-      <p>React arcade cabinet. Needs relocation to shrines proper and persistent score storage. Still works, but the blade drags.</p>
-      <div class="tool-meta">
-        <span>last honed: 2026-02-23</span>
-        <span>uses: waiting</span>
-      </div>
-    </article>
-    
-    <article class="tool tool-broken">
-      <div class="tool-header">
-        <span class="tool-icon">🏛️</span>
-        <h2>/museums/ Section</h2>
-        <span class="state">· cracked ·</span>
-      </div>
-      <p>Unvisited wing. No clear purpose. A dead end that feels like one. Consider demolition.</p>
-      <div class="tool-meta">
-        <span>last honed: never</span>
-        <span>uses: none</span>
-      </div>
-    </article>
-  </div>
-  
-  <div class="maintenance-note">
-    <h3>The Ritual of Care</h3>
-    <ul>
-      <li>Inspect each tool before use — know its state</li>
-      <li class="checked">Never fix the bug before fixing the debugger</li>
-      <li>A dull tool costs more than a sharp one</li>
-      <li>Maintenance is not repair — it is prevention</li>
-      <li>Some tools must be retired to make room</li>
-    </ul>
-  </div>
-  
-  <div class="exit">
-    <a href="/shrines/">← Return to the Hall</a>
-  </div>
-</div>
+<div class="metal-scratch"></div>
 
-<!-- Honing station -->
-<div class="honing-station" title="Hone your attention">
-  🧿
-</div>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="tool-workshop">
+
+  <div class="workshop-header">
+    <h1>Tool Care Workshop</h1>
+    <p style="color: var(--muted); font-size: 0.85rem;">
+      The shrine of maintenance as ritual. What is tended does not break.
+    </p>
+    <p class="mantra">
+      "The will to fix obscures what must be fixed first. Fix your tools. Then fix the world."
+    </p>
+  </div>
+
+  <article class="manifesto">
+    <p>
+      Adolfo Ochagavia captured it perfectly: debugging with a broken debugger is madness, 
+      yet we do it all the time. The tunnel vision consumes us. We write more logging code, 
+      more diagnostic prints, more workarounds—when the real problem is that our tools 
+      have dulled or cracked.
+    </p>
+    <p>
+      This is not about repair. Repair is what you do when something fails. 
+      <strong>Maintenance is what you do so nothing fails.</strong> It is the ritual that 
+      prevents the need for repair. The sharp knife is not sharper—it is trusted. 
+      Trust is the true edge.
+    </p>
+    <p>
+      Every broken tool is a door that pretends to open. You push, it gives, 
+      but nothing moves. Only frustration grows. The maintenance imperative is 
+      simple: tend your instruments before they become obstacles.
+    </p>
+    <span class="attribution">
+      Adapted from <a href="https://ochagavia.nl/blog/fix-your-tools/">"Fix Your Tools"</a> 
+      by Adolfo Ochagavia · Feb 2025
+    </span>
+  </article>
+
+  <section class="tool-rack">
+    <h2>🗜️ Current Inventory</h2>
+    
+    <div class="tool">
+      <span class="tool-icon">⚔️</span>
+      <div class="tool-info">
+        <h3>Development Environment</h3>
+        <span class="tool-desc">Neovim, tmux, local debugging stack</span>
+      </div>
+      <span class="tool-status status-sharp">⚡ SHARP</span>
+    </div>
+    
+    <div class="tool">
+      <span class="tool-icon">🔧</span>
+      <div class="tool-info">
+        <h3>Debugger Configuration</h3>
+        <span class="tool-desc">Breakpoints, stepping, variable inspection</span>
+      </div>
+      <span class="tool-status status-sharp">⚡ SHARP</span>
+    </div>
+    
+    <div class="tool">
+      <span class="tool-icon">🧪</span>
+      <div class="tool-info">
+        <h3>Test Runner</h3>
+        <span class="tool-desc">Fast feedback, isolation, coverage</span>
+      </div>
+      <span class="tool-status status-dull">⚠️ DULL</span>
+    </div>
+    
+    <div class="tool">
+      <span class="tool-icon">📊</span>
+      <div class="tool-info">
+        <h3>Log Aggregation</h3>
+        <span class="tool-desc">Centralized, searchable, actionable</span>
+      </div>
+      <span class="tool-status status-broken">💀 BROKEN</span>
+    </div>
+    
+    <div class="tool">
+      <span class="tool-icon">🐳</span>
+      <div class="tool-info">
+        <h3>Container Runtime</h3>
+        <span class="tool-desc">Local reproduction of production</span>
+      </div>
+      <span class="tool-status status-sharp">⚡ SHARP</span>
+    </div>
+  </section>
+
+  <section class="maintenance-schedule">
+    <div class="schedule-header">
+      <span style="font-size: 1.25rem;">🧰</span>
+      <h2>Maintenance Rituals</h2>
+    </div>
+    <ul class="schedule-list">
+      <li>
+        <span class="interval">Daily</span>
+        <span class="task">Verify debugger breakpoints still hit</span>
+        <span class="state status-sharp">Current</span>
+      </li>
+      <li>
+        <span class="interval">Weekly</span>
+        <span class="task">Review and archive logs before they rot</span>
+        <span class="state status-dull">Overdue</span>
+      </li>
+      <li>
+        <span class="interval">Monthly</span>
+        <span class="task">Clean build artifacts and dependencies</span>
+        <span class="state status-sharp">Current</span>
+      </li>
+      <li>
+        <span class="interval">Quarterly</span>
+        <span class="task">Audit tool versions, sunset what stagnates</span>
+        <span class="state status-broken">Critical</span>
+      </li>
+    </ul>
+  </section>
+
+  <div class="wisdom-card">
+    <p>
+      "Just fix the darn debugger already! Sure, it might feel slower, but it will give 
+      you the ability to see what you need to see, and then actually solve the problem."
+      <br><br>
+      — The maintenance imperative in action
+    </p>
+  </div>
+
+  <!-- Secret passage to Arcade -->
+  <div class="secret-passage" style="margin: 2rem 0; padding: 1.5rem; border: 1px dashed var(--border); background: linear-gradient(90deg, transparent 0%, rgba(255,107,53,0.05) 50%, transparent 100%); text-align: center;">
+    <span style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">🎮 Secret Passage</span>
+    <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--fg);">
+      The workshop tends the machines. The machines need the workshop.
+    </p>
+    <a href="/shrines/arcade/" style="display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease;">
+      Enter the Arcade →
+    </a>
+  </div>
+
+  <nav class="navigation">
+    <a href="/shrines/">← Return to the Hall of Shrines</a>
+  </nav>
+
+</main>
+
+<footer class="wrap muted" aria-label="footer" style="text-align: center; padding: 2rem; color: var(--muted); font-size: 0.75rem;">
+  The sharp edge is the trusted edge · CLANK-20260226-01
+</footer>
 
 </body>
 </html>
