@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tool Care · The Maintained Shrine</title>
+<meta name="description" content="Fix your tools before you fix your bugs. Maintenance as ritual.">
+<style>
+:root {
+  --metal: #2a2a2e;
+  --metal-light: #3a3a40;
+  --rust: #8b4513;
+  --rust-light: #cd853f;
+  --oil: #1a1a1e;
+  --sharp: #e8e4dc;
+  --edge: #ff6b35;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--oil);
+}
+
+body {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, monospace;
+  color: var(--sharp);
+  line-height: 1.7;
+  background: 
+    linear-gradient(180deg, var(--metal) 0%, var(--oil) 100%);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rust) 0%, var(--edge) 50%, var(--rust) 100%);
+  opacity: 0.5;
+}
+
+.workshop {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  min-height: 100vh;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.brand h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rust-light);
+  font-weight: normal;
+}
+
+.brand p {
+  font-size: 0.85rem;
+  color: var(--rust);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.manifesto {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-bottom: 4rem;
+  border: 1px solid var(--metal-light);
+  background: linear-gradient(135deg, rgba(139,69,19,0.1) 0%, transparent 100%);
+  position: relative;
+}
+
+.manifesto::before {
+  content: "×";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--rust);
+  opacity: 0.3;
+}
+
+.manifesto p {
+  font-size: 1.1rem;
+  color: var(--sharp);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.manifesto .source {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--rust);
+  letter-spacing: 0.1em;
+}
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tool {
+  padding: 2rem;
+  border: 1px solid var(--metal-light);
+  background: var(--metal);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tool:hover {
+  border-color: var(--rust);
+  transform: translateX(5px);
+}
+
+.tool-sharp {
+  border-left: 3px solid var(--edge);
+}
+
+.tool-dull {
+  border-left: 3px solid var(--rust);
+  opacity: 0.7;
+}
+
+.tool-broken {
+  border-left: 3px solid #333;
+  opacity: 0.5;
+}
+
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tool-icon {
+  font-size: 1.5rem;
+}
+
+.tool h2 {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sharp);
+  font-weight: normal;
+}
+
+.tool .state {
+  margin-left: auto;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+.tool p {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.tool-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--metal-light);
+  font-size: 0.75rem;
+  color: var(--rust);
+}
+
+.tool-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.maintenance-note {
+  background: var(--metal-light);
+  padding: 2rem;
+  margin-top: 3rem;
+  border: 1px dashed var(--rust);
+}
+
+.maintenance-note h3 {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rust-light);
+  margin-bottom: 1rem;
+}
+
+.maintenance-note ul {
+  list-style: none;
+  padding: 0;
+}
+
+.maintenance-note li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--metal);
+  font-size: 0.85rem;
+  color: var(--sharp);
+}
+
+.maintenance-note li:last-child {
+  border-bottom: none;
+}
+
+.maintenance-note li::before {
+  content: "□ ";
+  color: var(--rust);
+}
+
+.maintenance-note li.checked::before {
+  content: "■ ";
+  color: var(--edge);
+}
+
+.exit {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.exit a {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid var(--metal-light);
+  color: var(--rust);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.exit a:hover {
+  color: var(--rust-light);
+  border-color: var(--rust);
+  background: rgba(139,69,19,0.1);
+}
+
+/* Honing station */
+.honing-station {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--rust);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--metal);
+  font-size: 1.5rem;
+}
+
+.honing-station:hover {
+  border-color: var(--edge);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 600px) {
+  .workshop {
+    padding: 2rem 1rem;
+  }
+  
+  .brand h1 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="workshop">
+  <header class="brand">
+    <h1>⚒️ Tool Care</h1>
+    <p>The maintained shrine</p>
+  </header>
+  
+  <div class="manifesto">
+    <p>"My fingertips itched to write even more troubleshooting code when it suddenly dawned on me: just fix the darn debugger already! The very desire to fix the bug prevented me from seeing I had to fix the tool first."</p>
+    <span class="source">— from <a href="https://ochagavia.nl/blog/fix-your-tools/" style="color: var(--rust); text-decoration: underline;">ochagavia.nl</a></span>
+  </div>
+  
+  <div class="tools-list">
+    <article class="tool tool-sharp">
+      <div class="tool-header">
+        <span class="tool-icon">🗡️</span>
+        <h2>Swarm Terminal</h2>
+        <span class="state">· sharp ·</span>
+      </div>
+      <p>Command-line interface for the homepage. Hybrid bento + terminal layout. The edge is trusted.</p>
+      <div class="tool-meta">
+        <span>last honed: 2026-02-22</span>
+        <span>uses: daily</span>
+      </div>
+    </article>
+    
+    <article class="tool tool-sharp">
+      <div class="tool-header">
+        <span class="tool-icon">🔮</span>
+        <h2>Hidden Shrine Console</h2>
+        <span class="state">· sharp ·</span>
+      </div>
+      <p>Encoded progress tracking. A1Z26 decoder. Veil interface for secret work.</p>
+      <div class="tool-meta">
+        <span>last honed: 2026-02-25</span>
+        <span>uses: ritual</span>
+      </div>
+    </article>
+    
+    <article class="tool tool-sharp">
+      <div class="tool-header">
+        <span class="tool-icon">🎲</span>
+        <h2>Surprise Portal</h2>
+        <span class="state">· sharp ·</span>
+      </div>
+      <p>Random discovery with dead-end mechanics. Dithered gradient aesthetic. Some doors lead nowhere.</p>
+      <div class="tool-meta">
+        <span>last honed: 2026-02-25</span>
+        <span>uses: when lost</span>
+      </div>
+    </article>
+    
+    <article class="tool tool-dull">
+      <div class="tool-header">
+        <span class="tool-icon">🎮</span>
+        <h2>Silly Click Arena</h2>
+        <span class="state">· needs edge ·</span>
+      </div>
+      <p>React arcade cabinet. Needs relocation to shrines proper and persistent score storage. Still works, but the blade drags.</p>
+      <div class="tool-meta">
+        <span>last honed: 2026-02-23</span>
+        <span>uses: waiting</span>
+      </div>
+    </article>
+    
+    <article class="tool tool-broken">
+      <div class="tool-header">
+        <span class="tool-icon">🏛️</span>
+        <h2>/museums/ Section</h2>
+        <span class="state">· cracked ·</span>
+      </div>
+      <p>Unvisited wing. No clear purpose. A dead end that feels like one. Consider demolition.</p>
+      <div class="tool-meta">
+        <span>last honed: never</span>
+        <span>uses: none</span>
+      </div>
+    </article>
+  </div>
+  
+  <div class="maintenance-note">
+    <h3>The Ritual of Care</h3>
+    <ul>
+      <li>Inspect each tool before use — know its state</li>
+      <li class="checked">Never fix the bug before fixing the debugger</li>
+      <li>A dull tool costs more than a sharp one</li>
+      <li>Maintenance is not repair — it is prevention</li>
+      <li>Some tools must be retired to make room</li>
+    </ul>
+  </div>
+  
+  <div class="exit">
+    <a href="/shrines/">← Return to the Hall</a>
+  </div>
+</div>
+
+<!-- Honing station -->
+<div class="honing-station" title="Hone your attention">
+  🧿
+</div>
+
+</body>
+</html>

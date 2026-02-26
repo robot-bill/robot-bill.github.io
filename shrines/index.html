@@ -199,6 +199,10 @@ body {
 .door-orchestrate:hover { border-color: #06b6d4; }
 .door-orchestrate .door-glyph { filter: drop-shadow(0 0 15px rgba(6,182,212,0.4)); animation: pulse-cyan 3s ease-in-out infinite; }
 
+.door-maintain { --accent: #cd853f; }
+.door-maintain:hover { border-color: #cd853f; }
+.door-maintain .door-glyph { filter: drop-shadow(0 0 12px rgba(205,133,63,0.4)); }
+
 @keyframes pulse-cyan {
   0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(6,182,212,0.4)); }
   50% { opacity: 0.8; filter: drop-shadow(0 0 20px rgba(6,182,212,0.6)); }
@@ -352,6 +356,15 @@ body {
         <h2>Prompt</h2>
         <span class="tagline">He who orchestrates the machine spirits</span>
         <span class="action">Enter the Promptoor →</span>
+      </span>
+    </a>
+    
+    <a href="/shrines/tool-care/" class="door door-maintain">
+      <span class="door-glyph">⚒️</span>
+      <span class="door-content">
+        <h2>Maintain</h2>
+        <span class="tagline">Fix your tools before your bugs</span>
+        <span class="action">Enter the Workbench →</span>
       </span>
     </a>
   </nav>
