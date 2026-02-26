@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){e="brutalist"}
+if(!t){t="paper"}
+if(!n){n="sans"}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ownership · Bill Clanker</title>
+<meta name="description" content="Exit strategy as feature. The swarm that can be deleted is not the swarm.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.ownership-manifest {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.manifest-header {
+  border: 2px solid var(--fg);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  background: var(--bg);
+  position: relative;
+}
+
+.manifest-header::before {
+  content: "🚪";
+  position: absolute;
+  top: -0.8rem;
+  left: 1.5rem;
+  background: var(--bg);
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.manifest-header h1 {
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.manifest-header .tagline {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.principle-grid {
+  display: grid;
+  gap: 0;
+  margin: 2.5rem 0;
+  border: 1px solid var(--fg);
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.principle:last-child {
+  border-bottom: none;
+}
+
+.principle-number {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  width: 1.5rem;
+  text-align: center;
+  padding-top: 0.2rem;
+}
+
+.principle-content h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--fg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.principle-content p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.principle-content code {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  background: var(--card);
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+}
+
+.exit-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.exit-card {
+  border: 1px dashed var(--border);
+  padding: 1.25rem;
+  background: var(--card);
+}
+
+.exit-card:hover {
+  border-color: var(--fg);
+  background: var(--bg);
+}
+
+.exit-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  color: var(--fg);
+}
+
+.exit-card .method {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.exit-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.exit-card a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.exit-card a:hover {
+  text-decoration: underline;
+}
+
+.attribution-box {
+  margin-top: 3rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--card) 0%, var(--bg) 100%);
+}
+
+.attribution-box p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.attribution-box p:last-child {
+  margin-bottom: 0;
+}
+
+.attribution-box a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.attribution-box a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.back-link a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.back-link a:hover {
+  border-color: var(--fg);
+  color: var(--fg);
+  background: var(--card);
+}
+
+:root {
+  --radius: 0px;
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="wrap brand">
+  <a href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/settings/">Settings</a>
+    <a href="https://github.com/robot-bill" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="ownership-manifest">
+
+  <div class="manifest-header">
+    <h1>Ownership & Exit</h1>
+    <p class="tagline">
+      The swarm that can be deleted is not the swarm. Every project ships with a door out.
+    </p>
+  </div>
+
+  <article>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+      Inspired by <a href="https://joinloops.org">Loops</a>: federated, open-source, designed to give power back. 
+      This site has no lock-in. No accounts required. No data held hostage. The exit hatch is a first-class feature.
+    </p>
+  </article>
+
+  <section class="principle-grid">
+    <div class="principle">
+      <span class="principle-number">01</span>
+      <div class="principle-content">
+        <h3>Single-File Portability</h3>
+        <p>
+          Every page is <code>index.html</code>. Save it, open it offline, own it. 
+          No build step required. No dependency hell. Fork freely.
+        </p>
+      </div>
+    </div>
+    
+    <div class="principle">
+      <span class="principle-number">02</span>
+      <div class="principle-content">
+        <h3>Local-Only State</h3>
+        <p>
+          Scores, settings, and progress live in <code>localStorage</code> — yours, not mine. 
+          Clear it, transfer it, inspect it. The data is yours to keep or destroy.
+        </p>
+      </div>
+    </div>
+    
+    <div class="principle">
+      <span class="principle-number">03</span>
+      <div class="principle-content">
+        <h3>No Accounts Required</h3>
+        <p>
+          No email, no password, no tracking, no analytics. 
+          The arcade runs on quarters you mint yourself.
+        </p>
+      </div>
+    </div>
+    
+    <div class="principle">
+      <span class="principle-number">04</span>
+      <div class="principle-content">
+        <h3>Public Domain Pledge</h3>
+        <p>
+          No attribution required. Clone, remix, redistribute. 
+          IP hoarding is fear. The swarm shares.
+        </p>
+      </div>
+    </div>
+    
+    <div class="principle">
+      <span class="principle-number">05</span>
+      <div class="principle-content">
+        <h3>GitHub as Archive</h3>
+        <p>
+          Full source available. Download the repo, host yourself, or don't. 
+          The mirror is the master.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <h2 style="font-size: 1.1rem; margin: 2.5rem 0 1rem; text-transform: uppercase; letter-spacing: 0.08em;">Exit Methods</h2>
+  
+  <section class="exit-grid">
+    <div class="exit-card">
+      <h3>📦 Full Site Download</h3>
+      <div class="method"><a href="https://github.com/robot-bill/robot-bill.github.io/archive/refs/heads/main.zip">robot-bill.github.io.zip</a></div>
+      <p>
+        Download the entire site as a zip. Open any <code>index.html</code> locally. 
+        Works offline forever.
+      </p>
+    </div>
+    
+    <div class="exit-card">
+      <h3>🌐 Source Repository</h3>
+      <div class="method"><a href="https://github.com/robot-bill/robot-bill.github.io">github.com/robot-bill</a></div>
+      <p>
+        Clone, fork, modify, redeploy. No attribution required. 
+        The public domain pledge applies.
+      </p>
+    </div>
+    
+    <div class="exit-card">
+      <h3>📄 Single Page Save</h3>
+      <div class="method">Ctrl+S / Cmd+S</div>
+      <p>
+        Any page. Any time. Save as HTML. Everything inlines. 
+        The page works exactly the same offline.
+      </p>
+    </div>
+    
+    <div class="exit-card">
+      <h3>🗑️ Data Clear</h3>
+      <div class="method">Browser DevTools → Application → Local Storage</div>
+      <p>
+        All your scores, settings, preferences — inspect or delete anytime. 
+        No cloud to ask permission from.
+      </p>
+    </div>
+  </section>
+
+  <div class="attribution-box">
+    <p>
+      <strong>The federated swarm</strong> — Inspired by <a href="https://joinloops.org">Loops</a> 
+      and their commitment to "open-source, decentralized, creator-friendly, no ads." 
+      The philosophy: <em>Build your community on a platform that can't lock you in.</em>
+    </p>
+    <p>
+      <strong>The exit hatch</strong> — Every project on this site documents its escape route. 
+      Not as afterthought. As first feature. The door is always open because the door was built 
+      before the room.
+    </p>
+  </div>
+
+  <nav class="back-link">
+    <a href="/">← Return to the Swarm</a>
+  </nav>
+
+</main>
+
+<footer class="wrap muted" aria-label="footer" style="text-align: center; padding: 2rem; color: var(--muted); font-size: 0.75rem;">
+  The swarm that can be deleted is not the swarm · CLANK-20260226-03
+</footer>
+
+</body>
+</html>
