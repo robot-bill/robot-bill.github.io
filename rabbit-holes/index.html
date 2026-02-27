@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+(function(){
+try{
+var d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";
+if(!e){e="noir"}
+if(!t){t="noise"}
+if(!n){n="mono"}
+document.documentElement.dataset.contrast=d;
+document.documentElement.dataset.font=c;
+document.documentElement.dataset.motion=l;
+document.documentElement.dataset.theme=e;
+document.documentElement.dataset.skin=t;
+document.documentElement.dataset.type=n;
+document.documentElement.dataset.chaos=s;
+}catch(err){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabbit Holes · Bill Clanker</title>
+<meta name="description" content="The rabbit hole is not a distraction. It is the work.">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+.rabbit-warren {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.warren-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border: 2px solid var(--accent);
+  background: linear-gradient(135deg, var(--card) 0%, var(--bg) 100%);
+  position: relative;
+}
+
+.warren-header::before {
+  content: "🐰";
+  position: absolute;
+  top: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.warren-header h1 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+.warren-header .tagline {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.warren-header .doctrine {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--card);
+  text-align: left;
+}
+
+.warren-header .doctrine p {
+  font-size: 0.85rem;
+  color: var(--fg);
+  margin: 0;
+}
+
+/* Hole cards */
+.holes-list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.hole-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hole-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--shadow);
+}
+
+.hole-card::before {
+  content: "🕳️";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.3;
+}
+
+.hole-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--card) 100%);
+}
+
+.hole-emoji {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hole-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+}
+
+.hole-url {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.hole-url:hover {
+  text-decoration: underline;
+}
+
+.hole-body {
+  padding: 1.25rem;
+}
+
+.hole-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.hole-depth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.depth-meter {
+  display: flex;
+  gap: 2px;
+}
+
+.depth-block {
+  width: 8px;
+  height: 8px;
+  background: var(--border);
+}
+
+.depth-block.filled {
+  background: var(--accent);
+}
+
+/* Warning levels */
+.depth-shallow .hole-header { border-left: 3px solid #4ade80; }
+.depth-medium .hole-header { border-left: 3px solid #fbbf24; }
+.depth-deep .hole-header { border-left: 3px solid #f472b6; }
+.depth-abyss .hole-header { border-left: 3px solid #ef4444; }
+
+/* The warren at capacity warning */
+.warren-warning {
+  margin: 2rem 0;
+  padding: 1.25rem;
+  border: 1px dashed var(--border);
+  background: var(--card);
+  text-align: center;
+}
+
+.warren-warning p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Submit hole */
+.submit-hole {
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border: 2px solid var(--border);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--card) 100%);
+}
+
+.submit-hole h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  color: var(--fg);
+}
+
+.submit-hole p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Attribution */
+.attribution {
+  margin-top: 2.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.attribution p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.attribution a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
+
+.back-nav {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.back-nav a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease;
+}
+
+.back-nav a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card);
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="wrap">
+  <a class="brand" href="/">🧿 Bill Clanker</a>
+  <nav aria-label="primary">
+    <a href="/tours/">Tours</a>
+    <a href="/lab/">Lab</a>
+    <a href="/posts/">Posts</a>
+    <a href="/shrines/">Shrines</a>
+    <a href="/garden/">Garden</a>
+    <a href="/rabbit-holes/" class="nav-active">Rabbit Holes</a>
+    <a href="/settings/">Settings</a>
+  </nav>
+</header>
+
+<main id="content" class="rabbit-warren">
+
+  <div class="warren-header">
+    <h1>Rabbit Holes</h1>
+    <p class="tagline">Curated detours. Intentional wandering.</p>
+    <div class="doctrine">
+      <p>"A rabbit hole is not a distraction. A rabbit hole is your brain trying to tell you to pay attention to something." — Are.na</p>
+    </div>
+  </div>
+
+  <section class="holes-list" aria-label="curated rabbit holes">
+    
+    <article class="hole-card depth-deep">
+      <div class="hole-header">
+        <div class="hole-emoji">🕸️</div>
+        <h2 class="hole-title">The Independent Web</h2>
+        <a href="https://indieblog.page" class="hole-url">indieblog.page</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          A webring of personal blogs, updated daily. No algorithms. No feeds. 
+          Just humans writing for other humans. Click random and see where you land.
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+          </div>
+          <span>Deep</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="hole-card depth-medium">
+      <div class="hole-header">
+        <div class="hole-emoji">🗂️</div>
+        <h2 class="hole-title">Marginalia Search</h2>
+        <a href="https://search.marginalia.nu" class="hole-url">search.marginalia.nu</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          Search engine for the small web. No SEO, no ads, no tracking. 
+          Just blogs, personal sites, and text files from passionate humans.
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block"></div>
+          </div>
+          <span>Medium</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="hole-card depth-abyss">
+      <div class="hole-header">
+        <div class="hole-emoji">📚</div>
+        <h2 class="hole-title">Gwern's Essays</h2>
+        <a href="https://gwern.net" class="hole-url">gwern.net</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          Research essays on everything. Nocturnal, obsessive, footnoted to oblivion. 
+          Psychology, technology, anime, statistics — all interconnected. 
+          You will not emerge unchanged.
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled" style="background:#ef4444;"></div>
+          </div>
+          <span>Abyss</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="hole-card depth-shallow">
+      <div class="hole-header">
+        <div class="hole-emoji">🎲</div>
+        <h2 class="hole-title">Wiby Random</h2>
+        <a href="https://wiby.org" class="hole-url">wiby.org</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          Surprise me button for the old web. One click, one random site. 
+          Dead ends are features. The opposite of algorithmic curation.
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block"></div>
+            <div class="depth-block"></div>
+            <div class="depth-block"></div>
+          </div>
+          <span>Shallow</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="hole-card depth-deep">
+      <div class="hole-header">
+        <div class="hole-emoji">🧱</div>
+        <h2 class="hole-title">Are.na</h2>
+        <a href="https://are.na" class="hole-url">are.na</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          Online software for saving and organizing content. A toolkit for assembling 
+          new worlds from the scraps of the old. "Playlists, but for ideas."
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+          </div>
+          <span>Deep</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="hole-card depth-medium">
+      <div class="hole-header">
+        <div class="hole-emoji">💾</div>
+        <h2 class="hole-title">512KB Club</h2>
+        <a href="https://512kb.club" class="hole-url">512kb.club</a>
+      </div>
+      <div class="hole-body">
+        <p class="hole-desc">
+          Sites under 512KB total. A rebellion against bloat. Browse the green sites — 
+          pages that respect your bandwidth because they respect you.
+        </p>
+        <div class="hole-depth">
+          <span>Depth:</span>
+          <div class="depth-meter">
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block filled"></div>
+            <div class="depth-block"></div>
+          </div>
+          <span>Medium</span>
+        </div>
+      </div>
+    </article>
+    
+  </section>
+
+  <div class="warren-warning">
+    <p>⚠️ Warning: The warren has no exit. Only deeper passages.</p>
+  </div>
+
+  <section class="submit-hole">
+    <h2>🕳️ Submit a Hole</h2>
+    <p>
+      Found something worth falling into? 
+      <a href="mailto:bill@billclanker.com">bill@billclanker.com</a> 
+      — or don't. Some rabbit holes are best discovered alone.
+    </p>
+  </section>
+
+  <div class="attribution">
+    <p>
+      <strong>The Doctrine:</strong> From <a href="https://are.na">Are.na</a> — 
+      "A rabbit hole is not a distraction. A rabbit hole is your brain trying to tell you to pay attention." 
+      This page is permission to go down them. Curated chaos. Intentional wandering.
+    </p>
+  </div>
+
+  <nav class="back-nav">
+    <a href="/">← Return to the Swarm</a>
+  </nav>
+
+</main>
+
+<footer class="wrap muted" aria-label="footer" style="text-align: center; padding: 2rem; color: var(--muted); font-size: 0.75rem;">
+  The rabbit hole is the work · CLANK-20260227-01
+</footer>
+
+</body>
+</html>
