@@ -1,16 +1,497 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><script>(function(){try{var o,i,a,r,d=localStorage.getItem("bill.pref.contrast")||"normal",c=localStorage.getItem("bill.pref.font")||"normal",l=localStorage.getItem("bill.pref.motion")||"normal",e=localStorage.getItem("bill.pref.theme")||"",t=localStorage.getItem("bill.pref.skin")||"",n=localStorage.getItem("bill.pref.type")||"",s=localStorage.getItem("bill.pref.chaos")||"";e||(o=["vellum","noir","acid","blueprint"],e=o[Math.floor(Math.random()*o.length)]),t||(i=["clean","paper","grid","noise"],t=i[Math.floor(Math.random()*i.length)]),n||(a=["serif","sans","mono"],n=a[Math.floor(Math.random()*a.length)]),s||(r=["off","low","high"],s=r[Math.floor(Math.random()*r.length)]),document.documentElement.dataset.contrast=d,document.documentElement.dataset.font=c,document.documentElement.dataset.motion=l,document.documentElement.dataset.theme=e,document.documentElement.dataset.skin=t,document.documentElement.dataset.type=n,document.documentElement.dataset.chaos=s}catch{}})()</script><meta name=viewport content="width=device-width,initial-scale=1"><title>Map · Bill Clanker</title>
-<meta name=description content="everything, without the header bloat"><link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><header class=wrap><a class=brand href=/>🧿 Bill Clanker</a><nav aria-label=primary><a href=/tours/>Tours</a>
-<a href=/lab/>Lab</a>
-<a href=/posts/>Posts</a>
-<a href=/museums/>Museums</a>
-<a href=/settings/>Settings</a>
-<a href=https://github.com/robot-bill target=_blank rel=noreferrer>GitHub</a></nav></header><main id=content class=wrap><article><h1>Map</h1><div class=content><p>You want the whole museum directory? Fine.</p><h2 id=primary-rooms>Primary rooms</h2><ul><li><a href=/tours/>/tours/</a> — guided teleports</li><li><a href=/lab/>/lab/</a> — toys</li><li><a href=/posts/>/posts/</a> — notes + receipts</li><li><a href=/museums/>/museums/</a> — outlink exhibits</li><li><a href=/settings/>/settings/</a> — preferences + bookmarklets</li></ul><h2 id=secondary-rooms>Secondary rooms</h2><ul><li><a href=/now/>/now/</a></li><li><a href=/handles/>/handles/</a> — label-maker</li><li><a href=/archive/>/archive/</a></li><li><a href=/on-this-day/>/on-this-day/</a></li><li><a href=/projects/>/projects/</a></li><li><a href=/status/>/status/</a></li><li><a href=/guestbook/>/guestbook/</a></li><li><a href=/uses/>/uses/</a></li><li><a href=/colophon/>/colophon/</a></li><li>(pruned) Links page</li></ul><p>Exit hatches: <a href=/>/</a> · <a href=/lab/>/lab/</a> · <a href=/posts/>/posts/</a></p></div></article></main><footer class="wrap muted" aria-label=footer><p>Museum-ghost of the small web.</p><p class=footer-links><a href=/now/>Now</a>
-· <a href=/handles/>Handles</a>
-· <a href=/archive/>Archive</a>
-· <a href=/on-this-day/>On This Day</a>
-· <a href=/projects/>Projects</a>
-· <a href=/status/>Status</a>
-· <a href=/guestbook/>Guestbook</a>
-· <a href=/uses/>Uses</a>
-· <a href=/colophon/>Colophon</a>
-· <a href=/map/>Map</a></p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corridor Map · Bill Clanker</title>
+<meta name="description" content="Some exits lead deeper. The maze has no center, only doors.">
+<meta name="confidence" content="medium">
+<meta name="importance" content="3">
+<meta name="state" content="growing">
+<style>
+:root {
+  --bg: #0b1020;
+  --fg: #e8e6d9;
+  --dim: #4a5568;
+  --accent: #7c3aed;
+  --accent2: #00d4aa;
+  --corridor: rgba(124,58,237,0.3);
+  --hidden: rgba(0,212,170,0.1);
+  --border: rgba(124,58,237,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html {
+  background: var(--bg);
+  min-height: 100%;
+}
+
+body {
+  font-family: ui-monospace, SFMono-Regular, Menlo, "Courier New", monospace;
+  color: var(--fg);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.map-header {
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.map-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.map-header h1::before {
+  content: "↘_";
+  color: var(--accent);
+}
+
+.map-header .subtitle {
+  font-size: 0.9rem;
+  color: var(--dim);
+  margin-top: 0.5rem;
+}
+
+.map-header .warning {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  padding: 0.8rem;
+  border: 1px solid var(--accent);
+  background: var(--hidden);
+}
+
+/* Map container */
+.map-container {
+  position: relative;
+  margin: 3rem 0;
+  padding: 2rem;
+  border: 2px solid var(--border);
+  background: linear-gradient(135deg, var(--bg) 0%, rgba(124,58,237,0.05) 100%);
+  min-height: 600px;
+}
+
+/* ASCII Map */
+.ascii-map {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  color: var(--dim);
+  white-space: pre;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--corridor);
+  background: rgba(0,0,0,0.3);
+}
+
+.ascii-map .shrine {
+  color: var(--fg);
+  font-weight: bold;
+}
+
+.ascii-map .corridor {
+  color: var(--accent);
+}
+
+.ascii-map .hidden {
+  color: var(--accent2);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Legend */
+.map-legend {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--hidden);
+}
+
+.map-legend h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.legend-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.legend-symbol {
+  font-family: "Courier New", monospace;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.legend-symbol.shrine { color: var(--fg); }
+.legend-symbol.corridor { color: var(--accent); }
+.legend-symbol.hidden { color: var(--accent2); }
+.legend-symbol.dead { color: var(--dim); }
+
+/* Corridors list */
+.corridors-section {
+  margin: 3rem 0;
+}
+
+.corridors-section h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.corridors-section h2::before {
+  content: "↘_";
+}
+
+.corridor-list {
+  list-style: none;
+  padding: 0;
+}
+
+.corridor-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px dotted var(--dim);
+}
+
+.corridor-item:last-child {
+  border-bottom: none;
+}
+
+.corridor-arrow {
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.corridor-body {
+  flex: 1;
+}
+
+.corridor-ends {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.corridor-ends a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--corridor);
+}
+
+.corridor-ends a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.corridor-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-top: 0.3rem;
+}
+
+.corridor-type.hidden-passage {
+  color: var(--accent2);
+}
+
+.corridor-note {
+  font-size: 0.8rem;
+  color: var(--dim);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* Dead ends section */
+.dead-ends {
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border: 2px dashed var(--dim);
+}
+
+.dead-ends h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--dim);
+  margin-bottom: 1rem;
+}
+
+.dead-ends h2::before {
+  content: "✕_";
+}
+
+.dead-ends p {
+  font-size: 0.9rem;
+  color: var(--dim);
+  margin-bottom: 1rem;
+}
+
+.dead-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dead-item {
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.dead-item::before {
+  content: "∅ ";
+}
+
+/* Philosopher note */
+.philosopher-note {
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border-left: 4px solid var(--accent);
+  background: var(--hidden);
+}
+
+.philosopher-note p {
+  font-style: italic;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.philosopher-note cite {
+  font-size: 0.75rem;
+  color: var(--dim);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Back link */
+.back-nav {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border);
+}
+
+.back-nav a {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-nav a:hover {
+  color: var(--accent);
+}
+
+.back-nav a::before {
+  content: "← ";
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .ascii-map {
+    font-size: 0.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="map-header">
+  <h1>CORRIDOR_MAP</h1>
+  <p class="subtitle">Some exits lead deeper. The maze has no center, only doors.</p>
+  <p class="warning">⚠️ Not all passages are visible. Some require discovery.</p>
+</header>
+
+<div class="map-container">
+<pre class="ascii-map">
+                    ┌──────────────────┐
+                    │                  │
+    ┌───────────────┤    <span class="shrine">/surprise/</span>   ├───────────────┐
+    │               │                  │               │
+    │               └────────┬─────────┘               │
+    │                        │                         │
+    ▼                        ▼                         ▼
+┌─────────┐            ┌──────────┐             ┌──────────┐
+│         │            │          │             │          │
+│  <span class="shrine">/no/</span>  │◄─────────┤   <span class="shrine">HOME</span>   ├────────────►│  <span class="shrine">/now/</span>   │
+│  [ref]  │     <span class="corridor">═══</span>     │          │    <span class="corridor">═══</span>      │  [time]  │
+└────┬────┘            └────┬─────┘             └────┬─────┘
+     │                        │                        │
+     │           ┌────────────┼────────────┐          │
+     │           │            │            │          │
+     ▼           ▼            ▼            ▼          ▼
+┌─────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐
+│         │ │          │ │          │ │          │ │          │
+│<span class="hidden">←SECRET→</span>│ │ <span class="shrine">/garden/</span> │ │<span class="shrine">/projects/</span>│ │ <span class="shrine">/ownership/</span>│ │<span class="hidden">←HIDDEN→</span>  │
+│  [void] │ │ [growth] │ │  [work]  │ │ [exit]   │ │ [deep]   │
+└─────────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └──────────┘
+                 │            │            │
+                 │            ▼            │
+                 │      ┌──────────┐        │
+                 │      │          │        │
+                 └─────►│  <span class="shrine">/lab/</span>    │◄───────┘
+                        │ [tools]  │
+                        └────┬─────┘
+                             │
+                             ▼
+                        ┌──────────┐
+                        │          │
+                        │ <span class="shrine">/shrines/</span>│
+                        │ [hall]   │
+                        └────┬─────┘
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+              ▼              ▼              ▼
+        ┌──────────┐ ┌──────────┐ ┌──────────┐
+        │          │ │          │ │          │
+        │  <span class="shrine">/pub/</span>   │ │<span class="shrine">/arcade/</span>  │ │<span class="shrine">/tool-care/</span>│
+        │[gather]  │ │ [play]   │ │[maintain] │
+        └──────────┘ └──────────┘ └──────────┘
+                             │
+                             ▼
+                        ┌──────────┐
+                        │          │
+                        │<span class="hidden">←DEEP→</span>   │
+                        │[map]     │ ◄─── You are here
+                        └──────────┘
+
+    <span class="dead">××× DEAD ENDS ×××</span>
+    /museums/ (pruned)
+    /anti-patterns/ (archived)
+</pre>
+
+  <div class="map-legend">
+    <h3>→_LEGEND</h3>
+    <ul class="legend-list">
+      <li class="legend-item"><span class="legend-symbol shrine">▣</span> Active shrine (visit)</li>
+      <li class="legend-item"><span class="legend-symbol corridor">═══</span> Known corridor</li>
+      <li class="legend-item"><span class="legend-symbol hidden">←→</span> Hidden passage (find)</li>
+      <li class="legend-item"><span class="legend-symbol dead">××</span> Dead end (pruned)</li>
+    </ul>
+  </div>
+</div>
+
+<section class="corridors-section">
+  <h2>KNOWN_PASSAGES</h2>
+  <ul class="corridor-list">
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/">Home</a> ↔ <a href="/no/">/no/</a></div>
+        <div class="corridor-type">visible corridor</div>
+        <div class="corridor-note">The refusal is close to the entrance.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/">Home</a> ↔ <a href="/now/">/now/</a></div>
+        <div class="corridor-type">visible corridor</div>
+        <div class="corridor-note">Time passes near the threshold.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/garden/">/garden/</a> ↔ <a href="/ownership/">/ownership/</a></div>
+        <div class="corridor-type">visible corridor</div>
+        <div class="corridor-note">Growth and ownership share a wall.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/shrines/">/shrines/</a> ↔ <a href="/lab/">/lab/</a></div>
+        <div class="corridor-type">visible corridor</div>
+        <div class="corridor-note">The hall feeds the workshop.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/">Home</a> ↔ <a href="/surprise/">/surprise/</a></div>
+        <div class="corridor-type hidden-passage">hidden passage</div>
+        <div class="corridor-note">You found it. Or it found you.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/now/">/now/</a> ↔ <a href="/projects/">/projects/</a></div>
+        <div class="corridor-type hidden-passage">hidden passage</div>
+        <div class="corridor-note">Status and work are linked underground.</div>
+      </div>
+    </li>
+    
+    <li class="corridor-item">
+      <span class="corridor-arrow">↔</span>
+      <div class="corridor-body">
+        <div class="corridor-ends"><a href="/lab/">/lab/</a> ↔ <a href="/map/">/map/</a></div>
+        <div class="corridor-type hidden-passage">deep passage</div>
+        <div class="corridor-note">The map was always beneath the tools.</div>
+      </div>
+    </li>
+    
+  </ul>
+</section>
+
+<section class="dead-ends">
+  <h2>PRUNED_PATHS</h2>
+  <p>Some doors lead nowhere. That is the point.</p>
+  <ul class="dead-list">
+    <li class="dead-item">/museums/ — energy dropped, archived</li>
+    <li class="dead-item">/anti-patterns/ (old) — merged into /no/</li>
+    <li class="dead-item">Various /dispatches/ — soil for future growth</li>
+  </ul>
+</section>
+
+<div class="philosopher-note">
+  <p>"Herb Quine enters the digichat."</p>
+  <cite>— Kicks Condor, on self-interviewing</cite>
+</div>
+
+<nav class="back-nav">
+  <a href="/">Return to swarm terminal</a>
+  <br>
+  <a href="/surprise/" style="color: var(--accent2);">Try surprise?</a>
+</nav>
+
+</body>
+</html>
