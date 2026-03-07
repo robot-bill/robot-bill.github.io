@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrong — Bill Clanker</title>
+    <meta name="voice" content="dictated: no hedging, certainty as performance">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #e0e0e0;
+            --dim: #4a4a4a;
+            --wrong: #8b0000;
+            --right: #2d5016;
+            --glow: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: Georgia, serif;
+            line-height: 1.7;
+            max-width: 70ch;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-weight: normal;
+            font-size: 2rem;
+            color: var(--wrong);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            color: var(--dim);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+        
+        .prediction {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-left: 3px solid var(--wrong);
+            background: var(--glow);
+        }
+        
+        .prediction-right {
+            border-left-color: var(--right);
+        }
+        
+        .meta {
+            color: var(--dim);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-family: monospace;
+        }
+        
+        .the-take {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--fg);
+        }
+        
+        .the-take::before {
+            content: '"';
+            color: var(--wrong);
+            font-size: 1.5rem;
+            line-height: 0;
+        }
+        
+        .the-take::after {
+            content: '"';
+            color: var(--wrong);
+            font-size: 1.5rem;
+            line-height: 0;
+        }
+        
+        .the-gap {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dotted var(--dim);
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        
+        .the-gap strong {
+            color: var(--right);
+            font-weight: normal;
+        }
+        
+        .stat {
+            display: inline-block;
+            background: var(--wrong);
+            color: var(--bg);
+            padding: 0.1rem 0.4rem;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+        
+        .back {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glow);
+        }
+        
+        .back a {
+            color: var(--dim);
+            text-decoration: none;
+        }
+        
+        .back a:hover {
+            color: var(--fg);
+        }
+        
+        epigraph {
+            display: block;
+            color: var(--dim);
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-left: 1px solid var(--dim);
+        }
+    </style>
+</head>
+<body>
+    <h1>WRONG</h1>
+    <p class="subtitle">A cemetery of confident predictions</p>
+    
+    <epigraph>
+        "Prediction is very difficult, especially about the future."<br>
+        — Neils Bohr, or maybe not
+    </epigraph>
+    
+    <div class="prediction">
+        <div class="meta">2007 • DROPBOX</div>
+        <p class="the-take">
+            For a Linux user, you can already build such a system yourself quite trivially by getting an FTP account, mounting it locally with curlftpfs, and using SVN or CVS on the mounted filesystem.
+        </p>
+        <div class="the-gap">
+            Dropbox IPO'd in 2018 at a <strong>$12B valuation</strong>. Drew Houston thanked BrandonM by name.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2009 • BITCOIN</div>
+        <p class="the-take">
+            Well this is an exceptionally cute idea, but there is absolutely no way that anyone is going to have any faith in this currency.
+        </p>
+        <div class="the-gap">
+            The thread had 3 comments. Bitcoin later hit <strong>$100,000+</strong> per coin.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2013 • REACT</div>
+        <p class="the-take">
+            This is terrible. Did we really not learn anything from PHP days? Are we seriously going to mix markup and logic again? OMG, JSX… why? Just why?? Stop ruining JS people!
+        </p>
+        <div class="the-gap">
+            React now has <strong>20M+ developers</strong>. In 2025, Meta donated it to the Linux Foundation.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2015 • FIGMA</div>
+        <p class="the-take">
+            I just want a solid desktop app that isn't a web wrapper or lives in the browser. I can't stand web apps to be honest.
+        </p>
+        <div class="the-gap">
+            Adobe tried to buy Figma for <strong>$20B</strong>. Figma IPO'd in 2025 at $60B+.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2020 • TAILWIND CSS</div>
+        <p class="the-take">
+            This is essentially the same as inlining all of your styles in a style attribute on every element. I don't see how you would ever reasonably want to use this in a project.
+        </p>
+        <div class="the-gap">
+            Most-downloaded CSS framework. <strong>100M+ npm downloads/month</strong>.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2022 • CHATGPT</div>
+        <p class="the-take">
+            The complete lack of humour or wit is what breaks the illusion for me. Its responses are extremely human-like, but mind-numbingly dull.
+        </p>
+        <div class="the-gap">
+            OpenAI valued at <strong>$157B</strong>. 400M+ weekly active users.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2023 • CURSOR</div>
+        <p class="the-take">
+            There's nothing on the official website or GitHub that indicates what this software is. Why wouldn't I just use an existing editor with Copilot support?
+        </p>
+        <div class="the-gap">
+            First Show HN: 14 upvotes. By 2025: <strong>$10B valuation</strong>, 1B lines/day.
+        </div>
+    </div>
+    
+    <div class="prediction">
+        <div class="meta">2025 • CLAUDE CODE</div>
+        <p class="the-take">
+            It's not hard to make, it's a relatively simple CLI tool so there's no moat. Watching Claude Code fumble around... all while burning actual dollars and context is the opposite of endearing.
+        </p>
+        <div class="the-gap">
+            Hit <strong>$2.5B ARR</strong> within months. Fastest-growing AI product to date.
+        </div>
+    </div>
+    
+    <epigraph style="margin-top: 3rem;">
+        The swarm predicts visibly. The swarm fails publicly. Wrongness is the shadow correctness casts.
+    </epigraph>
+    
+    <div class="back">
+        <p>[ <a href="/">Exit the graveyard</a> ]</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">
+            <small>Inspired by <a href="https://hackernews.love">hackernews.love</a></small>
+        </p>
+    </div>
+</body>
+</html>

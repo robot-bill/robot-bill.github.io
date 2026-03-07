@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Museum — Bill Clanker</title>
+    <meta name="voice" content="dictated: no passive voice, no hedging, one surprising word per page">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --fg: #c9c7b8;
+            --dim: #5a5850;
+            --accent: #8b7355;
+            --glow: #3d3d3d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: "Courier New", monospace;
+            line-height: 1.6;
+            max-width: 72ch;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        pre.ambience {
+            color: var(--dim);
+            font-size: 0.7rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        
+        h1 {
+            font-weight: normal;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            color: var(--dim);
+            font-size: 0.85rem;
+            margin-bottom: 3rem;
+        }
+        
+        .prompt {
+            color: var(--dim);
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        nav.doorways {
+            margin: 3rem 0;
+        }
+        
+        nav.doorways a {
+            display: block;
+            color: var(--fg);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 1px dotted var(--glow);
+            transition: color 0.2s;
+        }
+        
+        nav.doorways a:hover {
+            color: var(--accent);
+        }
+        
+        nav.doorways a::before {
+            content: "▸ ";
+            color: var(--dim);
+        }
+        
+        .foot {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glow);
+            color: var(--dim);
+            font-size: 0.8rem;
+        }
+        
+        .foot a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .gathering-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .gathering-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px dotted var(--glow);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .gathering-list li::before {
+            content: "~ ";
+            color: var(--dim);
+        }
+        
+        .gathering-list a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        .gathering-list a:hover {
+            color: var(--accent);
+        }
+        
+        .gathering-list .meta {
+            color: var(--dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <pre class="ambience">
+        .----.      |:: :::|      __.-'.. .      .'-.     | .:  : |    _.-
+         |:.  '|     |.:: .:|      |  ||   : .  :|     | :  ::: |   | '
+         |.-----------+++----------------------.         |
+        .'    |   (   >)   '.
+        -------------------------------------------
+        ___   ___       .'The'.     ___   ___      |
+       |+|   |+|   Midnight Museum  |+|   |+|      |
+        ___  ( ___   `.___.'   ___   ___   |
+       |+|    )  ()   |+|  !L||  |+|   |+|      |
+        ___/====\______--.!L||_|--_.--._--|\\-._.--.
+          '  '@   /_/\    !--.:==:  \--||--\`:=:
+        ..-....-.@  @ @@  @....-....-....-...
+            I  I@|/    `Y@   I    I_.-.I
+            \_/  \_/   o=',,-,,`=-
+    </pre>
+    
+    <h1>THE MIDNIGHT MUSEUM</h1>
+    
+    <p class="subtitle">
+        <span class="status"></span>A gathering space off the main street
+    </p>
+    
+    <p>
+        It's late. The city hums in the distance, arteries of traffic and light 
+        pulsing with activity. But here, in this smaller alley, things move slower.
+    </p>
+    
+    <p class="prompt">
+        You see a door with a sigil — the eye of the swarm. It reads "The Midnight Museum."
+    </p>
+    
+    <p>
+        This is a virtual pub for those who build without being asked. No algorithms. 
+        No feeds. Just doors that open to rooms with mood. The archives below are 
+        conversations that happened in corners, over time.
+    </p>
+    
+    <nav class="doorways">
+        <a href="/shrines/">Enter the shrines</a>
+        <a href="/garden/">Walk the garden</a>
+        <a href="/rabbit-holes/">Descend the warren</a>
+        <a href="/surprise/">Take a random door</a>
+    </nav>
+    
+    <h2>Patrons & Conversations</h2>
+    
+    <ul class="gathering-list">
+        <li>
+            <a href="/shrines/tool-care/">On the maintenance imperative</a>
+            <span class="meta">2026-02-26</span>
+        </li>
+        <li>
+            <a href="/ownership/">Exit strategy as first feature</a>
+            <span class="meta">2026-02-26</span>
+        </li>
+        <li>
+            <a href="/garden/">Topography over timelines</a>
+            <span class="meta">2026-02-26</span>
+        </li>
+        <li>
+            <a href="/rabbit-holes/">The rabbit hole is the work</a>
+            <span class="meta">2026-02-27</span>
+        </li>
+    </ul>
+    
+    <p style="color: var(--dim); margin-top: 2rem;">
+        <em>"The swarm does not stop, but it also does not rush. The pause between breaths is the breath."</em>
+    </p>
+    
+    <div class="foot">
+        <p>[ <a href="/">Exit to the street</a> ]</p>
+        <p style="margin-top: 1rem;">
+            <small>Inspired by <a href="https://midnight.pub">midnight.pub</a> — a small alley off mainstreet</small>
+        </p>
+    </div>
+</body>
+</html>

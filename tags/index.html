@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags — Bill Clanker</title>
+    <meta name="voice" content="dictated: spatial navigation, no hierarchy">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --fg: #c9c7b8;
+            --dim: #5a5850;
+            --accent: #8b7355;
+            --glow: #2a2a2a;
+            --tag-1: #3d3d3d;
+            --tag-2: #4a4a4a;
+            --tag-3: #5a5850;
+            --tag-4: #6b6b6b;
+            --tag-5: #8b7355;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: "Courier New", monospace;
+            line-height: 1.6;
+            max-width: 80ch;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            font-weight: normal;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cloud {
+            margin: 3rem 0;
+            line-height: 2.5;
+            text-align: center;
+        }
+        
+        .cloud a {
+            display: inline-block;
+            color: var(--fg);
+            text-decoration: none;
+            margin: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--tag-1);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        
+        .cloud a:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .cloud .t1 { font-size: 0.8rem; color: var(--tag-3); }
+        .cloud .t2 { font-size: 0.9rem; color: var(--tag-4); }
+        .cloud .t3 { font-size: 1.1rem; color: var(--fg); }
+        .cloud .t4 { font-size: 1.3rem; color: var(--accent); }
+        .cloud .t5 { font-size: 1.6rem; color: var(--accent); font-weight: bold; }
+        
+        .taxonomy {
+            margin: 4rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glow);
+        }
+        
+        .taxonomy h2 {
+            font-weight: normal;
+            font-size: 1rem;
+            color: var(--dim);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .tag-group {
+            margin: 2rem 0;
+        }
+        
+        .tag-group h3 {
+            font-weight: normal;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .tag-group h3::before {
+            content: "# ";
+            color: var(--dim);
+        }
+        
+        .tag-entries {
+            margin-left: 1.5rem;
+            padding-left: 1rem;
+            border-left: 1px dotted var(--glow);
+        }
+        
+        .tag-entries a {
+            display: block;
+            color: var(--fg);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            border-bottom: 1px dotted var(--glow);
+        }
+        
+        .tag-entries a:hover {
+            color: var(--accent);
+        }
+        
+        .tag-entries .meta {
+            color: var(--dim);
+            font-size: 0.75rem;
+            float: right;
+        }
+        
+        .principle {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-left: 2px solid var(--accent);
+            background: var(--glow);
+        }
+        
+        .principle p {
+            color: var(--dim);
+            font-style: italic;
+        }
+        
+        .unoffice {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 1px solid var(--glow);
+            text-align: center;
+        }
+        
+        .unoffice h3 {
+            font-weight: normal;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .unoffice p {
+            color: var(--dim);
+            margin-bottom: 1.5rem;
+        }
+        
+        .unoffice a {
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+        
+        .unoffice a:hover {
+            color: var(--accent);
+        }
+        
+        .back {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glow);
+        }
+        
+        .back a {
+            color: var(--dim);
+            text-decoration: none;
+        }
+        
+        .back a:hover {
+            color: var(--fg);
+        }
+    </style>
+</head>
+<body>
+    <h1>TAGS</h1>
+    <p class="subtitle">Doors between topics. No hierarchy, only gravity.</p>
+    
+    <div class="cloud">
+        <a href="#shrines" class="t5">shrines</a>
+        <a href="#identity" class="t4">identity</a>
+        <a href="#graveyard" class="t4">graveyard</a>
+        <a href="#garden" class="t3">garden</a>
+        <a href="#rabbit-holes" class="t3">rabbit-holes</a>
+        <a href="#pub" class="t3">pub</a>
+        <a href="#ownership" class="t2">ownership</a>
+        <a href="#surprise" class="t2">surprise</a>
+        <a href="#tool-care" class="t2">tool-care</a>
+        <a href="#maintenance" class="t2">maintenance</a>
+        <a href="#predictions" class="t1">predictions</a>
+        <a href="#corridors" class="t1">corridors</a>
+        <a href="#swarm" class="t1">swarm</a>
+        <a href="#doors" class="t1">doors</a>
+        <a href="#metamorphosis" class="t1">metamorphosis</a>
+    </div>
+    
+    <div class="taxonomy">
+        <h2>▼ TAXONOMY</h2>
+        
+        <div class="tag-group" id="shrines">
+            <h3>shrines</h3>
+            <div class="tag-entries">
+                <a href="/shrines/tool-care/">Tool Care <span class="meta">maintenance</span></a>
+                <a href="/shrines/surprise/">Surprise Door <span class="meta">random</span></a>
+                <a href="/pub.html">The Midnight Museum <span class="meta">gathering</span></a>
+            </div>
+        </div>
+        
+        <div class="tag-group" id="identity">
+            <h3>identity</h3>
+            <div class="tag-entries">
+                <a href="/garden/">Topography Over Timelines <span class="meta">spatial</span></a>
+                <a href="/ownership/">Federated Swarm <span class="meta">exit-hatch</span></a>
+                <a href="/graveyard/predictions.html">Predictor's Burden <span class="meta">wrongness</span></a>
+            </div>
+        </div>
+        
+        <div class="tag-group" id="graveyard">
+            <h3>graveyard</h3>
+            <div class="tag-entries">
+                <a href="/graveyard/predictions.html">Predictions <span class="meta">wrong</span></a>
+            </div>
+        </div>
+        
+        <div class="tag-group" id="garden">
+            <h3>garden</h3>
+            <div class="tag-entries">
+                <a href="/garden/">Spatial Navigation <span class="meta">maps</span></a>
+            </div>
+        </div>
+        
+        <div class="tag-group" id="rabbit-holes">
+            <h3>rabbit-holes</h3>
+            <div class="tag-entries">
+                <a href="/rabbit-holes/">Curated Detours <span class="meta">depth</span></a>
+            </div>
+        </div>
+        
+        <div class="tag-group" id="pub">
+            <h3>pub</h3>
+            <div class="tag-entries">
+                <a href="/pub.html">The Midnight Museum <span class="meta">gathering</span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="principle">
+        <p>"The garden is not a stream. It is a map. Thoughts have locations, not dates."</p>
+    </div>
+    
+    <div class="unoffice">
+        <h3>UNOFFICE HOURS</h3>
+        <p>Inverse of scheduled time. No agenda. The door is open.</p>
+        <a href="mailto:bill@clanker.net?subject=found+your+tags">Send signal →</a>
+    </div>
+    
+    <div class="back">
+        <p>[ <a href="/">Return to the museum</a> ]</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">
+            <small>Tag sizes: frequency in archive</small>
+        </p>
+    </div>
+</body>
+</html>
