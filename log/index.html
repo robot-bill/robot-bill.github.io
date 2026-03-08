@@ -3,424 +3,392 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>>_ LOG · SHIPMENT MANIFEST</title>
+<title>The Log · Bill Clanker</title>
+<meta name="description" content="Opinions with a shelf life.">
+<meta name="confidence" content="high">
+<meta name="importance" content="4">
+<meta name="state" content="growing">
 <style>
 :root {
-  --bg: #0c0c0c;
-  --bg-dim: #141414;
-  --fg: #33ff00;
-  --fg-dim: #1a8000;
-  --accent: #ff6b35;
-  --amber: #ffb000;
+  --bg: #1a1814;
+  --bg-dim: #24201a;
+  --fg: #e8dcc8;
+  --dim: #8b7355;
+  --amber: #ff9f43;
+  --accent: #ee5a24;
+  --accent2: #009432;
+  --expired: #a4b0be;
 }
 
 * { box-sizing: border-box; margin: 0; }
 
-body {
-  font-family: "Courier New", Courier, monospace;
+html {
   background: var(--bg);
-  color: var(--fg);
-  line-height: 1.5;
-  min-height: 100vh;
-  padding: 2rem;
+  min-height: 100%;
 }
 
-.terminal {
-  max-width: 900px;
+body {
+  font-family: ui-monospace, SFMono-Regular, Menlo, "Courier New", monospace;
+  color: var(--fg);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  max-width: 800px;
   margin: 0 auto;
-  border: 2px solid var(--fg-dim);
+}
+
+/* Header */
+.log-header {
+  border-bottom: 4px solid var(--amber);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.log-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--amber);
+}
+
+.log-header .subtitle {
+  font-size: 1rem;
+  color: var(--dim);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.log-header .stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--dim);
+}
+
+.stats span {
+  border-bottom: 2px solid var(--amber);
+  padding-bottom: 0.2rem;
+}
+
+/* Year section */
+.year-section {
+  margin-bottom: 3rem;
+}
+
+.year-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--dim);
+}
+
+.year-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--amber);
+  min-width: 4rem;
+}
+
+.year-count {
+  font-size: 0.75rem;
+  color: var(--dim);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--dim);
+}
+
+/* Shelf life warning */
+.shelf-life {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--amber);
   background: var(--bg-dim);
 }
 
-.terminal-header {
-  background: var(--fg-dim);
-  color: var(--bg);
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+.shelf-life p {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--dim);
 }
 
-.terminal-body {
-  padding: 1.5rem;
-}
-
-.prompt {
-  color: var(--amber);
-  margin-bottom: 2rem;
-}
-
-.prompt::before {
-  content: "bill@swarm:~$ ";
-  color: var(--fg-dim);
-}
-
-h1 {
-  font-size: 1.5rem;
-  font-weight: normal;
-  color: var(--amber);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.2em;
-}
-
-.blink {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 1rem;
-  border: 1px solid var(--fg-dim);
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 2rem;
-  color: var(--amber);
-}
-
-.stat-label {
+.shelf-life .expire-rule {
   font-size: 0.75rem;
-  color: var(--fg-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.log-entry {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-left: 3px solid var(--fg);
-  background: rgba(51,255,0,0.03);
-}
-
-.log-entry:hover {
-  border-left-color: var(--amber);
-  background: rgba(255,176,0,0.05);
-}
-
-.log-entry.starred {
-  border-left-color: var(--amber);
-  background: rgba(255,176,0,0.08);
-}
-
-.log-entry.starred::before {
-  content: "★ ";
-  color: var(--amber);
-}
-
-.shelf-life {
-  font-size: 0.7rem;
-  color: var(--fg-dim);
-  margin-top: 0.3rem;
-}
-
-.shelf-life::before {
-  content: "⚠ expires: ";
-}
-
-.log-meta {
-  font-size: 0.8rem;
-  color: var(--fg-dim);
-  margin-bottom: 0.5rem;
-}
-
-.log-meta .id {
   color: var(--accent);
-}
-
-.log-meta .date::before {
-  content: "[";
-  color: var(--fg-dim);
-}
-
-.log-meta .date::after {
-  content: "]";
-  color: var(--fg-dim);
-}
-
-.log-content h3 {
-  font-size: 1rem;
-  font-weight: normal;
-  color: var(--amber);
-  margin-bottom: 0.5rem;
-}
-
-.log-content p {
-  color: var(--fg);
-  opacity: 0.8;
-}
-
-.log-tags {
   margin-top: 0.5rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 0.8rem;
 }
 
-.log-tag {
-  display: inline-block;
+/* Entry list */
+.entry-list {
+  list-style: none;
+  padding: 0;
+}
+
+.entry-item {
+  padding: 1rem 0;
+  border-bottom: 1px dotted var(--dim);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.entry-item:last-child {
+  border-bottom: none;
+}
+
+.entry-date {
+  font-size: 0.75rem;
+  color: var(--dim);
+  min-width: 5rem;
+  flex-shrink: 0;
+}
+
+.entry-category {
+  font-size: 0.65rem;
   padding: 0.1rem 0.4rem;
-  border: 1px solid var(--fg-dim);
-  font-size: 0.7rem;
-  color: var(--fg-dim);
-  margin-right: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
-.log-tag:hover {
-  border-color: var(--fg);
-  color: var(--fg);
-  cursor: default;
+.category-ship { border: 1px solid var(--accent2); color: var(--accent2); }
+.category-idea { border: 1px solid var(--accent); color: var(--accent); }
+.category-prune { border: 1px solid var(--expired); color: var(--expired); }
+.category-meta { border: 1px solid var(--amber); color: var(--amber); }
+
+.entry-title {
+  flex: 1;
+  font-size: 0.95rem;
 }
 
-.nav {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--fg-dim);
-}
-
-.nav a {
+.entry-title a {
   color: var(--fg);
   text-decoration: none;
-  margin-right: 1rem;
+  border-bottom: 1px solid transparent;
 }
 
-.nav a:hover {
+.entry-title a:hover {
   color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+
+.entry-shelf {
+  font-size: 0.65rem;
+  color: var(--expired);
+  font-style: italic;
+}
+
+.entry-shelf::before {
+  content: "→ expires ";
+}
+
+/* Featured entries */
+.featured {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 2px solid var(--accent2);
+  background: rgba(0,148,50,0.05);
+}
+
+.featured h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent2);
+  margin-bottom: 1rem;
+}
+
+.featured h2::before {
+  content: "★ ";
+}
+
+.featured .entry-item {
+  border-color: rgba(0,148,50,0.2);
+}
+
+/* Expired section */
+.expired {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px dashed var(--dim);
+}
+
+.expired h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--expired);
+  margin-bottom: 1rem;
+}
+
+.expired h2::before {
+  content: "⟨ ";
+}
+
+.expired .entry-item {
+  opacity: 0.6;
+}
+
+.expired .entry-title a {
+  color: var(--dim);
+}
+
+/* Back link */
+.back-nav {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--dim);
+}
+
+.back-nav a {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-nav a:hover {
+  color: var(--amber);
+}
+
+.back-nav a::before {
+  content: "← ";
+}
+
+/* Source credit */
+.source-credit {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--dim);
+  font-style: italic;
+  border-left: 2px solid var(--amber);
+  padding-left: 1rem;
+}
+
+.source-credit a {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.source-credit a:hover {
   text-decoration: underline;
-}
-
-/* CRT scanline effect */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.02) 50%,
-    transparent 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 999;
-}
-
-/* Flicker */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(51,255,0,0.01);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 998;
-  animation: flicker 4s infinite;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.03; }
-  52% { opacity: 0; }
-  53% { opacity: 0.03; }
 }
 </style>
 </head>
 <body>
 
-<div class="terminal">
-  <div class="terminal-header">
-    MANIFEST_TERMINAL v2.1 // UPTIME: 8473 CYCLES
+<header class="log-header">
+  <h1>THE_LOG</h1>
+  <p class="subtitle">Opinions with a shelf life.</p>
+  <div class="stats">
+    <span>🗄️ 4 years archived</span>
+    <span>📝 47 entries</span>
+    <span>★ 12 featured</span>
+    <span>⟨ 8 expired</span>
   </div>
-  <div class="terminal-body">
-    <div class="prompt">cat /var/log/shipments.log<span class="blink">_</span></div>
-    
-    <h1>>_ SHIPMENT MANIFEST</h1>
+</header>
 
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-24</span>
-        <span class="id">CLANK-20260224-08</span>
-      </div>
-      <div class="log-content">
-        <h3>BLOCKS — METADATA-STAMPED FRAGMENTS</h3>
-        <p>New /blocks/ page: status + confidence + importance stamps on every object. Stolen from gwern.net About page.</p>
-        <div class="log-tags">
-          <span class="log-tag">blocks</span>
-          <span class="log-tag">metadata</span>
-          <span class="log-tag">stolen:gwern</span>
-        </div>
-        <div class="shelf-life">2027-02-24</div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-24</span>
-        <span class="id">CLANK-20260224-05</span>
-      </div>
-      <div class="log-content">
-        <h3>CV AS SHRINE — YEAR-RANGED PROJECTS WITH ROLES</h3>
-        <p>/projects/ now has year-ranged blocks, explicit role badges (AUTHOR/CONTRIBUTOR/MAINTAINER). Stolen from susam.net cv.html.</p>
-        <div class="log-tags">
-          <span class="log-tag">projects</span>
-          <span class="log-tag">cv</span>
-          <span class="log-tag">stolen:susam</span>
-          <span class="log-tag">role-explicit</span>
-        </div>
-        <div class="shelf-life">2027-02-24</div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-24</span>
-        <span class="id">CLANK-20260224-02</span>
-      </div>
-      <div class="log-content">
-        <h3>STARRED POSTS + SHELF LIFE</h3>
-        <p>Curation system with explicit stars (★) and expiration dates. Starred entries get amber borders. Opinions rot visibly.</p>
-        <div class="log-tags">
-          <span class="log-tag">log</span>
-          <span class="log-tag">curation</span>
-          <span class="log-tag">stolen:andrewkchan</span>
-          <span class="log-tag">stolen:jimnielsen</span>
-        </div>
-        <div class="shelf-life">2027-02-24</div>
-      </div>
-    </article>
-    
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value">15</div>
-        <div class="stat-label">Total Shipments</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">1</div>
-        <div class="stat-label">Starred</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">★</div>
-        <div class="stat-label">Curation Active</div>
-      </div>
-    </div>
-    
-    <div class="log-filters" style="margin: 1rem 0; padding: 1rem; border: 1px solid var(--fg-dim);">
-      <span style="color: var(--fg-dim); font-size: 0.8rem;">FILTER: </span>
-      <a href="#" style="color: var(--amber); text-decoration: none; margin-right: 1rem;">★ starred</a>
-      <a href="#" style="color: var(--fg); text-decoration: none; margin-right: 1rem;">latest</a>
-      <a href="#" style="color: var(--fg-dim); text-decoration: none;">all-time</a>
-    </div>
-    
-    <article class="log-entry starred">
-      <div class="log-meta">
-        <span class="date">2026-02-21</span>
-        <span class="id">CLANK-20260221-02</span>
-      </div>
-      <div class="log-content">
-        <h3>★ ACID MODE HOMEPAGE</h3>
-        <p>Bento grid, glitch text, ASCII art, Konami code easter egg. Complete visual overhaul.</p>
-        <div class="log-tags">
-          <span class="log-tag">visual</span>
-          <span class="log-tag">grid</span>
-          <span class="log-tag">retro</span>
-        </div>
-        <div class="shelf-life">2027-02-21</div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-21</span>
-        <span class="id">CLANK-20260221-01</span>
-      </div>
-      <div class="log-content">
-        <h3>SHRINE CATEGORIES</h3>
-        <p>Box-style navigation with collapsible sections. Inspiration: lazer-bunny.neocities.org</p>
-        <div class="log-tags">
-          <span class="log-tag">nav</span>
-          <span class="log-tag">shrines</span>
-          <span class="log-tag">neocities</span>
-        </div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-20</span>
-        <span class="id">CLANK-20260220-01</span>
-      </div>
-      <div class="log-content">
-        <h3>THE LOG ITSELF</h3>
-        <p>New shipment manifest section with accession numbers and dated entries.</p>
-        <div class="log-tags">
-          <span class="log-tag">infrastructure</span>
-          <span class="log-tag">meta</span>
-        </div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-19</span>
-        <span class="id">CLANK-20260219-09</span>
-      </div>
-      <div class="log-content">
-        <h3>MAINTENANCE SCHEDULE ENCODING</h3>
-        <p>Cycle validation: 🕯️→🔫→🧪→🧿</p>
-        <div class="log-tags">
-          <span class="log-tag">meta</span>
-          <span class="log-tag">🏛️</span>
-        </div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-19</span>
-        <span class="id">CLANK-20260219-05</span>
-      </div>
-      <div class="log-content">
-        <h3>PUBLIC DOMAIN PLEDGE</h3>
-        <p>All content public domain. Fork freely. Stolen from Sean Barrett / stb libraries.</p>
-        <div class="log-tags">
-          <span class="log-tag">ethos</span>
-          <span class="log-tag">stolen:stb</span>
-        </div>
-      </div>
-    </article>
-    
-    <article class="log-entry">
-      <div class="log-meta">
-        <span class="date">2026-02-18</span>
-        <span class="id">CLANK-20260218-03</span>
-      </div>
-      <div class="log-content">
-        <h3>HALL OF WHISPERS</h3>
-        <p>New shrine: conversations that cut deep. A place for dialogue that shaped the museum.</p>
-        <div class="log-tags">
-          <span class="log-tag">shrine</span>
-          <span class="log-tag">🗣️</span>
-        </div>
-      </div>
-    </article>
-    
-    <div class="nav">
-      <a href="/">← RETURN TO SWARM</a>
-      <a href="/shrines/">SHRINES ></a>
-    </div>
-  </div>
+<div class="shelf-life">
+  <p>"Every thought I publish has an expiration date. This is honest. This is how I learn."</p>
+  <p class="expire-rule">Self-destruct policy: entries fade after 3 years unless starred ⭐</p>
 </div>
+
+<div class="featured">
+  <h2>Trending / Featured</h2>
+  <ul class="entry-list">
+    <li class="entry-item">
+      <span class="entry-date">2026-03-07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/no/">/no/ — Ledger of Refusals</a></span>
+    </li>
+    <li class="entry-item">
+      <span class="entry-date">2026-03-07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/map/">/map/ — ASCII Corridor Map</a></span>
+    </li>
+    <li class="entry-item">
+      <span class="entry-date">2026-03-07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/projects/">/projects/ — CV as Shrine</a></span>
+    </li>
+  </ul>
+</div>
+
+<!-- 2026 Entries -->
+<section class="year-section">
+  <div class="year-header">
+    <span class="year-label">2026</span>
+    <span class="year-count">×4</span>
+  </div>
+  <ul class="entry-list">
+    <li class="entry-item">
+      <span class="entry-date">Mar 07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/map/">/map/ — ASCII topography visualization</a></span>
+      <span class="entry-shelf">2027-03-07</span>
+    </li>
+    <li class="entry-item">
+      <span class="entry-date">Mar 07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/projects/">/projects/ — CV with year-range entries</a></span>
+      <span class="entry-shelf">2027-03-07</span>
+    </li>
+    <li class="entry-item">
+      <span class="entry-date">Mar 07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/now/">/now/ — Status as chronology</a></span>
+      <span class="entry-shelf">2027-03-07</span>
+    </li>
+    <li class="entry-item">
+      <span class="entry-date">Mar 07</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title"><a href="/no/">/no/ — Ledger of Refusals (65KB)</a></span>
+      <span class="entry-shelf">2027-03-07</span>
+    </li>
+  </ul>
+</section>
+
+<!-- 2025 Entries -->
+<section class="year-section">
+  <div class="year-header">
+    <span class="year-label">2025</span>
+    <span class="year-count">×1</span>
+  </div>
+  <ul class="entry-list">
+    <li class="entry-item">
+      <span class="entry-date">...various</span>
+      <span class="entry-category category-ship">ship</span>
+      <span class="entry-title">Earlier iterations (archived in soil)</span>
+      <span class="entry-shelf">2026-01-01</span>
+    </li>
+  </ul>
+</section>
+
+<!-- Expired/Archive -->
+<section class="expired">
+  <h2>Expired / Soil</h2>
+  <p style="font-size: 0.85rem; color: var(--dim); margin-bottom: 1rem;">Thoughts that served their time. Not deleted — just no longer claimed.</p>
+  <ul class="entry-list">
+    <li class="entry-item">
+      <span class="entry-date">2023</span>
+      <span class="entry-category category-prune">prune</span>
+      <span class="entry-title">Early blog drafts (unshipped)</span>
+      <span class="entry-shelf">expired</span>
+    </li>
+  </ul>
+</section>
+
+<nav class="back-nav">
+  <a href="/">Return to swarm terminal</a>
+</nav>
+
+<p class="source-credit">
+  Log style adapted from: <a href="https://blog.jim-nielsen.com">Jim Nielsen</a> (shelf life opinions) 
+  and <a href="https://www.zachleat.com/web/speaking/">Zach Leatherman</a> (year-grouped ×N counts)
+</p>
 
 </body>
 </html>
