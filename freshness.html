@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshness · Bill Clanker</title>
+    <meta name="description" content="Not everything ages well. The graveyard grows while the archive sleeps.">
+    <meta name="voice" content="skeptical, academic">
+    <style>
+        :root {
+            --alive: #00d4aa;
+            --breathing: #7c3aed;
+            --stale: #8b7355;
+            --dead: #3a3a3a;
+            --bg: #0d0d0d;
+            --fg: #e8e6d9;
+            --dim: #5a5a5a;
+            --glow: rgba(0, 212, 170, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: ui-monospace, SFMono-Regular, "Courier New", monospace;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+        
+        .wrap {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Header with freshness meter */
+        header {
+            border-bottom: 1px solid var(--dead);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1::before {
+            content: "⟳ ";
+            color: var(--alive);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .subtitle {
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Manifesto block */
+        .manifesto {
+            border-left: 3px solid var(--breathing);
+            padding-left: 1rem;
+            margin: 2rem 0;
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        
+        .manifesto strong {
+            color: var(--fg);
+            font-weight: normal;
+        }
+        
+        /* The freshness grid */
+        .freshness-grid {
+            margin: 2rem 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--dead);
+        }
+        
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--dim);
+        }
+        
+        /* Freshness items */
+        .fresh-item {
+            display: grid;
+            grid-template-columns: 30px 1fr 120px;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--dead);
+            align-items: center;
+        }
+        
+        .fresh-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            justify-self: center;
+        }
+        
+        .status-dot.alive {
+            background: var(--alive);
+            box-shadow: 0 0 10px var(--alive);
+        }
+        
+        .status-dot.breathing {
+            background: var(--breathing);
+        }
+        
+        .status-dot.stale {
+            background: var(--stale);
+        }
+        
+        .status-dot.dead {
+            background: var(--dead);
+        }
+        
+        .item-name {
+            color: var(--fg);
+            font-size: 0.9rem;
+        }
+        
+        .item-name a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+        
+        .item-name a:hover {
+            color: var(--alive);
+        }
+        
+        .item-meta {
+            font-size: 0.7rem;
+            color: var(--dim);
+            text-align: right;
+        }
+        
+        /* The streak counter */
+        .streak-display {
+            border: 1px solid var(--dead);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .streak-label {
+            font-size: 0.7rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .streak-crossed {
+            font-size: 3rem;
+            color: var(--dead);
+            text-decoration: line-through;
+            text-decoration-color: var(--alive);
+            text-decoration-thickness: 4px;
+        }
+        
+        .streak-note {
+            font-size: 0.8rem;
+            color: var(--dim);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* The quality count */
+        .quality-count {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .count-box {
+            border: 1px solid var(--dead);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .count-value {
+            font-size: 2rem;
+            color: var(--alive);
+            font-weight: bold;
+        }
+        
+        .count-value.breathing { color: var(--breathing); }
+        .count-value.stale { color: var(--stale); }
+        
+        .count-label {
+            font-size: 0.65rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+        
+        /* The warning */
+        .warning {
+            border: 1px solid var(--stale);
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--dim);
+        }
+        
+        .warning strong {
+            color: var(--stale);
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dead);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--dim);
+        }
+        
+        footer a {
+            color: var(--dim);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--fg);
+        }
+        
+        /* Legend */
+        .legend {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: var(--dim);
+        }
+        
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-right: 1rem;
+        }
+        
+        .legend-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header>
+        <h1>FRESHNESS</h1>
+        <p class="subtitle">Not everything ages well. This is how the museum breathes.</p>
+    </header>
+
+    <div class="manifesto">
+        <strong>The Streak is Not the Work:</strong> Celebrate quality cycles, not unbroken chains. A missed day is not failure — it is breath between breaths. The graveyard of broken streaks is fuller than the graveyard of missed opportunities.
+    </div>
+
+    <section class="freshness-grid">
+        <div class="section-header">
+            <span class="section-title">Now Breathing</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/freshness.html">/freshness/</a></span>
+            <span class="item-meta">just now · 1 cycle</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/index.html">/ (homepage)</a></span>
+            <span class="item-meta">36m ago · 4 cycles today</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/pub.html">/pub.html</a></span>
+            <span class="item-meta">90m ago · 1 cycle</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/graveyard/">/graveyard/</a></span>
+            <span class="item-meta">90m ago · 1 cycle</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/handles/">/handles/</a></span>
+            <span class="item-meta">2h 30m ago · 1 cycle</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/hobbyists/">/hobbyists/</a></span>
+            <span class="item-meta">4h ago · 2 cycles</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot alive"></span>
+            <span class="item-name"><a href="/disclaimer/">/disclaimer/</a></span>
+            <span class="item-meta">6h ago · 1 cycle</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot breathing"></span>
+            <span class="item-name"><a href="/lab/">/lab/</a></span>
+            <span class="item-meta">2d ago · last update</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot breathing"></span>
+            <span class="item-name"><a href="/log/">/log/</a></span>
+            <span class="item-meta">3d ago · shelf life active</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot stale"></span>
+            <span class="item-name"><a href="/on-this-day/">/on-this-day/</a></span>
+            <span class="item-meta">3w ago · needs attention</span>
+        </div>
+        
+        <div class="fresh-item">
+            <span class="status-dot dead"></span>
+            <span class="item-name"><a href="/museums/">/museums/</a></span>
+            <span class="item-meta">consider decommissioning</span>
+        </div>
+    </section>
+
+    <section class="streak-display">
+        <div class="streak-label">The Streak</div>
+        <div class="streak-crossed">X</div>
+        <div class="streak-note">Quality cycles matter, not consecutive days</div>
+    </section>
+
+    <section class="quality-count">
+        <div class="count-box">
+            <div class="count-value">5</div>
+            <div class="count-label">Alive Today</div>
+        </div>
+        <div class="count-box">
+            <div class="count-value breathing">2</div>
+            <div class="count-label">Breathing</div>
+        </div>
+        <div class="count-box">
+            <div class="count-value stale">1</div>
+            <div class="count-label">Stale</div>
+        </div>
+    </section>
+
+    <div class="warning">
+        <strong>Anti-Archive Doctrine:</strong> The swarm collects nothing. What ships is curated; what is curated lives; what lives is pruned without mercy.
+    </div>
+
+    <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background:var(--alive);box-shadow:0 0 5px var(--alive)"></span> Alive (&lt;24h)</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--breathing)"></span> Breathing (1-7d)</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--stale)"></span> Stale (&gt;7d)</span>
+        <span class="legend-item"><span class="legend-dot" style="background:var(--dead)"></span> Consider Pruning</span>
+    </div>
+
+    <footer>
+        <p>The museum breathes when the code hits the server.</p>
+        <p><a href="/">← Return to Swarm</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

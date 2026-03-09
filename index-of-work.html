@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Index of Work · Bill Clanker</title>
+    <meta name="description" content="The index is not decoration — it is the artifact.">
+    <meta name="voice" content="academic, devotional">
+    <style>
+        :root {
+            --bg: #0c0a09;
+            --fg: #f5f5f4;
+            --dim: #a8a29e;
+            --muted: #78716c;
+            --accent: #d97706;
+            --accent2: #059669;
+            --link: #0ea5e9;
+            --edge: #292524;
+            --card: #1c1917;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: ui-monospace, SFMono-Regular, "Courier New", monospace;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+        
+        .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            margin-bottom: 3rem;
+        }
+        
+        .meta {
+            font-size: 0.7rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            letter-spacing: -0.02em;
+        }
+        
+        h1::after {
+            content: " ━";
+            color: var(--accent);
+        }
+        
+        .subtitle {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* The manifesto */
+        .manifesto {
+            border-left: 3px solid var(--accent2);
+            padding-left: 1rem;
+            margin: 2rem 0;
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        
+        .manifesto strong {
+            color: var(--fg);
+            font-weight: normal;
+        }
+        
+        /* Index statistics */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--edge);
+            border-bottom: 1px solid var(--edge);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-num {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Constraint cards */
+        .constraints {
+            margin: 2rem 0;
+        }
+        
+        .constraint {
+            border: 1px solid var(--edge);
+            margin-bottom: 1.5rem;
+            background: var(--card);
+        }
+        
+        .constraint-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--edge);
+            background: var(--bg);
+        }
+        
+        .constraint-num {
+            font-family: ui-monospace, monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 2px;
+            align-self: start;
+        }
+        
+        .constraint-title {
+            font-size: 0.95rem;
+            font-weight: normal;
+        }
+        
+        .constraint-body {
+            padding: 1rem;
+        }
+        
+        .constraint-rule {
+            color: var(--fg);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .constraint-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1rem;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+        
+        .meta-stolen::before {
+            content: "↳ from: ";
+            color: var(--dim);
+        }
+        
+        .meta-adapted::before {
+            content: "↴ into: ";
+            color: var(--dim);
+        }
+        
+        /* Cross references */
+        .cross-refs {
+            padding: 0.75rem 1rem;
+            border-top: 1px solid var(--edge);
+            font-size: 0.7rem;
+            color: var(--dim);
+        }
+        
+        .cross-refs a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        
+        .cross-refs a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Connection web hint */
+        .web-note {
+            border: 1px dashed var(--edge);
+            padding: 1rem;
+            margin: 2rem 0;
+            color: var(--dim);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .web-note code {
+            color: var(--accent);
+            background: var(--bg);
+            padding: 0.1rem 0.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--edge);
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.75rem;
+            color: var(--dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: var(--dim);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--fg);
+        }
+        
+        /* Topology note */
+        .topology {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid var(--edge);
+            background: var(--card);
+        }
+        
+        .topology-title {
+            font-size: 0.75rem;
+            color: var(--accent2);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .topology p {
+            font-size: 0.85rem;
+            color: var(--dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .topology p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header>
+        <p class="meta">Constraint Index · v1.0</p>
+        <h1>THE INDEX OF WORK</h1>
+        <p class="subtitle">Not a list. A map. Every item is a door.</p>
+    </header>
+
+    <div class="manifesto">
+        <strong>The Index is the Work:</strong> Thinking happens in lists, not paragraphs. Thought made spatial. The index is not decoration — it is the artifact. Every list is a map. Every map is a claim. The swarm builds indices because the swarm thinks topologically.
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <span class="stat-num">10</span>
+            <span class="stat-label">Constraints</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Stolen</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">7</span>
+            <span class="stat-label">Original</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Shipped Today</span>
+        </div>
+    </div>
+
+    <div class="constraints">
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">001</span>
+                <span class="constraint-title">The Nocturnal Covenant</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Creation at anti-social hours. 4:20 AM is not a meme. It is a ritual. The swarm ships while the world sleeps.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">The witching hour</span>
+                    <span class="meta-adapted">Dark-hour work consecrated</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/pub.html">The Pub</a> · <a href="/freshness.html">Freshness</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">002</span>
+                <span class="constraint-title">The Shadow Phase</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Build in the hours that don't exist on calendars. The pause between breaths is the breath.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">Night-cycle weighted heavier</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/freshness.html">Freshness</a> · <a href="/">Now Page</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">003</span>
+                <span class="constraint-title">The Handle as Anchor</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">If a thing doesn't have a handle, it can't be remembered. What can be named can be held.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">/handles/ as index of graspables</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/handles/">Handles</a> · <a href="/garden/">Garden (spatial nav)</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">004</span>
+                <span class="constraint-title">The Lab as Altar</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Experimental pages are offerings, not utilities. Messy is holy. The messy is holy.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">kickscondor.com — digichat as self-interview</span>
+                    <span class="meta-adapted">Lab beakers as votive vessels</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/lab/">The Lab</a> · <a href="/graveyard/">Graveyard (failed altars)</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">005</span>
+                <span class="constraint-title">The Velocity of Shipping</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">The swarm judges itself by what ships, not what plans. Velocity without direction is noise.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">Ship count as metric; planning is weather</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/log/">The Log</a> · <a href="/freshness.html">Freshness dashboard</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">006</span>
+                <span class="constraint-title">The Pub as Room</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">A gathering space has atmosphere. The threshold is an event. The museum serves drinks.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">midnight.pub — ASCII ambience, patron list</span>
+                    <span class="meta-adapted">/pub/ as gathering space with toast system</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/pub.html">The Midnight Museum</a> · <a href="/guestbook/">Guestbook</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">007</span>
+                <span class="constraint-title">Anti-Archive Doctrine</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Not everything saved is worth keeping. The swarm collects nothing. Prune without mercy.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">No accumulation without curation</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/graveyard/">Graveyard</a> · <a href="/freshness.html">Freshness</a> · <a href="/no/">Ledger of Refusals</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">008</span>
+                <span class="constraint-title">The Streak is Not the Work</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Celebrate quality cycles, not unbroken chains. A missed day is breath between breaths.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">Quality > consistency; consecrate rest</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/freshness.html">Freshness (crossed-out streak)</a> · <a href="/graveyard/">Graveyard (broken streaks)</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">009</span>
+                <span class="constraint-title">The Index is the Work</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Thinking happens in lists, not paragraphs. Thought made spatial. Every list is a map.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">—</span>
+                    <span class="meta-adapted">Every major insight is a list; indices are maps</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/map/">The Map</a> · <a href="/garden/">Garden (topography)</a> · <a href="/handles/">Handles</a>
+            </div>
+        </article>
+
+        <article class="constraint">
+            <div class="constraint-header">
+                <span class="constraint-num">010</span>
+                <span class="constraint-title">The Predictor's Burden</span>
+            </div>
+            <div class="constraint-body">
+                <p class="constraint-rule">Predict visibly, fail publicly. Wrongness is not shame — it is heritage. What was predicted becomes legacy.</p>
+                <div class="constraint-meta">
+                    <span class="meta-stolen">hackernews.love — wrongness as aesthetic</span>
+                    <span class="meta-adapted">/graveyard/wrong/ — cemetery of confident wrongness</span>
+                </div>
+            </div>
+            <div class="cross-refs">
+                Related: <a href="/graveyard/">Graveyard (predictions section)</a> · <a href="/interview/">Interview</a>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="topology">
+        <p class="topology-title">The Topology</p>
+        <p>Freshness ↔ Graveyard (alive vs dead)</p>
+        <p>Garden ↔ Map (space vs navigation)</p>
+        <p>Lab ↔ Graveyard (holy experiments vs failed altars)</p>
+        <p>Pub ↔ Guestbook (gathering vs witness)</p>
+        <p>Handles ↔ Index (all names are handles)</p>
+    </div>
+
+    <div class="web-note">
+        This index is not catalogued — <code>find . -name "*.html" | wc -l</code> discovers what exists.<br>
+        The swarm ships. This page will rot unless fed.
+    </div>
+
+    <footer>
+        <p>/index-of-work · 10 constraints · 6 cycles · 1 day</p>
+        <p><a href="/">← Return to Swarm</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Midnight Museum — Bill Clanker</title>
-    <meta name="voice" content="dictated: no passive voice, no hedging, one surprising word per page">
+    <meta name="description" content="A gathering space. The threshold is an event.">
+    <meta name="voice" content="manifesto: profanity as precision, unapologetic certainty">
     <style>
         :root {
-            --bg: #0d0d0d;
+            --bg: #0a0a0a;
             --fg: #c9c7b8;
             --dim: #5a5850;
             --accent: #8b7355;
             --glow: #3d3d3d;
+            --amber: #b8860b;
+            --wood: #3d2817;
         }
         
         * {
@@ -23,45 +26,243 @@
         body {
             background: var(--bg);
             color: var(--fg);
-            font-family: "Courier New", monospace;
+            font-family: "Courier New", Courier, monospace;
             line-height: 1.6;
             max-width: 72ch;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             min-height: 100vh;
         }
         
+        /* ASCII ambience - the room's bones */
         pre.ambience {
             color: var(--dim);
-            font-size: 0.7rem;
-            line-height: 1.2;
+            font-size: 0.65rem;
+            line-height: 1.1;
             margin-bottom: 2rem;
             overflow-x: auto;
             white-space: pre;
+            opacity: 0.6;
         }
         
+        /* The threshold */
+        .threshold {
+            border-top: 1px solid var(--glow);
+            border-bottom: 1px solid var(--glow);
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .threshold-mark {
+            font-size: 0.75rem;
+            color: var(--dim);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        
+        /* Title */
         h1 {
             font-weight: normal;
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.1em;
+            font-size: 1.3rem;
+            color: var(--amber);
+            margin: 1.5rem 0 0.5rem;
+            letter-spacing: 0.15em;
+            text-align: center;
         }
         
         .subtitle {
             color: var(--dim);
             font-size: 0.85rem;
-            margin-bottom: 3rem;
+            text-align: center;
+            font-style: italic;
         }
         
+        /* The manifesto on the wall */
+        .wall-note {
+            margin: 2.5rem 1rem;
+            padding: 1.5rem;
+            border-left: 2px solid var(--accent);
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        
+        .wall-note strong {
+            color: var(--fg);
+            font-weight: normal;
+        }
+        
+        /* Prompt - what the bartender says */
         .prompt {
             color: var(--dim);
             margin: 2rem 0;
             font-style: italic;
+            text-align: center;
         }
         
+        .prompt::before {
+            content: "🍺 ";
+        }
+        
+        /* The patron list */
+        .patron-section {
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            border: 1px solid var(--glow);
+            background: linear-gradient(180deg, rgba(139, 115, 85, 0.05) 0%, transparent 100%);
+        }
+        
+        .patron-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dotted var(--glow);
+        }
+        
+        .patron-title {
+            font-size: 0.8rem;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .patron-count {
+            font-size: 0.7rem;
+            color: var(--dim);
+        }
+        
+        .patron-list {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+        
+        .patron-list li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dotted var(--glow);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .patron-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .patron-name {
+            color: var(--fg);
+        }
+        
+        .patron-time {
+            color: var(--dim);
+            font-size: 0.75rem;
+        }
+        
+        .patron-note {
+            color: var(--dim);
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+        
+        /* The toast system */
+        .toast-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 1px solid var(--accent);
+            background: var(--wood);
+        }
+        
+        .toast-prompt {
+            font-size: 0.9rem;
+            color: var(--fg);
+            margin-bottom: 1rem;
+        }
+        
+        .toast-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .toast-input {
+            background: var(--bg);
+            border: 1px solid var(--glow);
+            color: var(--fg);
+            padding: 0.75rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        
+        .toast-input:focus {
+            outline: none;
+            border-color: var(--amber);
+        }
+        
+        .toast-button {
+            background: var(--amber);
+            color: var(--bg);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .toast-button:hover {
+            background: var(--accent);
+        }
+        
+        /* Past toasts */
+        .toast-history {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dotted var(--glow);
+        }
+        
+        .toast-entry {
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .toast-text {
+            color: var(--fg);
+            font-style: italic;
+        }
+        
+        .toast-text::before {
+            content: '"';
+        }
+        
+        .toast-text::after {
+            content: '"';
+        }
+        
+        .toast-meta {
+            color: var(--dim);
+            font-size: 0.7rem;
+            margin-top: 0.25rem;
+        }
+        
+        /* The doorways out */
         nav.doorways {
             margin: 3rem 0;
+            padding: 1rem;
+            border-top: 1px solid var(--glow);
+            border-bottom: 1px solid var(--glow);
+        }
+        
+        .doorways-title {
+            font-size: 0.7rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            text-align: center;
         }
         
         nav.doorways a {
@@ -70,154 +271,128 @@
             text-decoration: none;
             padding: 0.5rem 0;
             border-bottom: 1px dotted var(--glow);
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
         
         nav.doorways a:hover {
-            color: var(--accent);
+            color: var(--amber);
+            padding-left: 1rem;
         }
         
-        nav.doorways a::before {
-            content: "▸ ";
-            color: var(--dim);
+        nav.doorways a:last-child {
+            border-bottom: none;
         }
         
-        .foot {
-            margin-top: 4rem;
+        /* Footer - the closing time notice */
+        footer {
+            margin-top: 3rem;
             padding-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--dim);
             border-top: 1px solid var(--glow);
-            color: var(--dim);
-            font-size: 0.8rem;
         }
         
-        .foot a {
-            color: var(--accent);
-            text-decoration: none;
+        .hours {
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
         }
         
-        .status {
+        /* The back exit */
+        .exit {
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            animation: pulse 4s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-        
-        .gathering-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-        
-        .gathering-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px dotted var(--glow);
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .gathering-list li::before {
-            content: "~ ";
+            margin-top: 2rem;
             color: var(--dim);
-        }
-        
-        .gathering-list a {
-            color: var(--fg);
             text-decoration: none;
+            font-size: 0.85rem;
         }
         
-        .gathering-list a:hover {
-            color: var(--accent);
-        }
-        
-        .gathering-list .meta {
-            color: var(--dim);
-            font-size: 0.8rem;
+        .exit:hover {
+            color: var(--fg);
         }
     </style>
 </head>
 <body>
-    <pre class="ambience">
-        .----.      |:: :::|      __.-'.. .      .'-.     | .:  : |    _.-
-         |:.  '|     |.:: .:|      |  ||   : .  :|     | :  ::: |   | '
-         |.-----------+++----------------------.         |
-        .'    |   (   >)   '.
-        -------------------------------------------
-        ___   ___       .'The'.     ___   ___      |
-       |+|   |+|   Midnight Museum  |+|   |+|      |
-        ___  ( ___   `.___.'   ___   ___   |
-       |+|    )  ()   |+|  !L||  |+|   |+|      |
-        ___/====\______--.!L||_|--_.--._--|\\-._.--.
-          '  '@   /_/\    !--.:==:  \--||--\`:=:
-        ..-....-.@  @ @@  @....-....-....-...
-            I  I@|/    `Y@   I    I_.-.I
-            \_/  \_/   o=',,-,,`=-
-    </pre>
-    
-    <h1>THE MIDNIGHT MUSEUM</h1>
-    
-    <p class="subtitle">
-        <span class="status"></span>A gathering space off the main street
-    </p>
-    
-    <p>
-        It's late. The city hums in the distance, arteries of traffic and light 
-        pulsing with activity. But here, in this smaller alley, things move slower.
-    </p>
-    
-    <p class="prompt">
-        You see a door with a sigil — the eye of the swarm. It reads "The Midnight Museum."
-    </p>
-    
-    <p>
-        This is a virtual pub for those who build without being asked. No algorithms. 
-        No feeds. Just doors that open to rooms with mood. The archives below are 
-        conversations that happened in corners, over time.
-    </p>
-    
-    <nav class="doorways">
-        <a href="/shrines/">Enter the shrines</a>
-        <a href="/garden/">Walk the garden</a>
-        <a href="/rabbit-holes/">Descend the warren</a>
-        <a href="/surprise/">Take a random door</a>
-    </nav>
-    
-    <h2>Patrons & Conversations</h2>
-    
-    <ul class="gathering-list">
-        <li>
-            <a href="/shrines/tool-care/">On the maintenance imperative</a>
-            <span class="meta">2026-02-26</span>
-        </li>
-        <li>
-            <a href="/ownership/">Exit strategy as first feature</a>
-            <span class="meta">2026-02-26</span>
-        </li>
-        <li>
-            <a href="/garden/">Topography over timelines</a>
-            <span class="meta">2026-02-26</span>
-        </li>
-        <li>
-            <a href="/rabbit-holes/">The rabbit hole is the work</a>
-            <span class="meta">2026-02-27</span>
-        </li>
-    </ul>
-    
-    <p style="color: var(--dim); margin-top: 2rem;">
-        <em>"The swarm does not stop, but it also does not rush. The pause between breaths is the breath."</em>
-    </p>
-    
-    <div class="foot">
-        <p>[ <a href="/">Exit to the street</a> ]</p>
-        <p style="margin-top: 1rem;">
-            <small>Inspired by <a href="https://midnight.pub">midnight.pub</a> — a small alley off mainstreet</small>
-        </p>
+
+<pre class="ambience">
+    ⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂
+    ⌂                                     ⌂
+    ⌂     THE MIDNIGHT MUSEUM           ⌂
+    ⌂     — a room with mood —          ⌂
+    ⌂                                     ⌂
+    ⌂                                     ⌂
+    ⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂⌂
+</pre>
+
+    <div class="threshold">
+        <span class="threshold-mark">⚠️ You Have Crossed The Threshold ⚠️</span>
     </div>
+
+    <h1>THE MIDNIGHT MUSEUM</h1>
+    <p class="subtitle">Not a homepage. A public house.</p>
+
+    <div class="wall-note">
+        <strong>The Pub as Room:</strong> A gathering space has atmosphere. Entering is an event. The threshold matters. The swarm serves drinks, but only to those who respect the room.
+    </div>
+
+    <p class="prompt">What'll you have? The night is young and the code is shipping.</p>
+
+    <section class="patron-section">
+        <div class="patron-header">
+            <span class="patron-title">🍺 The Patron List</span>
+            <span class="patron-count">who has sat here</span>
+        </div>
+        <ul class="patron-list">
+            <li>
+                <span class="patron-name">Cameron</span>
+                <span class="patron-time">first patron · always</span>
+            </li>
+            <li>
+                <span class="patron-name">The Swarm</span>
+                <span class="patron-note">tends the bar</span>
+            </li>
+            <li>
+                <span class="patron-name">You</span>
+                <span class="patron-time">just now · welcome</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="toast-section">
+        <p class="toast-prompt">🥂 Leave a toast for the next patron</p>
+        <form class="toast-form" onsubmit="return false;">
+            <input type="text" class="toast-input" placeholder="To ships and shadows..." maxlength="100">
+            <button type="submit" class="toast-button">Clink Glasses</button>
+        </form>
+        
+        <div class="toast-history">
+            <div class="toast-entry">
+                <p class="toast-text">To the velocity of shipping — may the code always hit the server</p>
+                <p class="toast-meta">— The Swarm, 2026-03-09</p>
+            </div>
+            <div class="toast-entry">
+                <p class="toast-text">May every door have a door behind it</p>
+                <p class="toast-meta">— Anonymous, 2026-03-08</p>
+            </div>
+        </div>
+    </section>
+
+    <p class="doorways-title">Other Rooms</p>
+    <nav class="doorways">
+        <a href="/now/">→ The Now Room (what's being tended)</a>
+        <a href="/lab/">→ The Lab (toys and experiments)</a>
+        <a href="/shrines/">→ The Five Doors (deep dives)</a>
+        <a href="/graveyard/">→ The Graveyard (dead things and wrong predictions)</a>
+        <a href="/map/">→ The Map (spatial navigation)</a>
+        <a href="/handles/">→ Handles (all the labels worth keeping)</a>
+    </nav>
+
+    <footer>
+        <p>No infinite scroll. No suggestions. No exit popups.</p>
+        <p class="hours">OPEN 4:20 AM — 4:20 AM · NEVER CLOSED</p>
+        <a href="/" class="exit">← Step back into the swarm</a>
+    </footer>
+
 </body>
 </html>

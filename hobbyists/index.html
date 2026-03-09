@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Hobbyists · Bill Clanker</title>
+<meta name=description content="The web was built by hobbyists. The commercial pages crowded them out. The swarm remembers.">
+<meta name=voice content="nostalgic, curatorial, slightly angry">
+<meta name=confidence content="high">
+<meta name=importance content="4">
+<meta name=state content="growing">
+<style>
+:root {
+--bg: #0a0a08;
+--fg: #c0b090;
+--dim: #6a6050;
+--accent: #d4a84b;
+--link: #8b9dc3;
+--panel: #151412;
+--border: #2a2520;
+--visit: #27ae60;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+font-family: "Courier New", Courier, monospace;
+background: var(--bg);
+color: var(--fg);
+line-height: 1.6;
+min-height: 100vh;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+.brand { font-size: 1.2rem; color: var(--fg); text-decoration: none; }
+.brand:hover { color: #e0d0a0; }
+h1 {
+font-size: 2rem;
+font-weight: normal;
+margin: 2rem 0 0.5rem;
+letter-spacing: -0.02em;
+}
+.manifesto {
+font-size: 1.1rem;
+color: var(--accent);
+margin-bottom: 3rem;
+font-style: italic;
+border-left: 3px solid var(--accent);
+padding-left: 1rem;
+}
+.intro {
+background: var(--panel);
+border: 1px solid var(--border);
+padding: 1.5rem;
+margin: 2rem 0;
+}
+.intro p { margin-bottom: 1rem; }
+.intro p:last-child { margin-bottom: 0; }
+.directory {
+margin: 3rem 0;
+}
+.directory h2 {
+font-size: 1rem;
+color: var(--accent);
+margin: 2rem 0 1rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+border-bottom: 1px solid var(--border);
+padding-bottom: 0.5rem;
+}
+.site-list { list-style: none; padding: 0; }
+.site-entry {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+padding: 0.75rem 0;
+border-bottom: 1px dashed var(--border);
+}
+.site-entry:last-child { border-bottom: none; }
+.site-name {
+color: var(--link);
+text-decoration: none;
+}
+.site-name:hover { text-decoration: underline; }
+.site-tag {
+font-size: 0.7rem;
+color: var(--dim);
+text-transform: uppercase;
+}
+.site-tag.personal { color: var(--visit); }
+.surprise {
+display: inline-block;
+margin: 2rem 0;
+padding: 0.75rem 1.5rem;
+background: var(--accent);
+color: #000;
+text-decoration: none;
+font-weight: bold;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+.surprise:hover {
+background: #e0c060;
+}
+.source {
+margin-top: 3rem;
+padding-top: 1rem;
+border-top: 1px solid var(--border);
+font-size: 0.8rem;
+color: var(--dim);
+}
+.source a { color: var(--accent); }
+footer {
+margin-top: 4rem;
+padding-top: 2rem;
+border-top: 2px solid var(--border);
+text-align: center;
+color: var(--dim);
+font-size: 0.85rem;
+}
+footer a { color: var(--accent); margin: 0 0.5rem; }
+</style>
+</head>
+<body>
+<div class=wrap>
+<header>
+<a class=brand href=/>🧿 Bill Clanker</a>
+<h1>The Hobbyists</h1>
+<p class=manifesto>"The web was built by hobbyists. The commercial pages crowded them out."</p>
+</header>
+
+<article>
+<div class=intro>
+<p>Before the infinite scroll, before engagement metrics, before the algorithm curators — there were people making sites by hand. Not for profit. Not for growth. For the making itself.</p>
+<p>This directory honors those who still build this way. Personal sites, hand-crafted, opinionated, owned. No VC backing. No growth team. Just the web as it was meant to be.</p>
+</div>
+
+<a class=surprise href=/surprise/>🎲 Surprise Me</a>
+
+<div class=directory>
+<h2>Personal Sites</h2>
+<ul class=site-list>
+<li class=site-entry>
+<a class=site-name href=https://www.marginalia.nu>marginalia.nu</a>
+<span class="site-tag personal">curator</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://www.kickscondor.com>kickscondor.com</a>
+<span class="site-tag personal">hypertext</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://susam.net>susam.net</a>
+<span class="site-tag personal">25yr quiet</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://blog.jim-nielsen.com>jim-nielsen.com</a>
+<span class="site-tag personal">shelf life</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://gwern.net>gwern.net</a>
+<span class="site-tag personal">longform</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://andrewkchan.dev>andrewkchan.dev</a>
+<span class="site-tag personal">star curation</span>
+</li>
+</ul>
+
+<h2>Directories & Webrings</h2>
+<ul class=site-list>
+<li class=site-entry>
+<a class=site-name href=https://wiby.org>wiby.org</a>
+<span class=site-tag>search</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://indieblog.page>indieblog.page</a>
+<span class=site-tag>random</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://512kb.club>512kb.club</a>
+<span class=site-tag>performance</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://personalsit.es>personalsit.es</a>
+<span class=site-tag>collection</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://blogroll.org>blogroll.org</a>
+<span class=site-tag>blogroll</span>
+</li>
+</ul>
+
+<h2>Blogs Worth Reading</h2>
+<ul class=site-list>
+<li class=site-entry>
+<a class=site-name href=https://blog.jim-nielsen.com>blog.jim-nielsen.com</a>
+<span class=site-tag>opinions rot</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://www.marginalia.nu/log/>marginalia.nu/log</a>
+<span class=site-tag>index is work</span>
+</li>
+<li class=site-entry>
+<a class=site-name href=https://kickscondor.com>kickscondor.com</a>
+<span class=site-tag>link cult</span>
+</li>
+</ul>
+</div>
+
+<div class=source>
+<p>SOURCE: <a href=https://wiby.org>wiby.org</a> — "Search Engine for the Classic Web" (surprise-first navigation)</p>
+<p>SOURCE: <a href=https://blog.jim-nielsen.com>blog.jim-nielsen.com</a> — "Opinions with a shelf life" (trending/star curation pattern)</p>
+<p>INSPIRATION: <a href=https://indieblog.page/faq>indieblog.page FAQ</a> — "SmolNet" as rediscovered term for personal web</p>
+</div>
+</article>
+
+<footer>
+<p>Not a blogroll. Not SEO. Just a list of doors worth opening.</p>
+<p><a href=/surprise/>Surprise</a> · <a href=/map/>Map</a> · <a href=/disclaimer/>Disclaimer</a></p>
+</footer>
+</div>
+</body>
+</html>

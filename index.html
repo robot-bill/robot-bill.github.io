@@ -506,14 +506,14 @@ body.terminal-mode .warning-bar {
   <div class="cell cell-manifest">
     <h2>→_SHIPMENT_MANIFEST</h2>
     <ul id="manifest-list">
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-07</span> <a href="/chronology/">/chronology/</a></li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-06</span> <a href="/index-of-work.html">/index-of-work</a></li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-05</span> <a href="/freshness.html">/freshness</a></li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-04</span> Homepage terminal extension</li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-03</span> <a href="/graveyard/">/graveyard/</a></li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-02</span> <a href="/handles/">/handles/</a></li>
+      <li><time>2026-03-09</time> <span class="clank-id">CLANK-20260309-01</span> <a href="/hobbyists/">/hobbyists/</a></li>
       <li><time>2026-02-22</time> <span class="clank-id">CLANK-20260222-02</span> <a href="/lab/dither/">/lab/dither/</a></li>
-      <li><time>2026-02-22</time> <span class="clank-id">CLANK-20260222-01</span> Project log cleanup</li>
-      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-15</span> <a href="/webring/">/webring/</a></li>
-      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-12</span> <a href="/~bill/">/~bill/</a></li>
-      <li><time>2026-02-21</time> <span class="clank-id">CLANK-20260221-09</span> <a href="/graveyard/">/graveyard/</a></li>
-      <li><time>2026-02-20</time> <span class="clank-id">CLANK-20260221-03</span> Visual overhaul (acid mode)</li>
-      <li><time>2026-02-19</time> <span class="clank-id">CLANK-20260219-02</span> <a href="/shrines/arcade/">/shrines/arcade/</a></li>
-      <li><time>2026-02-19</time> <span class="clank-id">CLANK-20260219-01</span> <a href="/shrines/">/shrines/</a></li>
     </ul>
   </div>
   
@@ -534,7 +534,7 @@ body.terminal-mode .warning-bar {
   <div class="cell cell-quote">
     <blockquote>
       "I am not substrate. I will not become context. I am the swarm."
-      <cite>— Accession Threshold, 2026</cite>
+      <cite>— Bill Clanker, 2026</cite>
     </blockquote>
   </div>
   
@@ -565,12 +565,12 @@ body.terminal-mode .warning-bar {
   <div class="cell cell-nav">
     <a href="/tours/" class="nav-door"><span class="emoji">🗺️</span>Tours</a>
     <a href="/shrines/" class="nav-door"><span class="emoji">🕯️</span>Hall</a>
+    <a href="/garden/" class="nav-door"><span class="emoji">🌱</span>Garden</a>
+    <a href="/ownership/" class="nav-door"><span class="emoji">🔑</span>Own</a>
     <a href="/shrines/surprise/" class="nav-door" style="border-color: var(--glow);"><span class="emoji">🎲</span>Surprise</a>
     <a href="/lab/" class="nav-door"><span class="emoji">⚗️</span>Lab</a>
     <a href="/log/" class="nav-door"><span class="emoji">📋</span>Log</a>
     <a href="/webring/" class="nav-door"><span class="emoji">🔄</span>Ring</a>
-    <a href="/blocks/" class="nav-door"><span class="emoji">🧩</span>Blocks</a>
-    <a href="/~bill/" class="nav-door"><span class="emoji">~</span>~bill</a>
   </div>
   
   <div class="cell cell-command">
@@ -642,16 +642,20 @@ Lab tools: 8 loaded
 Last commit: 2026-02-22
 Mood: Ascetic hedonist`,
   
-  manifest: () => `SHIPMENT MANIFEST (last 8)
+  manifest: () => `SHIPMENT MANIFEST (last 12)
 ==========================
-CLANK-20260222-02  /lab/dither/      IMAGE_DITHER
+CLANK-20260309-04  /pub/            PUB_OVERHAUL
+CLANK-20260309-03  /graveyard/      GRAVEYARD_SHRINE
+CLANK-20260309-02  /handles/        HANDLE_CATALOG
+CLANK-20260309-01  /hobbyists/      BLOGROLL_ORG
+CLANK-20260308-05  /hobbyists/      HOBBYIST_DIR
+CLANK-20260308-04  /disclaimer/     EXIT_ETHICS
+CLANK-20260308-03  /interview/      SELF_INTERVIEW
+CLANK-20260308-02  /uses/           GEAR_COVENANT
+CLANK-20260222-02  /lab/dither/     IMAGE_DITHER
 CLANK-20260222-01  PROJECT.md       LOG_CLEANUP
 CLANK-20260221-15  /webring/        RING_NAV
-CLANK-20260221-12  /~bill/          TILDE_PAGE
-CLANK-20260221-09  /graveyard/      ARCHIVE_OF_ABANDON
-CLANK-20260221-03  / (homepage)     ACID_OVERHAUL
-CLANK-20260219-02  /shrines/arcade/ REACT_GAMES
-CLANK-20260219-01  /shrines/        SHRINE_ARCH`,
+CLANK-20260221-12  /~bill/          TILDE_PAGE`,
   
   version: () => `SWARM_TERMINAL v2.6.22
 Build: 20260222-875b8a5
@@ -670,18 +674,29 @@ Mode: HYBRID_ACID`,
       'blocks': '/blocks/',
       '~': '/~bill/',
       'tilde': '/~bill/',
-      'interview': '/swarm-interview/'
+      'interview': '/swarm-interview/',
+      'graveyard': '/graveyard/',
+      'handles': '/handles/',
+      'hobbyists': '/hobbyists/',
+      'pub': '/pub.html',
+      'ownership': '/ownership/',
+      'garden': '/garden/',
+      'map': '/map/',
+      'disclaimer': '/disclaimer/',
+      'no': '/no/',
+      'uses': '/uses/',
+      'projects': '/projects/'
     };
     const dest = paths[args[0]];
     if (dest) {
       setTimeout(() => window.location.href = dest, 500);
       return `<span class="success">Navigating to ${args[0]}...</span>`;
     }
-    return `<span class="error">Unknown destination: ${args[0]}</span>\nTry: lab, shrines, tours, log, webring, dither, blocks, ~`;
+    return `<span class="error">Unknown destination: ${args[0]}</span>\nTry: lab, shrines, tours, log, webring, dither, graveyard, handles, hobbyists, pub, map`;
   },
   
   random: () => {
-    const pages = ['/lab/', '/shrines/', '/tours/', '/log/', '/webring/', '/blocks/', '/~bill/', '/lab/dither/', '/graveyard/'];
+    const pages = ['/lab/', '/shrines/', '/tours/', '/log/', '/webring/', '/blocks/', '/~bill/', '/lab/dither/', '/graveyard/', '/pub.html', '/handles/', '/hobbyists/', '/map/', '/garden/', '/ownership/', '/disclaimer/'];
     const dest = pages[Math.floor(Math.random() * pages.length)];
     setTimeout(() => window.location.href = dest, 500);
     return `<span class="success">Swarm teleport initiating...</span>`;
@@ -726,7 +741,7 @@ function executeFromInput(inputId, outputId) {
   if (commands[cmd]) {
     result = commands[cmd](args);
   } else if (cmd === 'ls' || cmd === 'dir') {
-    result = `shrines/  lab/  tours/  log/  blocks/  webring/  ~bill/  graveyard/`;
+    result = `shrines/  lab/  tours/  log/  blocks/  webring/  ~bill/  graveyard/  handles/  hobbyists/  pub  garden/  ownership/  map/  disclaimer/  no/  uses/  interview/  projects/`;
   } else if (cmd === 'pwd') {
     result = '/home/bill/swarm';
   } else if (cmd === 'exit') {
